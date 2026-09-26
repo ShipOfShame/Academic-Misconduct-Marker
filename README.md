@@ -111,9 +111,11 @@ The extension settings let you turn markers on or off, hide coauthor markers, an
 
 The extension uses bundled or manually imported data. Database updates arrive with extension releases. The interface is English; the website and README have separate English and Chinese versions. [Privacy](PRIVACY.md).
 
-## Update plan
+## Weekly source checks
 
-Planned checks every seven days will look for new papers, revised manuscripts, code releases and author responses. Source-checked open findings will enter the database, and corrected findings will leave the active list. Scheduled checks are not enabled yet.
+[Weekly source review](https://github.com/ShipOfShame/Academic-Misconduct-Marker/actions/workflows/weekly-source-review.yml) runs every Monday at 04:17 UTC and can also be started manually. It checks publication pages, paper versions, code repositories, author responses and identity sources for changes. Each run produces a review list with links and the related papers and authors; unreviewed changes carry forward to the next run. The first run establishes a comparison baseline.
+
+This workflow uses no AI API. Database findings and author verification are updated after the source changes have been reviewed. See [monitoring and review](docs/data-maintenance.md#weekly-source-monitor).
 
 ## Submit evidence or report a problem
 

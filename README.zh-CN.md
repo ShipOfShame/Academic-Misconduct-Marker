@@ -111,9 +111,11 @@ Sixun Dong 的开发者昵称是 Ironieser。他在[个人主页](https://sixund
 
 扩展使用内置或手动导入的数据，内置数据库随扩展版本更新。扩展界面为英文，网站和 README 分别提供中英文版本。[隐私说明（英文）](PRIVACY.md)。
 
-## 更新计划
+## 每周来源检查
 
-计划每 7 天自动检索新增论文、版本更新、代码发布和作者回复。经来源核对的未解决问题纳入数据库，已纠正的问题移出当前列表。定期任务暂未启用。
+[每周来源检查](https://github.com/ShipOfShame/Academic-Misconduct-Marker/actions/workflows/weekly-source-review.yml)在每周一 UTC 04:17 运行，也可以手动启动。任务检查论文列表、论文版本、代码仓库、作者回复和身份来源的变化，生成包含来源链接、相关论文和作者的待审清单。尚未处理的变化会保留到下次清单中。首次运行建立用于后续比较的记录。
+
+此任务不调用 AI 服务。来源变化经审查后，再更新数据库中的问题记录和作者身份认定。维护方法见[来源检查与审查](docs/data-maintenance.md#weekly-source-monitor)。
 
 ## 提交证据或反馈问题
 
