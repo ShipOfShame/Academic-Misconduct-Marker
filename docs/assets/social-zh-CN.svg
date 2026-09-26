@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="学术不端标记器">
+<title>学术不端标记器</title><desc>浏览论文时，查看已记录的问题和来源。</desc>
+<rect width="1200" height="630" rx="20" fill="#faf8f4"/>
+<rect x="1" y="1" width="1198" height="628" rx="19" fill="none" stroke="#e5dfd5"/>
+<svg x="70" y="70" width="112" height="112" viewBox="0 0 64 64"><title>Academic Misconduct Marker</title><desc>Red and orange evidence brackets around a white attention mark.</desc><rect width="64" height="64" rx="15" fill="#211a1b"/><path d="M24 13H13v38h11" fill="none" stroke="#f14d4d" stroke-width="6" stroke-linecap="square" stroke-linejoin="round"/><path d="M40 13h11v38H40" fill="none" stroke="#ff9b45" stroke-width="6" stroke-linecap="square" stroke-linejoin="round"/><path d="M32 20v16" stroke="#fff8ef" stroke-width="6" stroke-linecap="round"/><circle cx="32" cy="45" r="3.2" fill="#fff8ef"/></svg>
+
+<g font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#211a1b">
+<text x="70" y="108" font-size="17" letter-spacing="2.4" fill="#7b6c65" transform="translate(140 0)">ARXIV / GOOGLE SCHOLAR</text>
+<text x="70" y="280" font-size="50" font-weight="700">学术不端标记器</text>
+<text x="70" y="335" font-size="25" fill="#625550">浏览论文时，查看已记录的问题和来源。</text>
+<path d="M70 539H1130" stroke="#ddd5cb"/>
+<rect x="70" y="569" width="8" height="8" rx="2" fill="#b4232c"/>
+<text x="88" y="580" font-size="18">审查对象</text>
+<rect x="400" y="569" width="8" height="8" rx="2" fill="#b85108"/>
+<text x="418" y="580" font-size="18">身份已核实的共同作者</text>
+<text x="1130" y="580" text-anchor="end" font-size="18" fill="#7b6c65">ShipOfShame / Academic-Misconduct-Marker</text>
+</g></svg>

@@ -1,0 +1,22 @@
+{
+  "name": "academic-misconduct-marker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Source-linked academic evidence for arXiv and Google Scholar",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "generate": "node scripts/generate.cjs",
+    "validate": "node scripts/validate.cjs",
+    "test": "node --test tests/extension.test.cjs tests/scoring.test.cjs tests/locales.test.cjs tests/publication.test.cjs",
+    "test:e2e": "playwright test",
+    "check": "npm run validate && npm test",
+    "package": "npm run check && python3 scripts/package.py",
+    "icons": "npm run generate && node scripts/render-icons.cjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "linkedom": "0.18.13"
+  }
+}

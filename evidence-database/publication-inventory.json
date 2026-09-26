@@ -1,0 +1,166 @@
+{
+  "checked": "2026-09-26",
+  "identityId": "sixun-dong-ironieser",
+  "sources": [
+    {
+      "label": "Author publication page",
+      "url": "https://sixundong.com/publications"
+    },
+    {
+      "label": "Google Scholar publication list",
+      "url": "https://scholar.google.com/citations?user=j71Y2-4AAAAJ&hl=en&cstart=0&pagesize=100"
+    }
+  ],
+  "papers": [
+    {
+      "id": "2506.24124",
+      "title": "Teaching Time Series to See and Speak: Forecasting with Aligned Visual and Textual Perspectives",
+      "url": "https://arxiv.org/abs/2506.24124",
+      "reviewed": true
+    },
+    {
+      "id": "2508.18264",
+      "title": "MMTok: Multimodal Coverage Maximization for Efficient Inference of VLMs",
+      "url": "https://arxiv.org/abs/2508.18264",
+      "reviewed": true
+    },
+    {
+      "id": "2505.18204",
+      "title": "Brownian Bridge Augmented Surrogate Simulation and Injection Planning for Geological CO2 Storage",
+      "url": "https://arxiv.org/abs/2505.18204",
+      "reviewed": true
+    },
+    {
+      "id": "2506.08552",
+      "title": "Efficient Post-Training Refinement of Latent Reasoning in Large Language Models",
+      "url": "https://arxiv.org/abs/2506.08552",
+      "reviewed": true
+    },
+    {
+      "id": "2508.09125",
+      "title": "LogicIF: Towards Complex Logic Instruction Following",
+      "url": "https://arxiv.org/abs/2508.09125",
+      "reviewed": true
+    },
+    {
+      "id": "2505.15076",
+      "title": "Agentic Feature Augmentation: Unifying Selection and Generation with Teaming, Planning, and Memories",
+      "url": "https://arxiv.org/abs/2505.15076",
+      "reviewed": true
+    },
+    {
+      "id": "2604.04929",
+      "title": "Rethinking Model Efficiency: Multi-Agent Inference with Large Models",
+      "url": "https://arxiv.org/abs/2604.04929",
+      "reviewed": true
+    },
+    {
+      "id": "2508.15760",
+      "title": "LiveMCP-101: Stress Testing and Diagnosing MCP-enabled Agents on Challenging Queries",
+      "url": "https://arxiv.org/abs/2508.15760",
+      "reviewed": true
+    },
+    {
+      "id": "2401.10727",
+      "title": "MLLM-Tool: A Multimodal Large Language Model For Tool Agent Learning",
+      "url": "https://arxiv.org/abs/2401.10727",
+      "reviewed": true
+    },
+    {
+      "id": "2310.10027",
+      "title": "RoomDesigner: Encoding Anchor-latents for Style-consistent and Shape-compatible Indoor Scene Generation",
+      "url": "https://arxiv.org/abs/2310.10027",
+      "reviewed": true
+    },
+    {
+      "id": "2505.15152",
+      "title": "Sculpting Features from Noise: Reward-Guided Hierarchical Diffusion for Task-Optimal Feature Transformation",
+      "url": "https://arxiv.org/abs/2505.15152",
+      "reviewed": true
+    },
+    {
+      "id": "2504.21304",
+      "title": "Unsupervised Feature Transformation via In-context Generation, Generator-critic LLM Agents, and Duet-play Teaming",
+      "url": "https://arxiv.org/abs/2504.21304",
+      "reviewed": true
+    },
+    {
+      "id": "2601.21347",
+      "title": "Towards Robust Dysarthric Speech Recognition: LLM-Agent Post-ASR Correction Beyond WER",
+      "url": "https://arxiv.org/abs/2601.21347v1",
+      "reviewed": true
+    },
+    {
+      "id": "2502.08828",
+      "title": "A Survey on Data-Centric AI: Tabular Learning from Reinforcement Learning and Generative AI Perspective",
+      "url": "https://arxiv.org/abs/2502.08828v2",
+      "reviewed": true
+    },
+    {
+      "id": "2501.10555",
+      "title": "Toward Data-Centric AI: A Comprehensive Survey of Traditional, Reinforcement, and Generative Approaches for Tabular Data Transformation",
+      "url": "https://arxiv.org/abs/2501.10555",
+      "reviewed": true
+    },
+    {
+      "id": "2602.10625",
+      "title": "To Think or Not To Think, That is The Question for Large Reasoning Models in Theory of Mind Tasks",
+      "url": "https://arxiv.org/abs/2602.10625v3",
+      "reviewed": true
+    },
+    {
+      "id": "2505.15572",
+      "title": "Bridging the Domain Gap in Equation Distillation with Reinforcement Feedback",
+      "url": "https://arxiv.org/abs/2505.15572v1",
+      "reviewed": true
+    },
+    {
+      "id": "2303.12370",
+      "title": "Weakly Supervised Video Representation Learning with Unaligned Text for Sequential Videos",
+      "url": "https://arxiv.org/abs/2303.12370v2",
+      "reviewed": true
+    },
+    {
+      "id": "2609.07720",
+      "title": "Better Call CineCrew: Consistent Ultra-Long Narrative-to-Film Generation",
+      "url": "https://arxiv.org/abs/2609.07720v1",
+      "reviewed": true
+    },
+    {
+      "id": "2204.01018",
+      "title": "TransRAC: Encoding Multi-scale Temporal Correlation with Transformers for Repetitive Action Counting",
+      "url": "https://arxiv.org/abs/2204.01018v1",
+      "reviewed": true
+    },
+    {
+      "id": "2506.09085",
+      "title": "LLM-ML Teaming: Integrated Symbolic Decoding and Gradient Search for Valid and Stable Generative Feature Transformation",
+      "url": "https://arxiv.org/abs/2506.09085v1",
+      "reviewed": true
+    },
+    {
+      "id": "lohi",
+      "title": "Rethinking Long-Video Efficiency: A Joint Allocation Perspective on Frames, Pixels, and Front-End Latency",
+      "url": "https://openreview.net/forum?id=a9xLyT4hG4",
+      "reviewed": false
+    },
+    {
+      "id": "mars",
+      "title": "MARS: Multi-resolution Adaptive Routing for Sequential Recommendation",
+      "url": "https://openreview.net/forum?id=108F0f6Iau",
+      "reviewed": false
+    },
+    {
+      "id": "timesframe",
+      "title": "TimesFrame: Multi-Variable Time Series is a Video of Numerical Data",
+      "url": "https://sixundong.com/publications",
+      "reviewed": false
+    },
+    {
+      "id": "mect",
+      "title": "MECT: From Multimodal Knowledge Acquisition To Contrastive Embedding Construction For Generative Feature Transformation",
+      "url": "https://sixundong.com/publications",
+      "reviewed": false
+    }
+  ]
+}

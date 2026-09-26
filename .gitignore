@@ -1,0 +1,14 @@
+node_modules/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.zip
+.env
+.env.*
+dist/
+test-results/
+playwright-report/
+__pycache__/
+.venv/
+coverage/
+*.log

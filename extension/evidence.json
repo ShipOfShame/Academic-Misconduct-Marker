@@ -1,0 +1,2796 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-09-26",
+  "notice": "Local static-review evidence, not a finding of academic misconduct. A paper-level issue does not establish an individual author’s responsibility; coauthorship alone does not indicate wrongdoing.",
+  "targets": [
+    {
+      "name": "Sixun Dong",
+      "identityUrl": "https://sixundong.com/publications",
+      "identityId": "sixun-dong-ironieser"
+    }
+  ],
+  "papers": [
+    {
+      "id": "2506.24124",
+      "title": "Teaching Time Series to See and Speak: Forecasting with Aligned Visual and Textual Perspectives",
+      "authors": [
+        "Sixun Dong",
+        "Wei Fan",
+        "Teresa Wu",
+        "Yanjie Fu"
+      ],
+      "url": "https://arxiv.org/abs/2506.24124",
+      "findings": [
+        {
+          "status": "material_gap",
+          "title": "Code availability statement does not match the repository contents",
+          "detail": "At the review date, the default branch contained only a README. An author had said the code would be released after formal acceptance. It would be inaccurate to claim that no response was given; this review did not establish whether the acceptance condition had been met.",
+          "url": "https://github.com/Ironieser/TimesCLIP/tree/269fc3057068aecd4d89055b7cb48025d3a012e2",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "arXiv 2506.24124v2 abstract; TimesCLIP commit 269fc3057068aecd4d89055b7cb48025d3a012e2; issue #1 author reply.",
+            "observation": "The abstract presents code as available. The reviewed repository tree contains only readme.md. The README describes a planned directory structure and reproduction materials, while implementation files are absent from that snapshot.",
+            "reason": "A present-tense availability statement directs readers to a repository that does not supply the described implementation. This is a concrete mismatch between the public claim and delivered materials, obstructing inspection of how the reported results were produced.",
+            "limitation": "An author replied on July 22, 2025 that code and models would be released after formal acceptance. Acceptance status was not established, so this record does not claim that deadline was breached or that the authors never replied. It does not establish fabrication or assign the omission to an individual coauthor.",
+            "sources": [
+              {
+                "label": "Paper v2",
+                "url": "https://arxiv.org/abs/2506.24124v2",
+                "location": "Abstract: code availability statement"
+              },
+              {
+                "label": "Pinned repository tree",
+                "url": "https://github.com/Ironieser/TimesCLIP/tree/269fc3057068aecd4d89055b7cb48025d3a012e2",
+                "location": "Default-branch file tree at the reviewed commit"
+              },
+              {
+                "label": "Author response",
+                "url": "https://github.com/Ironieser/TimesCLIP/issues/1",
+                "location": "July 22, 2025 reply: release after formal acceptance"
+              }
+            ]
+          }
+        },
+        {
+          "status": "reporting_error",
+          "title": "The PEMS07 Avg row is inconsistent with its four component values",
+          "detail": "In v2 Table 10, the four TimesCLIP MSE values average 0.08975, but the table reports 0.358. The MAE values average 0.193, but the table reports 0.773. This supports an aggregation or labeling error, not a finding that the experimental data were fabricated.",
+          "url": "https://arxiv.org/abs/2506.24124v2",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "arXiv 2506.24124v2, Table 10 (PEMS07; horizons 12, 24, 48, 96) and Table 2.",
+            "observation": "The four TimesCLIP MSE values are 0.063, 0.074, 0.106, 0.116: (0.063 + 0.074 + 0.106 + 0.116) / 4 = 0.08975, versus reported Avg 0.358. The MAE values 0.175, 0.183, 0.204, 0.210 average 0.193, versus reported Avg 0.773. The reported averages even exceed every component in their respective columns. Table 2 reuses these aggregates.",
+            "reason": "An average with nonnegative weights cannot exceed all its components. Rounding cannot reconcile these values. The table therefore contains an aggregation or labeling error affecting the interpretation of the reported absolute errors.",
+            "limitation": "The aggregate values are close to sums rather than means; other methods show a similar pattern. A shared scaling error could leave the within-dataset ranking unchanged. The table inconsistency does not demonstrate that the component results were invented.",
+            "sources": [
+              {
+                "label": "Paper v2",
+                "url": "https://arxiv.org/abs/2506.24124v2",
+                "location": "Tables 10 and 2: PEMS07 MSE/MAE aggregates"
+              }
+            ]
+          }
+        }
+      ],
+      "evidenceUrl": "https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/evidence-database/papers/2506.24124.md"
+    },
+    {
+      "id": "2508.18264",
+      "title": "MMTok: Multimodal Coverage Maximization for Efficient Inference of VLMs",
+      "authors": [
+        "Sixun Dong",
+        "Juhua Hu",
+        "Mian Zhang",
+        "Ming Yin",
+        "Yanjie Fu",
+        "Qi Qian"
+      ],
+      "url": "https://arxiv.org/abs/2508.18264",
+      "findings": [
+        {
+          "status": "reporting_error",
+          "title": "README and paper report inconsistent performance metrics",
+          "detail": "The pinned README claims 87.7% F1 with four tokens, while arXiv v2 Table 21 reports 74.84 F1. The abstract’s performance-retention percentage also differs from the table-derived ratio. The final OpenReview PDF was not obtained; the finding is limited to these versions.",
+          "url": "https://github.com/Ironieser/MMTok/blob/8e2686836ed5bbe05d064f1d1c20e50c73c70b94/README.md",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "MMTok README at commit 8e2686836ed5bbe05d064f1d1c20e50c73c70b94; arXiv 2508.18264v2 abstract and Table 21.",
+            "observation": "The README describes 87.7% F1 with four visual tokens. Table 21 instead reports 74.84 F1 for the four-token POPE setting and 85.9 for the full model. Their ratio is approximately 87.12%. The abstract describes 87.7% as retained performance rather than absolute F1.",
+            "reason": "Absolute F1 and a percentage of retained baseline performance are different quantities. The linked descriptions cannot be reconciled as the same reported setting without a metric or version explanation.",
+            "limitation": "The final OpenReview PDF was not obtained. The finding concerns the pinned README and arXiv v2, not every paper version. It establishes inconsistent reporting, not fabricated measurements.",
+            "sources": [
+              {
+                "label": "Pinned README",
+                "url": "https://github.com/Ironieser/MMTok/blob/8e2686836ed5bbe05d064f1d1c20e50c73c70b94/README.md",
+                "location": "Four-token performance statement"
+              },
+              {
+                "label": "Paper v2",
+                "url": "https://arxiv.org/html/2508.18264v2",
+                "location": "Abstract and Table 21: POPE four-token and full-model F1"
+              }
+            ]
+          }
+        },
+        {
+          "status": "implementation_error",
+          "title": "Padding exclusion can exhaust valid tokens and repeatedly select a masked token",
+          "detail": "The selector caps its token budget by the total token count, without subtracting excluded padding tokens. When valid candidates run out, the remaining iterations take argmax over all-negative-infinity scores and repeatedly select index 0.",
+          "url": "https://github.com/Ironieser/MMTok/blob/8e2686836ed5bbe05d064f1d1c20e50c73c70b94/mmtok/core/semantic_selector.py#L43-L64",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "MMTok commit 8e2686836ed5bbe05d064f1d1c20e50c73c70b94; LLaVA-1.5 tensor-input path with padding exclusion, finite coverage scores and a requested budget exceeding eligible candidates.",
+            "observation": "The selector caps its token budget by the total token count, without subtracting excluded padding tokens. When valid candidates run out, the remaining iterations take argmax over all-negative-infinity scores and repeatedly select index 0.",
+            "reason": "For a 1008-by-336 image, the published padding rule excludes eight rows at the top and eight at the bottom of a 24-by-24 grid, leaving 192 eligible tokens. With the README budget of 256 and padding exclusion enabled, the first 192 iterations consume all eligible tokens; the next 64 select masked index 0. The output is neither padding-free nor a subset of 256 distinct tokens.",
+            "limitation": "The result follows from the padding arithmetic and loop control flow. The frequency of this input condition in the paper benchmarks was not measured.",
+            "sources": [
+              {
+                "label": "Source 1",
+                "url": "https://github.com/Ironieser/MMTok/blob/8e2686836ed5bbe05d064f1d1c20e50c73c70b94/mmtok/core/semantic_selector.py#L43-L64",
+                "location": "Masked greedy loop continues for k_max iterations"
+              },
+              {
+                "label": "Source 2",
+                "url": "https://github.com/Ironieser/MMTok/blob/8e2686836ed5bbe05d064f1d1c20e50c73c70b94/mmtok/core/semantic_selector.py#L114-L131",
+                "location": "Budget uses total n rather than eligible candidates"
+              },
+              {
+                "label": "Source 3",
+                "url": "https://github.com/Ironieser/MMTok/blob/8e2686836ed5bbe05d064f1d1c20e50c73c70b94/mmtok/llava/patch_llava.py#L34-L73",
+                "location": "336-pixel resize and whole-padding-row exclusion"
+              },
+              {
+                "label": "Source 4",
+                "url": "https://github.com/Ironieser/MMTok/blob/8e2686836ed5bbe05d064f1d1c20e50c73c70b94/mmtok/llava/llava_inject.py#L67-L80",
+                "location": "Padding exclusion is enabled for LLaVA-1.5"
+              },
+              {
+                "label": "Source 5",
+                "url": "https://github.com/Ironieser/MMTok/blob/8e2686836ed5bbe05d064f1d1c20e50c73c70b94/README.md#L70-L78",
+                "location": "Usage example with target_vision_tokens=256"
+              },
+              {
+                "label": "Source 6",
+                "url": "https://docs.pytorch.org/docs/stable/generated/torch.argmax.html",
+                "location": "Equal maxima return the first index"
+              }
+            ]
+          }
+        }
+      ],
+      "evidenceUrl": "https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/evidence-database/papers/2508.18264.md"
+    },
+    {
+      "id": "2505.18204",
+      "title": "Brownian Bridge Augmented Surrogate Simulation and Injection Planning for Geological CO2 Storage",
+      "authors": [
+        "Haoyue Bai",
+        "Guodong Chen",
+        "Wangyang Ying",
+        "Xinyuan Wang",
+        "Nanxu Gong",
+        "Sixun Dong",
+        "Giulia Pedrielli",
+        "Haoyu Wang",
+        "Haifeng Chen",
+        "Yanjie Fu"
+      ],
+      "url": "https://arxiv.org/abs/2505.18204",
+      "findings": [
+        {
+          "status": "implementation_error",
+          "title": "A module imported by the public entry point contains an indentation error",
+          "detail": "Static parsing of loaders/simdec_loader.py at the pinned commit reports an IndentationError at line 58. No research code was executed. This does not establish that the paper’s experiments were never run.",
+          "url": "https://github.com/HaoyueBai98/Brownian_Bridge_Augmented_CO2_Storage/blob/2616f119eadd2873755b58292b9d5768f30d0b6d/loaders/simdec_loader.py#L58",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "Brownian_Bridge_Augmented_CO2_Storage commit 2616f119eadd2873755b58292b9d5768f30d0b6d.",
+            "observation": "simdec_main.py line 9 imports loaders.simdec_loader. In that module, line 58 has an unexpected extra indentation before np.savez. Static Python parsing in the recorded review produced IndentationError: unexpected indent at line 58.",
+            "reason": "A module imported by the public entry point cannot be parsed in this snapshot. That is a concrete defect in the released implementation and prevents this entry point from running as supplied.",
+            "limitation": "Only source text was parsed; no research code, model, or experiment was executed. A release-time editing error is possible. This does not establish that the authors used this snapshot for the paper or never ran the experiments.",
+            "sources": [
+              {
+                "label": "Entry-point import",
+                "url": "https://github.com/HaoyueBai98/Brownian_Bridge_Augmented_CO2_Storage/blob/2616f119eadd2873755b58292b9d5768f30d0b6d/simdec_main.py#L9",
+                "location": "simdec_main.py line 9"
+              },
+              {
+                "label": "Syntax defect",
+                "url": "https://github.com/HaoyueBai98/Brownian_Bridge_Augmented_CO2_Storage/blob/2616f119eadd2873755b58292b9d5768f30d0b6d/loaders/simdec_loader.py#L58",
+                "location": "loaders/simdec_loader.py line 58"
+              }
+            ]
+          }
+        }
+      ],
+      "evidenceUrl": "https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/evidence-database/papers/2505.18204.md"
+    },
+    {
+      "id": "2506.08552",
+      "title": "Efficient Post-Training Refinement of Latent Reasoning in Large Language Models",
+      "authors": [
+        "Xinyuan Wang",
+        "Dongjie Wang",
+        "Wangyang Ying",
+        "Haoyue Bai",
+        "Nanxu Gong",
+        "Sixun Dong",
+        "Kunpeng Liu",
+        "Yanjie Fu"
+      ],
+      "url": "https://arxiv.org/abs/2506.08552",
+      "findings": [
+        {
+          "status": "reporting_error",
+          "title": "The equation and public code use opposite update signs",
+          "detail": "AAAI 2026 Equation (2) adds the gradient, while the pinned code subtracts it. The equation and released code specify opposite update directions. This discrepancy is not evidence of data fabrication.",
+          "url": "https://github.com/anord-wang/Lateng-Reasoning/blob/94e70c46acb39c45c713d010d53f9e06421527d8/coconut_search.py#L74",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "AAAI 2026 publication, Equation (2), PDF page 4 / printed page 33695; Lateng-Reasoning commit 94e70c46acb39c45c713d010d53f9e06421527d8.",
+            "observation": "Equation (2) specifies h_new = h + eta * gradient[L], where L = MSE(h_good, h) - MSE(h_bad, h). The released coconut_search.py computes that loss but updates h by subtracting learning_rate * gradient[L].",
+            "reason": "For positive step sizes the displayed equation and code move in opposite directions on the same objective. A reader implementing the stated method would not reproduce the released update rule.",
+            "limitation": "This identifies a paper/code specification mismatch; it does not establish which rule generated the reported results. The code refines embeddings without updating model parameters. No fabrication or individual intent is inferred.",
+            "sources": [
+              {
+                "label": "AAAI publication",
+                "url": "https://ojs.aaai.org/index.php/AAAI/article/view/40659",
+                "location": "Equation (2), printed page 33695"
+              },
+              {
+                "label": "Pinned update code",
+                "url": "https://github.com/anord-wang/Lateng-Reasoning/blob/94e70c46acb39c45c713d010d53f9e06421527d8/coconut_search.py#L74",
+                "location": "coconut_search.py lines 74-85: objective, gradient, and subtraction update"
+              }
+            ]
+          }
+        }
+      ],
+      "evidenceUrl": "https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/evidence-database/papers/2506.08552.md"
+    },
+    {
+      "id": "2508.09125",
+      "title": "LogicIF: Towards Complex Logic Instruction Following",
+      "authors": [
+        "Mian Zhang",
+        "Shujian Liu",
+        "Sixun Dong",
+        "Ming Yin",
+        "Yebowen Hu",
+        "Xun Wang",
+        "Simin Ma",
+        "Song Wang",
+        "Sathish Reddy Indurthi",
+        "Haoyun Deng",
+        "Zhiyu Zoey Chen",
+        "Kaiqiang Song"
+      ],
+      "url": "https://arxiv.org/abs/2508.09125",
+      "findings": [
+        {
+          "status": "reporting_error",
+          "title": "Figure 6 inconsistently labels the accuracy metric",
+          "detail": "The Qwen values in v4 Figure 6 correspond to question-level accuracy in the author’s issue reply, while the caption describes a percentage of individual test cases. The plotted metric and caption describe different quantities. Deliberate misrepresentation is not inferred.",
+          "url": "https://arxiv.org/abs/2508.09125v4",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "arXiv 2508.09125v4 Figure 6 and the metric definitions in the issue #2 author reply.",
+            "observation": "The reply distinguishes case-level accuracies of 66.76% / 75.83% from question-level accuracies of 26.47% / 38.24% for Qwen3-8B / Qwen3-32B. Figure 6 shows 26.5% / 38.2%, matching question-level accuracy after rounding, while its caption describes the percentage of individual test cases.",
+            "reason": "Passing every test case for a question is a different event from passing an individual case. Labeling question-level values as case-level accuracy misstates what the plotted performance measures.",
+            "limitation": "The evidence supports a caption/metric-label error, not a claim that the plotted numbers were fabricated. The v4 PDF labels itself COLM 2026; the final venue archive was not independently obtained.",
+            "sources": [
+              {
+                "label": "Paper v4",
+                "url": "https://arxiv.org/abs/2508.09125v4",
+                "location": "Figure 6: caption and rounded Qwen values"
+              },
+              {
+                "label": "Metric definitions and values",
+                "url": "https://github.com/mianzhang/LogicIF/issues/2#issuecomment-3412893212",
+                "location": "Author reply: per-case and per-question accuracies"
+              }
+            ]
+          }
+        }
+      ],
+      "evidenceUrl": "https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/evidence-database/papers/2508.09125.md"
+    },
+    {
+      "id": "2604.04929",
+      "title": "Rethinking Model Efficiency: Multi-Agent Inference with Large Models",
+      "authors": [
+        "Sixun Dong",
+        "Juhua Hu",
+        "Steven Li",
+        "Wei Wen",
+        "Qi Qian"
+      ],
+      "url": "https://arxiv.org/abs/2604.04929",
+      "findings": [
+        {
+          "status": "reporting_error",
+          "title": "Routing counts and timings for the same example are inconsistent",
+          "detail": "In v1 Table 10, the three MMBench routing counts sum to 4,328, while the total is 4,329. Appendix B.6 gives two different sets of timings for the same example. The impact is unresolved. The paper separately discloses measured timings, so it would be inaccurate to claim that no measurements were made.",
+          "url": "https://arxiv.org/html/2604.04929v1",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "arXiv 2604.04929v1, Table 10 and Appendix B.6 Example 3.",
+            "observation": "Table 10 lists 3,736, 262, and 330 MMBench routing cases: these sum to 4,328, while the total is 4,329. Example 3 gives 2B-R = 3.83 s, 8B-R = 4.56 s, and the combination approximately 3.96 s; the same example summary instead gives 2.02 s, 5.54 s, and 2.03 s respectively.",
+            "reason": "The integer routing counts do not conserve the stated sample total, and the same example has incompatible timing accounts. Readers cannot determine the intended denominator or timing comparison without a correction.",
+            "limitation": "The one-case count difference is about 0.023%; its effect on conclusions is unresolved. Both timing accounts suggest a speedup, but with different magnitudes. The paper separately discloses estimates and measured timings, so this does not imply that all latency claims are unmeasured or false.",
+            "sources": [
+              {
+                "label": "Paper v1",
+                "url": "https://arxiv.org/html/2604.04929v1",
+                "location": "Table 10; Appendix B.6, Example 3; Appendix B.4 for measured-timing context"
+              }
+            ]
+          }
+        }
+      ],
+      "evidenceUrl": "https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/evidence-database/papers/2604.04929.md"
+    },
+    {
+      "id": "2401.10727",
+      "title": "MLLM-Tool: A Multimodal Large Language Model For Tool Agent Learning",
+      "authors": [
+        "Chenyu Wang",
+        "Weixin Luo",
+        "Sixun Dong",
+        "Xiaohua Xuan",
+        "Zhengxin Li",
+        "Lin Ma",
+        "Shenghua Gao"
+      ],
+      "url": "https://arxiv.org/abs/2401.10727",
+      "findings": [
+        {
+          "status": "material_gap",
+          "title": "Complete original model cards were not released",
+          "detail": "An author explicitly stated that the full model cards could not be disclosed. Scraping current pages and generating new descriptions cannot reconstruct the original manual annotations. Code and some data are public.",
+          "url": "https://github.com/Chenyu-Wang567/MLLM-Tool/issues/6#issuecomment-3390754375",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "MLLM-Tool paper Section 3.1 and issue #6 author comment, reviewed September 26, 2026.",
+            "observation": "The paper describes model cards for 932 models. The author states that the complete cards cannot be disclosed, supplies model lists and function categories, and suggests scraping current model pages and generating replacement descriptions. The reply explains that the original descriptions were primarily manually annotated and that some model pages may no longer be accessible.",
+            "reason": "Current scraped pages and newly generated descriptions cannot reconstruct the original annotations used to construct the research data. This is an author-confirmed gap in the materials required to trace that construction process.",
+            "limitation": "Code and some data are public; issue #7 also contains a response identifying test materials. The disclosed restrictions may have legitimate reasons. This record does not claim that all data are unavailable, that a specific venue rule was breached, or that the data were fabricated.",
+            "sources": [
+              {
+                "label": "Model-card disclosure reply",
+                "url": "https://github.com/Chenyu-Wang567/MLLM-Tool/issues/6#issuecomment-3390754375",
+                "location": "Author comment: missing original cards, manual descriptions, and proposed substitutes"
+              },
+              {
+                "label": "Test-data response",
+                "url": "https://github.com/Chenyu-Wang567/MLLM-Tool/issues/7",
+                "location": "Author response identifying available test materials"
+              }
+            ]
+          }
+        },
+        {
+          "status": "implementation_error",
+          "title": "The released test set contains 184 inputs already present in training",
+          "detail": "Exact comparison of the 2,397 test records with 44,533 training records finds 184 distinct repeated inputs: 131 text, 50 audio and 3 video. Of these, 173 have at least one accepted test answer already attached to the same input in training, and 159 have every accepted answer represented there.",
+          "url": "https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/evidence-database/analyses/mllmtool-overlap-20260926.json",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "WACV 2025 paper, Section 3.4 and Table 2; released data and loaders at commit 8b74aad63ac511f6cbd7a74fb12aceee33975cf8; exact JSON comparison on September 26, 2026.",
+            "observation": "Exact comparison of the 2,397 test records with 44,533 training records finds 184 distinct repeated inputs: 131 text, 50 audio and 3 video. Of these, 173 have at least one accepted test answer already attached to the same input in training, and 159 have every accepted answer represented there.",
+            "reason": "The matching key is the unmodified query string, input modality and all media path fields. Training and inference code select these files, and the author identifies inference.py as the test-set entry point in issue #7. Closed-set reuse of API labels does not require reusing the same query and media reference across training and testing. The released evaluation split therefore includes seen examples rather than an entirely held-out set.",
+            "limitation": "Media equality is established at the path-reference level. The counts describe the released split; the effect on reported model accuracy was not measured.",
+            "sources": [
+              {
+                "label": "Source 1",
+                "url": "https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/evidence-database/analyses/mllmtool-overlap-20260926.json",
+                "location": "184 matched test rows, training row indices and source SHA-256 hashes"
+              },
+              {
+                "label": "Source 2",
+                "url": "https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/evidence-database/analyses/mllmtool_overlap.py",
+                "location": "Standard-library JSON comparison; no model execution"
+              },
+              {
+                "label": "Source 3",
+                "url": "https://github.com/Chenyu-Wang567/MLLM-Tool/blob/8b74aad63ac511f6cbd7a74fb12aceee33975cf8/code/dataset/catalog.py#L4-L40",
+                "location": "Four training JSON paths"
+              },
+              {
+                "label": "Source 4",
+                "url": "https://github.com/Chenyu-Wang567/MLLM-Tool/blob/8b74aad63ac511f6cbd7a74fb12aceee33975cf8/code/config/openllama_peft.yaml#L22",
+                "location": "Training enables all four datasets"
+              },
+              {
+                "label": "Source 5",
+                "url": "https://github.com/Chenyu-Wang567/MLLM-Tool/blob/8b74aad63ac511f6cbd7a74fb12aceee33975cf8/code/inference.py#L142-L153",
+                "location": "Inference selects combined_data.json"
+              },
+              {
+                "label": "Source 6",
+                "url": "https://github.com/Chenyu-Wang567/MLLM-Tool/blob/8b74aad63ac511f6cbd7a74fb12aceee33975cf8/data/IT_data_ins/T%2BX-T_data/combined_data.json",
+                "location": "Released 2,397-record test file"
+              },
+              {
+                "label": "Source 7",
+                "url": "https://github.com/Chenyu-Wang567/MLLM-Tool/issues/7#issuecomment-3342228667",
+                "location": "Author identifies the test-set file via inference.py"
+              },
+              {
+                "label": "Source 8",
+                "url": "https://openaccess.thecvf.com/content/WACV2025/papers/Wang_MLLM-Tool_A_Multimodal_Large_Language_Model_for_Tool_Agent_Learning_WACV_2025_paper.pdf#page=4",
+                "location": "Page 6681: Table 2 and Section 3.4"
+              }
+            ]
+          }
+        }
+      ],
+      "evidenceUrl": "https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/evidence-database/papers/2401.10727.md"
+    },
+    {
+      "id": "2310.10027",
+      "title": "RoomDesigner: Encoding Anchor-latents for Style-consistent and Shape-compatible Indoor Scene Generation",
+      "authors": [
+        "Yiqun Zhao",
+        "Zibo Zhao",
+        "Jing Li",
+        "Sixun Dong",
+        "Shenghua Gao"
+      ],
+      "url": "https://arxiv.org/abs/2310.10027",
+      "findings": [
+        {
+          "status": "material_gap",
+          "title": "Some configurations and data-processing code remain pending",
+          "detail": "The pinned README explicitly acknowledges that some materials remain unreleased. Model implementation code is available. A related module issue has an author response, so it would be inaccurate to claim that the authors never responded.",
+          "url": "https://github.com/zhao-yiqun/RoomDesigner/blob/3980e06bfc48f76f3f1efb2d2182c0c871d2231b/README.md#L45",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "RoomDesigner README at commit 3980e06bfc48f76f3f1efb2d2182c0c871d2231b and issue #2 author response.",
+            "observation": "The pinned README says that model implementation code is released while some configurations and data-processing code remain to be released. This is an explicit release-status statement, not an inference from the absence of a response.",
+            "reason": "Those configurations and processing steps are part of the path from source data to an executable research setup. Their acknowledged absence leaves a concrete gap in the published reproduction materials.",
+            "limitation": "Model code is available. In issue #2 the author says vqvae_model_texture is not used in the framework; this record does not treat that reported import concern as a proven runtime blocker. The evidence does not establish deliberate withholding or a venue-policy violation.",
+            "sources": [
+              {
+                "label": "Pinned release statement",
+                "url": "https://github.com/zhao-yiqun/RoomDesigner/blob/3980e06bfc48f76f3f1efb2d2182c0c871d2231b/README.md#L45",
+                "location": "README release-status note"
+              },
+              {
+                "label": "Module clarification",
+                "url": "https://github.com/zhao-yiqun/RoomDesigner/issues/2#issuecomment-2771290086",
+                "location": "Author response: vqvae_model_texture not used"
+              }
+            ]
+          }
+        },
+        {
+          "status": "implementation_error",
+          "title": "Shape-encoder validation reuses the first five training objects",
+          "detail": "The public VQ-VAE entry point builds train and val from the same dataset root. The loader builds the same eligible model list for both and truncates non-training splits to its first five entries. Validation IoU is then used to select the best checkpoint.",
+          "url": "https://github.com/zhao-yiqun/RoomDesigner/blob/3980e06bfc48f76f3f1efb2d2182c0c871d2231b/3DILG/FRONT.py#L302-L387",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "RoomDesigner commit 3980e06bfc48f76f3f1efb2d2182c0c871d2231b: 3DILG/run_vqvae.py, datasets.py and FRONT.py.",
+            "observation": "The public VQ-VAE entry point builds train and val from the same dataset root. The loader builds the same eligible model list for both and truncates non-training splits to its first five entries. Validation IoU is then used to select the best checkpoint.",
+            "reason": "The validation objects are a prefix of the training object list, not a disjoint object split. Resampling surface and occupancy points on these objects does not create validation on unseen object identities. The checkpoint selection consequently measures reconstruction on objects already included in training.",
+            "limitation": "This is the public shape-encoder training path, separate from the room-level scene-generation test split and its reported FID/SCA results.",
+            "sources": [
+              {
+                "label": "Source 1",
+                "url": "https://github.com/zhao-yiqun/RoomDesigner/blob/3980e06bfc48f76f3f1efb2d2182c0c871d2231b/3DILG/FRONT.py#L302-L387",
+                "location": "Shared object enumeration and non-training prefix truncation"
+              },
+              {
+                "label": "Source 2",
+                "url": "https://github.com/zhao-yiqun/RoomDesigner/blob/3980e06bfc48f76f3f1efb2d2182c0c871d2231b/3DILG/datasets.py#L125-L132",
+                "location": "Train and val use _3DFRONT with the same data root"
+              },
+              {
+                "label": "Source 3",
+                "url": "https://github.com/zhao-yiqun/RoomDesigner/blob/3980e06bfc48f76f3f1efb2d2182c0c871d2231b/3DILG/run_vqvae.py#L148-L152",
+                "location": "Training and validation construction"
+              },
+              {
+                "label": "Source 4",
+                "url": "https://github.com/zhao-yiqun/RoomDesigner/blob/3980e06bfc48f76f3f1efb2d2182c0c871d2231b/3DILG/run_vqvae.py#L294-L302",
+                "location": "Validation IoU controls best-checkpoint saving"
+              }
+            ]
+          }
+        }
+      ],
+      "evidenceUrl": "https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/evidence-database/papers/2310.10027.md"
+    },
+    {
+      "id": "2505.15152",
+      "title": "Sculpting Features from Noise: Reward-Guided Hierarchical Diffusion for Task-Optimal Feature Transformation",
+      "authors": [
+        "Nanxu Gong",
+        "Zijun Li",
+        "Sixun Dong",
+        "Haoyue Bai",
+        "Wangyang Ying",
+        "Xinyuan Wang",
+        "Yanjie Fu"
+      ],
+      "url": "https://arxiv.org/abs/2505.15152",
+      "findings": [
+        {
+          "status": "implementation_error",
+          "title": "Missing imported module and supervised feature selection before splitting",
+          "detail": "The pinned commit lacks utils_.chunkwise_seq. In the uncached ap_omentum_ovary path, supervised feature selection uses all X and y before train_test_split. This review could not determine whether that path produced the published results.",
+          "url": "https://github.com/NanxuGong/DIFFT/tree/a8461c664d91704c56a91c130c95910be1aef327",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "DIFFT commit a8461c664d91704c56a91c130c95910be1aef327, dataset.py lines 25, 55, and 142-155.",
+            "observation": "dataset.py imports utils_.chunkwise_seq at line 25 and calls it at line 55, but the reviewed repository contains no corresponding module or documented acquisition instructions. Separately, the uncached ap_omentum_ovary branch fits SelectKBest using all feature rows and labels before train_test_split.",
+            "reason": "The absent imported module leaves the released entry-point dependency chain incomplete. In the identified uncached branch, labels of samples later assigned to the test set influence feature selection, undermining an independent holdout for that path.",
+            "limitation": "No research code was executed. Existing caches bypass the described selection branch; the caches and code used for the publication were not established. The finding documents release defects and a conditional leakage path, not proven contamination of the paper tables or absence of a review-time supplement.",
+            "sources": [
+              {
+                "label": "Missing dependency import",
+                "url": "https://github.com/NanxuGong/DIFFT/blob/a8461c664d91704c56a91c130c95910be1aef327/dataset.py#L25",
+                "location": "dataset.py lines 25 and 55"
+              },
+              {
+                "label": "Conditional preprocessing path",
+                "url": "https://github.com/NanxuGong/DIFFT/blob/a8461c664d91704c56a91c130c95910be1aef327/dataset.py#L142",
+                "location": "dataset.py lines 142-155: supervised selection before splitting"
+              },
+              {
+                "label": "Pinned repository tree",
+                "url": "https://github.com/NanxuGong/DIFFT/tree/a8461c664d91704c56a91c130c95910be1aef327",
+                "location": "No corresponding utils_ module in the reviewed tree"
+              }
+            ]
+          }
+        }
+      ],
+      "evidenceUrl": "https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/evidence-database/papers/2505.15152.md"
+    },
+    {
+      "id": "2504.21304",
+      "title": "Unsupervised Feature Transformation via In-context Generation, Generator-critic LLM Agents, and Duet-play Teaming",
+      "authors": [
+        "Nanxu Gong",
+        "Xinyuan Wang",
+        "Wangyang Ying",
+        "Haoyue Bai",
+        "Sixun Dong",
+        "Haifeng Chen",
+        "Yanjie Fu"
+      ],
+      "url": "https://arxiv.org/abs/2504.21304",
+      "findings": [
+        {
+          "status": "implementation_error",
+          "title": "The critic does not receive the accumulated iteration feedback",
+          "detail": "The public code appends feedback to the conversation history, but the actual API call sends only the initial prompts. This does not establish that the paper’s experiments used the same defective version.",
+          "url": "https://github.com/NanxuGong/LPFG/blob/6bc2be0dcd639600123f826f687288d164f3f975/LPFG.py#L253",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "IJCAI 2025 paper Section 3.4; LPFG commit 6bc2be0dcd639600123f826f687288d164f3f975, LPFG.py lines 253-269.",
+            "observation": "The code appends generated features and the next feedback request to mssa_optimizer. The actual critic API call passes messages containing only the initial sys_optimizer and prt_optimizer prompts; the accumulated conversation is not included.",
+            "reason": "Appending feedback to a local history does not send it to the critic. This public request path cannot condition the critic on the accumulated generated features as described by the iterative feedback mechanism.",
+            "limitation": "The generator retains its own context, so this is not a claim that all iteration is absent. The review did not establish that this released commit produced the publication results. No API calls or model runs were made.",
+            "sources": [
+              {
+                "label": "Pinned critic request",
+                "url": "https://github.com/NanxuGong/LPFG/blob/6bc2be0dcd639600123f826f687288d164f3f975/LPFG.py#L253",
+                "location": "LPFG.py lines 253-269: history append versus messages argument"
+              },
+              {
+                "label": "Published method",
+                "url": "https://www.ijcai.org/proceedings/2025/0314.pdf",
+                "location": "Section 3.4: iterative generator/critic feedback"
+              }
+            ]
+          }
+        }
+      ],
+      "evidenceUrl": "https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/evidence-database/papers/2504.21304.md"
+    },
+    {
+      "id": "2601.21347",
+      "title": "Towards Robust Dysarthric Speech Recognition: LLM-Agent Post-ASR Correction Beyond WER",
+      "authors": [
+        "Xiuwen Zheng",
+        "Sixun Dong",
+        "Bornali Phukon",
+        "Mark Hasegawa-Johnson",
+        "Chang D. Yoo"
+      ],
+      "url": "https://arxiv.org/abs/2601.21347v1",
+      "findings": [
+        {
+          "status": "implementation_error",
+          "title": "WER and semantic metrics evaluate different transcript versions",
+          "detail": "The evaluation entry enables post-processing only for WER. The other five metric processes reload the original JSON without that option; the WER process does not save its modified text.",
+          "url": "https://github.com/xiuwenz2/SAP-Hypo5/blob/5d37b96fd25a3e612ba9a4c04d44de4446f5d3fe/evaluate.sh#L43",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "arXiv 2601.21347v1; SAP-Hypo5 commit 5d37b96fd25a3e612ba9a4c04d44de4446f5d3fe",
+            "observation": "The evaluation entry enables post-processing only for WER. The other five metric processes reload the original JSON without that option; the WER process does not save its modified text.",
+            "reason": "When post-processing changes content, the metrics measure different transcripts. Cross-metric differences then include a processing difference rather than only metric sensitivity.",
+            "limitation": "Static result for the published evaluation entry and its invoked scripts.",
+            "sources": [
+              {
+                "label": "Source 1",
+                "url": "https://github.com/xiuwenz2/SAP-Hypo5/blob/5d37b96fd25a3e612ba9a4c04d44de4446f5d3fe/evaluate.sh#L43",
+                "location": "WER option versus later metric invocations"
+              },
+              {
+                "label": "Source 2",
+                "url": "https://github.com/xiuwenz2/SAP-Hypo5/blob/5d37b96fd25a3e612ba9a4c04d44de4446f5d3fe/scripts/calculate_wer.py#L26",
+                "location": "Load, modify in memory, and report without saving"
+              },
+              {
+                "label": "Source 3",
+                "url": "https://github.com/xiuwenz2/SAP-Hypo5/blob/5d37b96fd25a3e612ba9a4c04d44de4446f5d3fe/scripts/calculate_menli.py#L137",
+                "location": "Command-line post_process option is opt-in"
+              }
+            ]
+          }
+        },
+        {
+          "status": "implementation_error",
+          "title": "Digit deletion removes numerical errors before scoring",
+          "detail": "inference.py deletes all digits from references and baseline hypotheses, and from model output under default options. Those cleaned strings are saved for all later metrics. For example, take 5 pills daily and take 9 pills daily both become take pills daily.",
+          "url": "https://github.com/xiuwenz2/SAP-Hypo5/blob/5d37b96fd25a3e612ba9a4c04d44de4446f5d3fe/inference.py#L31",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "arXiv 2601.21347v1; SAP-Hypo5 commit 5d37b96fd25a3e612ba9a4c04d44de4446f5d3fe",
+            "observation": "inference.py deletes all digits from references and baseline hypotheses, and from model output under default options. Those cleaned strings are saved for all later metrics. For example, take 5 pills daily and take 9 pills daily both become take pills daily.",
+            "reason": "A numerical substitution can disappear from both WER and semantic evaluation. Cleaning the baseline can also move number-error cases into the NoErr group, despite the paper emphasis on preserving numbers.",
+            "limitation": "This is a constructed static counterexample; the incidence and score impact on actual samples were not measured.",
+            "sources": [
+              {
+                "label": "Source 1",
+                "url": "https://github.com/xiuwenz2/SAP-Hypo5/blob/5d37b96fd25a3e612ba9a4c04d44de4446f5d3fe/inference.py#L31",
+                "location": "clean_text digit removal and default argument"
+              },
+              {
+                "label": "Source 2",
+                "url": "https://github.com/xiuwenz2/SAP-Hypo5/blob/5d37b96fd25a3e612ba9a4c04d44de4446f5d3fe/inference.py#L130",
+                "location": "Clean references and save evaluation fields"
+              },
+              {
+                "label": "Source 3",
+                "url": "https://arxiv.org/html/2601.21347v1",
+                "location": "Sections 2 and 3.1: normalization and number preservation"
+              }
+            ]
+          }
+        },
+        {
+          "status": "implementation_error",
+          "title": "Released repetition handling differs from Algorithm 1",
+          "detail": "Algorithm 1 truncates the transcript at the first occurrence of the selected repeated phrase. The code selectively compresses runs while preserving later content, and retains short non-tail runs of up to three repeats.",
+          "url": "https://arxiv.org/html/2601.21347v1",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "arXiv 2601.21347v1; SAP-Hypo5 commit 5d37b96fd25a3e612ba9a4c04d44de4446f5d3fe",
+            "observation": "Algorithm 1 truncates the transcript at the first occurrence of the selected repeated phrase. The code selectively compresses runs while preserving later content, and retains short non-tail runs of up to three repeats.",
+            "reason": "With single-word phrases allowed, go go home becomes go under the paper rule but remains go go home under the code. The two rules can produce different content and evaluation scores.",
+            "limitation": "Comparison of the published pseudocode and this fixed implementation.",
+            "sources": [
+              {
+                "label": "Source 1",
+                "url": "https://arxiv.org/html/2601.21347v1",
+                "location": "Algorithm 1, return operation"
+              },
+              {
+                "label": "Source 2",
+                "url": "https://github.com/xiuwenz2/SAP-Hypo5/blob/5d37b96fd25a3e612ba9a4c04d44de4446f5d3fe/utils/postprocessing.py#L159",
+                "location": "Selective repetition compression branches"
+              }
+            ]
+          }
+        }
+      ],
+      "evidenceUrl": "https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/evidence-database/papers/2601.21347.md"
+    },
+    {
+      "id": "2502.08828",
+      "title": "A Survey on Data-Centric AI: Tabular Learning from Reinforcement Learning and Generative AI Perspective",
+      "authors": [
+        "Wangyang Ying",
+        "Cong Wei",
+        "Nanxu Gong",
+        "Xinyuan Wang",
+        "Haoyue Bai",
+        "Arun Vignesh Malarkkan",
+        "Sixun Dong",
+        "Dongjie Wang",
+        "Denghui Zhang",
+        "Yanjie Fu"
+      ],
+      "url": "https://arxiv.org/abs/2502.08828v2",
+      "findings": [
+        {
+          "status": "reporting_error",
+          "title": "The continuous-search characterization excludes a cited generative method",
+          "detail": "Sections 5 and 7 contrast discrete RL search with continuous optimization by generative methods. Yet Section 4.2 includes Zhang et al. (2024b), whose original method generates discrete feature operations and selects and expands nodes with Monte Carlo Tree Search.",
+          "url": "https://arxiv.org/html/2502.08828v2#S7",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "arXiv 2502.08828v2, Sections 4.2, 5 and 7; cited arXiv 2406.03505v1, Section 3.3.",
+            "observation": "Sections 5 and 7 contrast discrete RL search with continuous optimization by generative methods. Yet Section 4.2 includes Zhang et al. (2024b), whose original method generates discrete feature operations and selects and expands nodes with Monte Carlo Tree Search.",
+            "reason": "A continuous latent-search property of one method family is generalized to a category that also contains discrete LLM tree search. Internal neural embeddings do not make the outer feature-search algorithm continuous.",
+            "limitation": "The counterexample is present in the cited paper v1 from 2024, before this survey v2.",
+            "sources": [
+              {
+                "label": "Source 1",
+                "url": "https://arxiv.org/html/2502.08828v2#S7",
+                "location": "General discrete-versus-continuous comparison"
+              },
+              {
+                "label": "Source 2",
+                "url": "https://arxiv.org/html/2502.08828v2#S4.SS2",
+                "location": "Included Zhang et al. (2024b) method"
+              },
+              {
+                "label": "Source 3",
+                "url": "https://arxiv.org/html/2406.03505v1#S3.SS3",
+                "location": "Node selection, expansion and MCTS"
+              }
+            ]
+          }
+        }
+      ],
+      "evidenceUrl": "https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/evidence-database/papers/2502.08828.md"
+    },
+    {
+      "id": "2501.10555",
+      "title": "Toward Data-Centric AI: A Comprehensive Survey of Traditional, Reinforcement, and Generative Approaches for Tabular Data Transformation",
+      "authors": [
+        "Dongjie Wang",
+        "Yanyong Huang",
+        "Wangyang Ying",
+        "Haoyue Bai",
+        "Nanxu Gong",
+        "Xinyuan Wang",
+        "Sixun Dong",
+        "Tao Zhe",
+        "Kunpeng Liu",
+        "Meng Xiao",
+        "Pengfei Wang",
+        "Pengyang Wang",
+        "Hui Xiong",
+        "Yanjie Fu"
+      ],
+      "url": "https://arxiv.org/abs/2501.10555",
+      "findings": [
+        {
+          "status": "reporting_error",
+          "title": "The feature-selection state transition always returns the original set",
+          "detail": "Section 5.1 defines the next state as the union of the current feature set and a subset drawn from that same set.",
+          "url": "https://doi.org/10.1145/3801742",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "Published version: ACM TKDD 20(5), Article 71, DOI 10.1145/3801742; supplied PDF SHA-256 5296d704001f426f37f5911e013972eeaba318a1ee822b82c29fb1835cbe7289.",
+            "observation": "Section 5.1 defines the next state as the union of the current feature set and a subset drawn from that same set.",
+            "reason": "The union equals the original set for every action. It cannot remove a feature or add a feature outside the current set, so it cannot represent the described feature-selection transition.",
+            "limitation": "Survey formalization in the published version; the same expression occurs in arXiv v1.",
+            "sources": [
+              {
+                "label": "Source 1",
+                "url": "https://doi.org/10.1145/3801742",
+                "location": "Section 5.1, pp. 71:20-21"
+              },
+              {
+                "label": "Source 2",
+                "url": "https://arxiv.org/html/2501.10555v1#S5.SS1",
+                "location": "Matching expression in preprint v1"
+              }
+            ]
+          }
+        },
+        {
+          "status": "reporting_error",
+          "title": "The generative objective composes functions with incompatible domains",
+          "detail": "Section 5.2 defines g_dec as mapping embeddings E to sequences S and h_eval as mapping E to real numbers, but optimizes h_eval(g_dec(e)).",
+          "url": "https://doi.org/10.1145/3801742",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "Published version: ACM TKDD 20(5), Article 71, DOI 10.1145/3801742; supplied PDF SHA-256 5296d704001f426f37f5911e013972eeaba318a1ee822b82c29fb1835cbe7289.",
+            "observation": "Section 5.2 defines g_dec as mapping embeddings E to sequences S and h_eval as mapping E to real numbers, but optimizes h_eval(g_dec(e)).",
+            "reason": "The decoder returns a sequence while the evaluator is defined to accept an embedding. The composition is not defined by the stated interfaces.",
+            "limitation": "Mathematical definitions in the published survey, also present in arXiv v1.",
+            "sources": [
+              {
+                "label": "Source 1",
+                "url": "https://doi.org/10.1145/3801742",
+                "location": "Section 5.2, pp. 71:22-23"
+              },
+              {
+                "label": "Source 2",
+                "url": "https://arxiv.org/html/2501.10555v1#S5.SS2",
+                "location": "Definitions and objective in preprint v1"
+              }
+            ]
+          }
+        },
+        {
+          "status": "reporting_error",
+          "title": "iTGA natural-growth search is classified as embedded tree-model selection",
+          "detail": "Section 3.1.3 and Figure 2 place reference 208 under embedded tree-based methods. The original iTGA article defines a population-based metaheuristic whose natural trees represent candidate solutions, with binary vectors for feature selection.",
+          "url": "https://doi.org/10.1145/3801742",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "Published version: ACM TKDD 20(5), Article 71, DOI 10.1145/3801742; supplied PDF SHA-256 5296d704001f426f37f5911e013972eeaba318a1ee822b82c29fb1835cbe7289.",
+            "observation": "Section 3.1.3 and Figure 2 place reference 208 under embedded tree-based methods. The original iTGA article defines a population-based metaheuristic whose natural trees represent candidate solutions, with binary vectors for feature selection.",
+            "reason": "The survey conflates a tree-growth search metaphor with a predictive tree model and a tree representation of feature subsets.",
+            "limitation": "Reference 208 was checked against the primary article; this finding concerns that specific classification.",
+            "sources": [
+              {
+                "label": "Source 1",
+                "url": "https://doi.org/10.1145/3801742",
+                "location": "Section 3.1.3 and Figure 2, pp. 71:10 and 71:4"
+              },
+              {
+                "label": "Source 2",
+                "url": "https://www.atlantis-press.com/journals/ijcis/125935159/view",
+                "location": "Original iTGA article, Sections 2 and 3.1"
+              },
+              {
+                "label": "Source 3",
+                "url": "https://link.springer.com/article/10.2991/ijcis.d.200219.001",
+                "location": "Primary publisher abstract: population-based metaheuristic"
+              }
+            ]
+          }
+        }
+      ],
+      "evidenceUrl": "https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/evidence-database/papers/2501.10555.md"
+    },
+    {
+      "id": "2602.10625",
+      "title": "To Think or Not To Think, That is The Question for Large Reasoning Models in Theory of Mind Tasks",
+      "authors": [
+        "Nanxu Gong",
+        "Haotian Li",
+        "Sixun Dong",
+        "Jianxun Lian",
+        "Yanjie Fu",
+        "Xing Xie"
+      ],
+      "url": "https://arxiv.org/abs/2602.10625v3",
+      "findings": [
+        {
+          "status": "reporting_error",
+          "title": "An Order 0 accuracy is described as an Order 1 result",
+          "detail": "Appendix C.1.1 describes DeepSeek-R1 accuracy 0.988 as an Order 1 result. Table 3 places 0.988 in Order 0 and reports 0.762 for Order 1.",
+          "url": "https://arxiv.org/html/2602.10625v3#A3.SS1.SSS1",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "arXiv 2602.10625v3, Appendix C.1.1 and Table 3.",
+            "observation": "Appendix C.1.1 describes DeepSeek-R1 accuracy 0.988 as an Order 1 result. Table 3 places 0.988 in Order 0 and reports 0.762 for Order 1.",
+            "reason": "The prose assigns the score to the wrong task order, overstating the listed Order 1 accuracy by 22.6 percentage points.",
+            "limitation": "Comparison within arXiv v3.",
+            "sources": [
+              {
+                "label": "Source 1",
+                "url": "https://arxiv.org/html/2602.10625v3#A3.SS1.SSS1",
+                "location": "Order 1 prose claim"
+              },
+              {
+                "label": "Source 2",
+                "url": "https://arxiv.org/html/2602.10625v3#A3.T3",
+                "location": "Order 0 and Order 1 scores"
+              }
+            ]
+          }
+        }
+      ],
+      "evidenceUrl": "https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/evidence-database/papers/2602.10625.md"
+    },
+    {
+      "id": "2505.15572",
+      "title": "Bridging the Domain Gap in Equation Distillation with Reinforcement Feedback",
+      "authors": [
+        "Wangyang Ying",
+        "Haoyue Bai",
+        "Nanxu Gong",
+        "Xinyuan Wang",
+        "Sixun Dong",
+        "Haifeng Chen",
+        "Yanjie Fu"
+      ],
+      "url": "https://arxiv.org/abs/2505.15572v1",
+      "findings": [
+        {
+          "status": "implementation_error",
+          "title": "Test labels enter equation selection and early stopping",
+          "detail": "Each training round scores candidate equations against the test labels, updates the best equation using that score, and stops when the best test score reaches 0.99.",
+          "url": "https://github.com/yingwangyang/Data2Eqn-RL/blob/4e27dd98f011963511cda60af4caadbfdc24e755/finetune_e2e.py#L233",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "arXiv 2505.15572v1; related public repository Data2Eqn-RL, commit 4e27dd98f011963511cda60af4caadbfdc24e755",
+            "observation": "Each training round scores candidate equations against the test labels, updates the best equation using that score, and stops when the best test score reaches 0.99.",
+            "reason": "The test split participates in model selection and stopping rather than serving as an independent final evaluation.",
+            "limitation": "Repository attribution is inferred from the first-author account and matching method details. The paper does not link this repository; the finding applies to this commit.",
+            "sources": [
+              {
+                "label": "Source 1",
+                "url": "https://github.com/yingwangyang/Data2Eqn-RL/blob/4e27dd98f011963511cda60af4caadbfdc24e755/finetune_e2e.py#L233",
+                "location": "Test scoring, best-equation updates and stop rule, lines 233-279"
+              },
+              {
+                "label": "Source 2",
+                "url": "https://github.com/yingwangyang/Data2Eqn-RL/blob/4e27dd98f011963511cda60af4caadbfdc24e755/sample_data.py#L78",
+                "location": "Train/test split and test-set storage"
+              }
+            ]
+          }
+        },
+        {
+          "status": "implementation_error",
+          "title": "The target_noise parameter does not change training labels",
+          "detail": "finetune_data.py constructs a noise array from target_noise but saves the original real_y values as training labels. The generated noise is not added.",
+          "url": "https://github.com/yingwangyang/Data2Eqn-RL/blob/4e27dd98f011963511cda60af4caadbfdc24e755/finetune_data.py#L29",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "arXiv 2505.15572v1; related public repository Data2Eqn-RL, commit 4e27dd98f011963511cda60af4caadbfdc24e755",
+            "observation": "finetune_data.py constructs a noise array from target_noise but saves the original real_y values as training labels. The generated noise is not added.",
+            "reason": "Changing this argument on data from the accompanying sampler does not implement the training-label noise experiment described in Section 4.4.",
+            "limitation": "Repository attribution is inferred from the first-author account and matching method details. The paper does not link this repository; the finding applies to this commit.",
+            "sources": [
+              {
+                "label": "Source 1",
+                "url": "https://github.com/yingwangyang/Data2Eqn-RL/blob/4e27dd98f011963511cda60af4caadbfdc24e755/finetune_data.py#L29",
+                "location": "Noise generation and stored labels, lines 29-38"
+              },
+              {
+                "label": "Source 2",
+                "url": "https://arxiv.org/html/2505.15572v1#S4.SS4",
+                "location": "Noise robustness experiment"
+              }
+            ]
+          }
+        },
+        {
+          "status": "implementation_error",
+          "title": "Probability ratios and KL compare separately generated trajectories",
+          "detail": "The train and reference models generate sequences independently. Their own selected-action probabilities are then divided, while KL compares distributions at aligned positions up to the shorter length.",
+          "url": "https://github.com/yingwangyang/Data2Eqn-RL/blob/4e27dd98f011963511cda60af4caadbfdc24e755/finetune_e2e.py#L153",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "arXiv 2505.15572v1; related public repository Data2Eqn-RL, commit 4e27dd98f011963511cda60af4caadbfdc24e755",
+            "observation": "The train and reference models generate sequences independently. Their own selected-action probabilities are then divided, while KL compares distributions at aligned positions up to the shorter length.",
+            "reason": "When actions or prefixes differ, these quantities compare different events or conditional states, unlike the common action/state in the paper formulas.",
+            "limitation": "Repository attribution is inferred from the first-author account and matching method details. The paper does not link this repository; the finding applies to this commit.",
+            "sources": [
+              {
+                "label": "Source 1",
+                "url": "https://github.com/yingwangyang/Data2Eqn-RL/blob/4e27dd98f011963511cda60af4caadbfdc24e755/finetune_e2e.py#L153",
+                "location": "Separate generation and own-action probability ratio, lines 153-195"
+              },
+              {
+                "label": "Source 2",
+                "url": "https://github.com/yingwangyang/Data2Eqn-RL/blob/4e27dd98f011963511cda60af4caadbfdc24e755/finetune_e2e.py#L58",
+                "location": "KL computation"
+              },
+              {
+                "label": "Source 3",
+                "url": "https://arxiv.org/html/2505.15572v1#S3.SS3.SSS1",
+                "location": "Equations 3 and 5"
+              }
+            ]
+          }
+        },
+        {
+          "status": "reporting_error",
+          "title": "The experimental R-squared denominator uses predictions",
+          "detail": "Section 4.1 and Appendix B put predicted values in the total-sum-of-squares denominator. Equation 2 uses true values, as does the standard definition.",
+          "url": "https://arxiv.org/html/2505.15572v1#S4.SS1",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "arXiv 2505.15572v1; related public repository Data2Eqn-RL, commit 4e27dd98f011963511cda60af4caadbfdc24e755",
+            "observation": "Section 4.1 and Appendix B put predicted values in the total-sum-of-squares denominator. Equation 2 uses true values, as does the standard definition.",
+            "reason": "These formulas differ: true values [0,2] and predictions [0,1] give standard R-squared 0.5 but the printed experimental formula gives 0.",
+            "limitation": "The related repository calls r2_score with true and predicted labels; this finding concerns the printed formula.",
+            "sources": [
+              {
+                "label": "Source 1",
+                "url": "https://arxiv.org/html/2505.15572v1#S4.SS1",
+                "location": "Experimental metric formula"
+              },
+              {
+                "label": "Source 2",
+                "url": "https://arxiv.org/html/2505.15572v1#A2",
+                "location": "Appendix B metric formula"
+              },
+              {
+                "label": "Source 3",
+                "url": "https://github.com/yingwangyang/Data2Eqn-RL/blob/4e27dd98f011963511cda60af4caadbfdc24e755/finetune_e2e.py#L244",
+                "location": "r2_score call"
+              }
+            ]
+          }
+        }
+      ],
+      "evidenceUrl": "https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/evidence-database/papers/2505.15572.md"
+    },
+    {
+      "id": "2303.12370",
+      "title": "Weakly Supervised Video Representation Learning with Unaligned Text for Sequential Videos",
+      "authors": [
+        "Sixun Dong",
+        "Huazhang Hu",
+        "Dongze Lian",
+        "Weixin Luo",
+        "Yicheng Qian",
+        "Shenghua Gao"
+      ],
+      "url": "https://arxiv.org/abs/2303.12370v2",
+      "findings": [
+        {
+          "status": "implementation_error",
+          "title": "Signed similarities let the Viterbi branch return a backward label path",
+          "detail": "The Viterbi branch uses raw cosine similarities as emission probabilities. Negative path scores can lose to a forbidden transition whose score is zero, allowing a decreasing label sequence.",
+          "url": "https://github.com/svip-lab/WeakSVR/blob/0caa9eb05ff77f8798167a8ad754e90f3a059af2/utils/loss.py#L73-L101",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "CVPR 2023 paper; arXiv 2303.12370v2; WeakSVR commit 0caa9eb05ff77f8798167a8ad754e90f3a059af2",
+            "observation": "The Viterbi branch uses raw cosine similarities as emission probabilities. Negative path scores can lose to a forbidden transition whose score is zero, allowing a decreasing label sequence.",
+            "reason": "For two frames with similarity rows [-a,-a] and [a,a], a>0, the upper-triangular transition matrix and uniform prior produce initial scores [-a/2,-a/2]. The second-frame scores are [0,-a²/4]; backtracking returns [1,0]. This contradicts the temporal-order constraint in Section 3.4.",
+            "limitation": "The counterexample is derived from the Viterbi option. The default command-line option is sorting.",
+            "sources": [
+              {
+                "label": "Source 1",
+                "url": "https://github.com/svip-lab/WeakSVR/blob/0caa9eb05ff77f8798167a8ad754e90f3a059af2/utils/loss.py#L73-L101",
+                "location": "Viterbi recursion, backtracking and emission matrix"
+              },
+              {
+                "label": "Source 2",
+                "url": "https://github.com/svip-lab/WeakSVR/blob/0caa9eb05ff77f8798167a8ad754e90f3a059af2/utils/loss.py#L256-L296",
+                "location": "Normalized similarities and pseudo-label calls"
+              },
+              {
+                "label": "Source 3",
+                "url": "https://arxiv.org/html/2303.12370v2",
+                "location": "Section 3.4, Section 3.4.2 and Appendix B"
+              }
+            ]
+          }
+        }
+      ],
+      "evidenceUrl": "https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/evidence-database/papers/2303.12370.md"
+    },
+    {
+      "id": "2609.07720",
+      "title": "Better Call CineCrew: Consistent Ultra-Long Narrative-to-Film Generation",
+      "authors": [
+        "Jiaben Chen",
+        "Sixun Dong",
+        "Qinhong Zhou",
+        "Raine Ma",
+        "Zhiyang Dou",
+        "Wojciech Matusik",
+        "Chuang Gan"
+      ],
+      "url": "https://arxiv.org/abs/2609.07720v1",
+      "findings": [
+        {
+          "status": "implementation_error",
+          "title": "The visual judge is asked to compare identity without the reference images",
+          "detail": "Character reference images reach the image generator, but the keyframe judge receives only the generated image and a boolean flag. The flag adds text asking the judge to compare against reference sheets that are not attached. The clip judge receives only frames from the current clip.",
+          "url": "https://github.com/Ironieser/CineCrew/blob/9a00efa7db65ba028c1523907f6cee844776123a/src/agents/production_operator/production_operator_agent.py#L232-L266",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "arXiv 2609.07720v1; CineCrew commit 9a00efa7db65ba028c1523907f6cee844776123a",
+            "observation": "Character reference images reach the image generator, but the keyframe judge receives only the generated image and a boolean flag. The flag adds text asking the judge to compare against reference sheets that are not attached. The clip judge receives only frames from the current clip.",
+            "reason": "Textual appearance descriptions do not supply the missing reference pixels. The public visual-review path lacks direct image comparison with the designated identity reference or adjacent generated clips, despite the identity and continuity review described in Section 3.4.",
+            "limitation": "This finding concerns the production visual judge and its message payload.",
+            "sources": [
+              {
+                "label": "Source 1",
+                "url": "https://github.com/Ironieser/CineCrew/blob/9a00efa7db65ba028c1523907f6cee844776123a/src/agents/production_operator/production_operator_agent.py#L232-L266",
+                "location": "Generation references and judge call"
+              },
+              {
+                "label": "Source 2",
+                "url": "https://github.com/Ironieser/CineCrew/blob/9a00efa7db65ba028c1523907f6cee844776123a/src/agents/dailies_reviewer/visual_judge.py#L31-L81",
+                "location": "Actual image lists and reference note"
+              },
+              {
+                "label": "Source 3",
+                "url": "https://github.com/Ironieser/CineCrew/blob/9a00efa7db65ba028c1523907f6cee844776123a/src/utils/__init__.py#L81-L86",
+                "location": "Final message payload"
+              },
+              {
+                "label": "Source 4",
+                "url": "https://arxiv.org/html/2609.07720v1#S3.SS4",
+                "location": "Production refinement"
+              }
+            ]
+          }
+        },
+        {
+          "status": "implementation_error",
+          "title": "A final rejection can associate media with an unexecuted revised prompt",
+          "detail": "After a rejected attempt, both the keyframe and clip loops update the prompt even on the last permitted attempt. The pipeline then saves that revised prompt together with the media generated before the revision.",
+          "url": "https://github.com/Ironieser/CineCrew/blob/9a00efa7db65ba028c1523907f6cee844776123a/src/agents/production_operator/production_operator_agent.py#L244-L285",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "arXiv 2609.07720v1; CineCrew commit 9a00efa7db65ba028c1523907f6cee844776123a",
+            "observation": "After a rejected attempt, both the keyframe and clip loops update the prompt even on the last permitted attempt. The pipeline then saves that revised prompt together with the media generated before the revision.",
+            "reason": "With max_retries=0, prompt P0 produces image I0; rejection supplies P1; the saved image remains I0 while the final prompt becomes P1. The same mismatch occurs when the last attempt of a longer retry loop is rejected. Final FilmDSL and VideoJob fields can therefore misstate the generation conditions.",
+            "limitation": "The path requires a final rejected attempt with a nonempty revised_prompt; it is established by static control-flow analysis.",
+            "sources": [
+              {
+                "label": "Source 1",
+                "url": "https://github.com/Ironieser/CineCrew/blob/9a00efa7db65ba028c1523907f6cee844776123a/src/agents/production_operator/production_operator_agent.py#L244-L285",
+                "location": "Keyframe retry and final stored prompt"
+              },
+              {
+                "label": "Source 2",
+                "url": "https://github.com/Ironieser/CineCrew/blob/9a00efa7db65ba028c1523907f6cee844776123a/src/agents/production_operator/production_operator_agent.py#L303-L334",
+                "location": "Clip retry and prompt mutation"
+              },
+              {
+                "label": "Source 3",
+                "url": "https://github.com/Ironieser/CineCrew/blob/9a00efa7db65ba028c1523907f6cee844776123a/src/pipeline.py#L307-L324",
+                "location": "Final job and media artifact serialization"
+              }
+            ]
+          }
+        }
+      ],
+      "evidenceUrl": "https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/evidence-database/papers/2609.07720.md"
+    },
+    {
+      "id": "2204.01018",
+      "title": "TransRAC: Encoding Multi-scale Temporal Correlation with Transformers for Repetitive Action Counting",
+      "authors": [
+        "Huazhang Hu",
+        "Sixun Dong",
+        "Yiqun Zhao",
+        "Dongze Lian",
+        "Zhengxin Li",
+        "Shenghua Gao"
+      ],
+      "url": "https://arxiv.org/abs/2204.01018v1",
+      "findings": [
+        {
+          "status": "reporting_error",
+          "title": "RepCount combined statistics conflict with the reported subsets",
+          "detail": "Table 1 gives 1,041 Part-A videos with mean count 14.99 and 410 Part-B videos with mean count 9.27, but reports a combined mean of 15.932. The combined duration mean also differs from the sample-size-weighted subset means.",
+          "url": "https://arxiv.org/html/2204.01018v1#S3",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "arXiv 2204.01018v1, Table 1 and Section 3, checked in the arXiv HTML",
+            "observation": "Table 1 gives 1,041 Part-A videos with mean count 14.99 and 410 Part-B videos with mean count 9.27, but reports a combined mean of 15.932. The combined duration mean also differs from the sample-size-weighted subset means.",
+            "reason": "The count mean must lie between the two subset means; the reported sizes give approximately 13.374, not 15.932. Duration means 30.67 and 28.53 seconds give approximately 30.065 seconds, not the table value 29.359. Section 3 additionally states 39.359 seconds. Two-decimal rounding cannot explain the discrepancies.",
+            "limitation": "The arithmetic checks the printed summary statistics; raw video annotations were not recomputed.",
+            "sources": [
+              {
+                "label": "Source 1",
+                "url": "https://arxiv.org/html/2204.01018v1#S3",
+                "location": "Table 1 and Dataset statistics"
+              },
+              {
+                "label": "Source 2",
+                "url": "https://arxiv.org/abs/2204.01018",
+                "location": "Version history: v1"
+              }
+            ]
+          }
+        }
+      ],
+      "evidenceUrl": "https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/evidence-database/papers/2204.01018.md"
+    },
+    {
+      "id": "2506.09085",
+      "title": "LLM-ML Teaming: Integrated Symbolic Decoding and Gradient Search for Valid and Stable Generative Feature Transformation",
+      "authors": [
+        "Xinyuan Wang",
+        "Haoyue Bai",
+        "Nanxu Gong",
+        "Wangyang Ying",
+        "Sixun Dong",
+        "Xiquan Cui",
+        "Yanjie Fu"
+      ],
+      "url": "https://arxiv.org/abs/2506.09085v1",
+      "findings": [
+        {
+          "status": "material_gap",
+          "title": "The code repository linked in the abstract has expired",
+          "detail": "The abstract states that code is available through an anonymous repository. On 2026-09-26, that repository displayed \"The repository is expired.\" and did not provide the project files.",
+          "url": "https://anonymous.4open.science/r/LLM-ML-Teaming-DCAI-B391",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "arXiv 2506.09085v1 abstract and its linked anonymous repository, checked in a browser on 2026-09-26.",
+            "observation": "The abstract states that code is available through an anonymous repository. On 2026-09-26, that repository displayed \"The repository is expired.\" and did not provide the project files.",
+            "reason": "The code-access path supplied by the paper no longer exposes the implementation needed to inspect its decoding, data partitioning and experimental configuration.",
+            "limitation": "The reviewed manuscript is arXiv 2506.09085v1.",
+            "sources": [
+              {
+                "label": "Source 1",
+                "url": "https://anonymous.4open.science/r/LLM-ML-Teaming-DCAI-B391",
+                "location": "Repository status: expired"
+              },
+              {
+                "label": "Source 2",
+                "url": "https://arxiv.org/html/2506.09085v1#abstract1",
+                "location": "Abstract code-availability link"
+              }
+            ]
+          }
+        },
+        {
+          "status": "reporting_error",
+          "title": "The postfix search-space claim confuses token vocabulary with complete sequences",
+          "detail": "Appendix A attributes a reduction from an exponential search space to |C| = |O| + |X|D + 3 to postfix notation. The expression adds operator, feature and special-token counts; it does not count complete transformation sequences.",
+          "url": "https://arxiv.org/html/2506.09085v1#A1",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "arXiv 2506.09085v1, Appendix A and Figure 7; the counterexample respects the prompt limit on the number of feature combinations.",
+            "observation": "Appendix A attributes a reduction from an exponential search space to |C| = |O| + |X|D + 3 to postfix notation. The expression adds operator, feature and special-token counts; it does not count complete transformation sequences.",
+            "reason": "Even under the prompt in Figure 7, take k distinct features with k below 50 and select either sin or tanh for each. This gives 2^k valid feature sets while the token vocabulary stays fixed for those features. Infix-to-postfix conversion also preserves each represented expression. Removing brackets therefore does not establish the claimed sequence-space bound.",
+            "limitation": "The reviewed manuscript is arXiv 2506.09085v1.",
+            "sources": [
+              {
+                "label": "Source 1",
+                "url": "https://arxiv.org/html/2506.09085v1#A1",
+                "location": "Postfix Expressions: search-space cardinality claim"
+              },
+              {
+                "label": "Source 2",
+                "url": "https://arxiv.org/html/2506.09085v1#A2.F7",
+                "location": "Permitted sin/tanh operators and fewer-than-50 feature combinations"
+              }
+            ]
+          }
+        },
+        {
+          "status": "reporting_error",
+          "title": "Table 6 identifies a teacher model as LLaMA 3.2-405B",
+          "detail": "Appendix H and Table 6 report experiments using a teacher named LLaMA 3.2-405B. Meta released Llama 3.2 at 1B, 3B, 11B and 90B sizes; its 405B model belongs to Llama 3.1.",
+          "url": "https://arxiv.org/html/2506.09085v1#A8.T6",
+          "checked": "2026-09-26",
+          "evidence": {
+            "scope": "arXiv 2506.09085v1, Appendix H and Table 6, compared with Meta release documentation.",
+            "observation": "Appendix H and Table 6 report experiments using a teacher named LLaMA 3.2-405B. Meta released Llama 3.2 at 1B, 3B, 11B and 90B sizes; its 405B model belongs to Llama 3.1.",
+            "reason": "The reported model/version combination does not identify an official released checkpoint. As written, readers cannot determine which teacher produced that column of measurements.",
+            "limitation": "The reviewed manuscript is arXiv 2506.09085v1.",
+            "sources": [
+              {
+                "label": "Source 1",
+                "url": "https://arxiv.org/html/2506.09085v1#A8.T6",
+                "location": "Appendix H teacher list and Table 6 column heading"
+              },
+              {
+                "label": "Source 2",
+                "url": "https://ai.meta.com/blog/llama-3-2-connect-2024-vision-edge-mobile-devices/",
+                "location": "Llama 3.2 release sizes and discussion of Llama 3.1 405B"
+              },
+              {
+                "label": "Source 3",
+                "url": "https://huggingface.co/meta-llama/Llama-3.1-405B-Instruct",
+                "location": "Official Llama 3.1 405B model card"
+              }
+            ]
+          }
+        }
+      ],
+      "evidenceUrl": "https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/evidence-database/papers/2506.09085.md"
+    }
+  ],
+  "identities": [
+    {
+      "id": "sixun-dong-ironieser",
+      "name": "Sixun Dong",
+      "scholarIds": [
+        "j71Y2-4AAAAJ"
+      ],
+      "orcids": [
+        "0009-0008-5874-9088"
+      ],
+      "affiliations": [
+        "University of Central Florida",
+        "ShanghaiTech University",
+        "Arizona State University, Tempe, Arizona, USA"
+      ],
+      "paperIds": [
+        "2506.24124",
+        "2508.18264",
+        "2505.18204",
+        "2506.08552",
+        "2508.09125",
+        "2604.04929",
+        "2401.10727",
+        "2310.10027",
+        "2505.15152",
+        "2504.21304",
+        "2601.21347",
+        "2502.08828",
+        "2501.10555",
+        "2602.10625",
+        "2505.15572",
+        "2303.12370",
+        "2609.07720",
+        "2204.01018",
+        "2506.09085"
+      ],
+      "sources": [
+        "https://sixundong.com/",
+        "https://api.crossref.org/works/10.1145/3801742",
+        "https://doi.org/10.1145/3801742",
+        "https://orcid.org/0009-0008-5874-9088"
+      ],
+      "checked": "2026-09-26",
+      "verificationStatus": "verified",
+      "verificationNote": "The publisher-deposited metadata for DOI 10.1145/3801742 explicitly associates this byline and paper affiliation with this ORCID; the public ORCID record has the matching name. Crossref marks authenticated-orcid=false, so this is a publication-linked identifier attribution, not an authenticated account-ownership check. Affiliations include historical paper affiliations."
+    },
+    {
+      "id": "arun-vignesh-malarkkan",
+      "name": "Arun Vignesh Malarkkan",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "jIFv3pIAAAAJ"
+      ],
+      "orcids": [],
+      "affiliations": [
+        "Arizona State University"
+      ],
+      "paperIds": [
+        "2502.08828"
+      ],
+      "sources": [
+        "https://arxiv.org/html/2502.08828v2",
+        "https://search.asu.edu/profile/3258765",
+        "https://faculty.engineering.asu.edu/yanjiefu/team/",
+        "https://arunvignesh28.github.io/"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "ASU links the full-name researcher to his personal homepage, which lists this exact survey and the owner Scholar account. The adviser roster independently links the same Scholar ID under Arun Vignesh."
+    },
+    {
+      "id": "bornali-phukon",
+      "name": "Bornali Phukon",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "Ecmv_T4AAAAJ"
+      ],
+      "orcids": [],
+      "affiliations": [
+        "University of Illinois Urbana-Champaign"
+      ],
+      "paperIds": [
+        "2601.21347"
+      ],
+      "sources": [
+        "https://speechtechnology.web.illinois.edu/people/",
+        "https://arxiv.org/html/2601.21347"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Illinois speech-lab roster identifies the postdoctoral researcher and links her own Scholar profile; the speech paper has the matching Illinois team. ID extracted from her individual roster card, not from adjacent authors."
+    },
+    {
+      "id": "chang-d-yoo",
+      "name": "Chang D. Yoo",
+      "verificationStatus": "supported",
+      "scholarIds": [],
+      "orcids": [],
+      "affiliations": [
+        "Korea Advanced Institute of Science and Technology"
+      ],
+      "paperIds": [
+        "2601.21347"
+      ],
+      "sources": [
+        "https://ee.kaist.ac.kr/en/professor-s1-2/20/",
+        "https://arxiv.org/html/2601.21347"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "KAIST faculty directory and the speech paper agree on name and institution. A direct profile-to-paper or persistent-ID link was not established in this pass."
+    },
+    {
+      "id": "chenyu-wang",
+      "name": "Chenyu Wang",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "ZkCLeicAAAAJ"
+      ],
+      "orcids": [],
+      "affiliations": [
+        "University of Hong Kong",
+        "ShanghaiTech University"
+      ],
+      "paperIds": [
+        "2401.10727"
+      ],
+      "sources": [
+        "https://chenyu-wang567.github.io/",
+        "https://svip-lab.github.io/team.html"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Personal homepage explicitly lists MLLM-Tool and links the owner Scholar account; the lab roster independently identifies the ShanghaiTech student."
+    },
+    {
+      "id": "cong-wei",
+      "name": "Cong Wei",
+      "verificationStatus": "supported",
+      "scholarIds": [],
+      "orcids": [],
+      "affiliations": [
+        "Arizona State University"
+      ],
+      "paperIds": [
+        "2502.08828"
+      ],
+      "sources": [
+        "https://arxiv.org/html/2502.08828v2",
+        "https://faculty.engineering.asu.edu/yanjiefu/team/"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "The paper gives ASU and the named coauthor adviser roster lists Cong Wei as a master student who defended in Fall 2025. No direct personal-publication or persistent-ID bridge was found; matching remains paper-scoped."
+    },
+    {
+      "id": "denghui-zhang",
+      "name": "Denghui Zhang",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "QoovOGcAAAAJ"
+      ],
+      "orcids": [],
+      "affiliations": [
+        "Stevens Institute of Technology"
+      ],
+      "paperIds": [
+        "2502.08828"
+      ],
+      "sources": [
+        "https://arxiv.org/html/2502.08828v2",
+        "https://www.stevens.edu/profile/dzhang42",
+        "https://zhangdenghui.site/"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "The institutional profile and personal homepage identify the Stevens researcher; the paper professional contact matches the homepage. The imported Scholar ID is the owner link, not the separate adviser Hui Xiong link."
+    },
+    {
+      "id": "dongjie-wang",
+      "name": "Dongjie Wang",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "K428NRsAAAAJ"
+      ],
+      "orcids": [
+        "0000-0003-3948-0059"
+      ],
+      "affiliations": [
+        "University of Kansas",
+        "Electrical Engineering and Computer Science, University of Kansas, Lawrence, Kansas, USA"
+      ],
+      "paperIds": [
+        "2506.08552",
+        "2502.08828",
+        "2501.10555"
+      ],
+      "sources": [
+        "https://wangdongjie100.github.io/",
+        "https://faculty.engineering.asu.edu/yanjiefu/team/",
+        "https://arxiv.org/pdf/2506.08552v2",
+        "https://api.crossref.org/works/10.1145/3801742",
+        "https://doi.org/10.1145/3801742",
+        "https://orcid.org/0000-0003-3948-0059"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "The publisher-deposited metadata for DOI 10.1145/3801742 explicitly associates this byline and paper affiliation with this ORCID; the public ORCID record has the matching name. Crossref marks authenticated-orcid=false, so this is a publication-linked identifier attribution, not an authenticated account-ownership check. Affiliations include historical paper affiliations."
+    },
+    {
+      "id": "giulia-pedrielli",
+      "name": "Giulia Pedrielli",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "CRGcdEYAAAAJ"
+      ],
+      "orcids": [
+        "0000-0001-6726-9790"
+      ],
+      "affiliations": [
+        "Arizona State University"
+      ],
+      "paperIds": [
+        "2505.18204"
+      ],
+      "sources": [
+        "https://search.asu.edu/profile/3022467",
+        "https://asu.elsevierpure.com/en/persons/giulia-pedrielli/",
+        "https://ojs.aaai.org/index.php/AAAI/article/download/38462/42424"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "ASU official profile links Scholar and ORCID; institutional publication record lists the Brownian Bridge work and the paper identifies ASU."
+    },
+    {
+      "id": "guodong-chen",
+      "name": "Guodong Chen",
+      "verificationStatus": "verified",
+      "scholarIds": [],
+      "orcids": [
+        "0000-0002-5704-638X"
+      ],
+      "affiliations": [
+        "University of California Berkeley",
+        "Lawrence Berkeley National Laboratory"
+      ],
+      "paperIds": [
+        "2505.18204"
+      ],
+      "sources": [
+        "https://orcid.org/0000-0002-5704-638X",
+        "https://ojs.aaai.org/index.php/AAAI/article/download/38462/42424",
+        "https://energygeosciences.lbl.gov/people/division-personnel/"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Public ORCID record contains the exact Brownian Bridge publication and Berkeley professional identity; AAAI paper gives Berkeley/LBL affiliations. This is a registry/publication link, not a name-only ORCID guess."
+    },
+    {
+      "id": "haifeng-chen",
+      "name": "Haifeng Chen",
+      "verificationStatus": "verified",
+      "scholarIds": [],
+      "orcids": [],
+      "affiliations": [
+        "NEC Laboratories America"
+      ],
+      "paperIds": [
+        "2505.18204",
+        "2504.21304",
+        "2505.15572"
+      ],
+      "sources": [
+        "https://haifeng-home.vercel.app/",
+        "https://www.nec-labs.com/research/data-science-system-security/people/",
+        "https://ojs.aaai.org/index.php/AAAI/article/download/38462/42424"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "NEC department-head identity and personal page correspond to the NEC author in the Brownian Bridge paper, including the professional contact. No persistent ID imported."
+    },
+    {
+      "id": "haotian-li",
+      "name": "Haotian Li",
+      "verificationStatus": "verified",
+      "scholarIds": [],
+      "orcids": [],
+      "affiliations": [
+        "Microsoft Research Asia"
+      ],
+      "paperIds": [
+        "2602.10625"
+      ],
+      "sources": [
+        "https://arxiv.org/html/2602.10625v3",
+        "https://www.microsoft.com/en-us/research/people/haotianli/",
+        "https://haotian-li.com/",
+        "https://nanxugong.github.io/"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "The paper identifies Microsoft Research Asia. Its first author links his MSRA adviser Haotian Li to the same personal site explicitly linked by the Microsoft profile. This establishes an institution-and-collaborator identity chain; no persistent ID was imported."
+    },
+    {
+      "id": "haoyu-wang",
+      "name": "Haoyu Wang",
+      "verificationStatus": "verified",
+      "scholarIds": [],
+      "orcids": [],
+      "affiliations": [
+        "NEC Laboratories America"
+      ],
+      "paperIds": [
+        "2505.18204"
+      ],
+      "sources": [
+        "https://www.nec-labs.com/research/data-science-system-security/people/haoyu-wang/",
+        "https://ojs.aaai.org/index.php/AAAI/article/download/38462/42424"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "NEC official researcher profile and the Brownian Bridge paper identify the same NEC data-science researcher. No Scholar or ORCID ownership was established."
+    },
+    {
+      "id": "haoyue-bai",
+      "name": "Haoyue Bai",
+      "verificationStatus": "verified",
+      "scholarIds": [],
+      "orcids": [
+        "0009-0009-1328-9230"
+      ],
+      "affiliations": [
+        "Arizona State University",
+        "Arizona State University, Tempe, Arizona, USA"
+      ],
+      "paperIds": [
+        "2505.18204",
+        "2506.08552",
+        "2505.15152",
+        "2504.21304",
+        "2502.08828",
+        "2501.10555",
+        "2505.15572",
+        "2506.09085"
+      ],
+      "sources": [
+        "https://www.nec-labs.com/research/data-science-system-security/people/",
+        "https://arxiv.org/html/2505.15152",
+        "https://www.linkedin.com/in/haoyue-bai-b03689293",
+        "https://api.crossref.org/works/10.1145/3801742",
+        "https://doi.org/10.1145/3801742",
+        "https://orcid.org/0009-0009-1328-9230"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "The publisher-deposited metadata for DOI 10.1145/3801742 explicitly associates this byline and paper affiliation with this ORCID; the public ORCID record has the matching name. Crossref marks authenticated-orcid=false, so this is a publication-linked identifier attribution, not an authenticated account-ownership check. Affiliations include historical paper affiliations. This publication bridge replaces the earlier name-only candidate status; the Wisconsin namesake remains separate."
+    },
+    {
+      "id": "haoyun-deng",
+      "name": "Haoyun Deng",
+      "verificationStatus": "verified",
+      "scholarIds": [],
+      "orcids": [
+        "0000-0001-6611-3938"
+      ],
+      "affiliations": [
+        "Zoom Communications, Inc."
+      ],
+      "paperIds": [
+        "2508.09125"
+      ],
+      "sources": [
+        "https://orcid.org/0000-0001-6611-3938",
+        "https://arxiv.org/html/2508.09125"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Public ORCID record contains Complex Logical Instruction Generation and Zoom employment, linking the exact work to the researcher. The TikTok/NUS namesake is not used."
+    },
+    {
+      "id": "hui-xiong",
+      "name": "Hui Xiong",
+      "scholarIds": [
+        "cVDF1tkAAAAJ"
+      ],
+      "orcids": [
+        "0000-0001-6016-6465"
+      ],
+      "affiliations": [
+        "The Hong Kong University of Science and Technology, Hong Kong, China"
+      ],
+      "paperIds": [
+        "2501.10555"
+      ],
+      "sources": [
+        "https://api.crossref.org/works/10.1145/3801742",
+        "https://doi.org/10.1145/3801742",
+        "https://orcid.org/0000-0001-6016-6465",
+        "https://hkustai.github.io/"
+      ],
+      "verificationStatus": "verified",
+      "checked": "2026-09-26",
+      "verificationNote": "The publisher-deposited metadata for DOI 10.1145/3801742 explicitly associates this byline and paper affiliation with this ORCID; the public ORCID record has the matching name. Crossref marks authenticated-orcid=false, so this is a publication-linked identifier attribution, not an authenticated account-ownership check. Affiliations include historical paper affiliations. The personal homepage links the owner Scholar profile and matches the paper professional contact."
+    },
+    {
+      "id": "jianxun-lian",
+      "name": "Jianxun Lian",
+      "verificationStatus": "verified",
+      "scholarIds": [],
+      "orcids": [],
+      "affiliations": [
+        "Microsoft Research Asia"
+      ],
+      "paperIds": [
+        "2602.10625"
+      ],
+      "sources": [
+        "https://arxiv.org/html/2602.10625v3",
+        "https://www.microsoft.com/en-us/research/people/jialia/",
+        "https://nanxugong.github.io/"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "The first author explicitly links his MSRA adviser Jianxun Lian to this Microsoft profile; the paper gives the same institution. This is an institution-and-collaborator identity chain without an imported Scholar or ORCID ID."
+    },
+    {
+      "id": "jing-li",
+      "name": "Jing Li",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "BCjT17sAAAAJ"
+      ],
+      "orcids": [],
+      "affiliations": [
+        "Xiaohongshu",
+        "ShanghaiTech University"
+      ],
+      "paperIds": [
+        "2310.10027"
+      ],
+      "sources": [
+        "https://lijing1996.github.io/",
+        "https://svip-lab.github.io/team.html"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Lab roster links this exact personal homepage; it explicitly lists RoomDesigner and the owner Scholar account. This avoids generic Jing Li matches."
+    },
+    {
+      "id": "juhua-hu",
+      "name": "Juhua Hu",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "OOp_3tUAAAAJ"
+      ],
+      "orcids": [],
+      "affiliations": [
+        "University of Washington",
+        "University of Washington Tacoma"
+      ],
+      "paperIds": [
+        "2508.18264",
+        "2604.04929"
+      ],
+      "sources": [
+        "https://faculty.washington.edu/juhuah/",
+        "https://arxiv.org/pdf/2604.04929v1",
+        "https://arxiv.org/pdf/2508.18264"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "University-hosted homepage and Rethinking paper agree on name, institution, and professional contact; the homepage links the owner Scholar account. MMTok independently gives Washington affiliation."
+    },
+    {
+      "id": "kaiqiang-song",
+      "name": "Kaiqiang Song",
+      "verificationStatus": "supported",
+      "scholarIds": [],
+      "orcids": [],
+      "affiliations": [
+        "Zoom"
+      ],
+      "paperIds": [
+        "2508.09125"
+      ],
+      "sources": [
+        "https://huggingface.co/kqsong",
+        "https://www.linkedin.com/in/kqsong",
+        "https://arxiv.org/html/2508.09125"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Personal Hugging Face account claims both corpus papers and self-profile identifies Zoom. Linked personal site was unavailable. Do not import candidate ORCID 0000-0001-8203-9723: its public works are remote-sensing change detection, with no bridge to these NLP papers."
+    },
+    {
+      "id": "kunpeng-liu",
+      "name": "Kunpeng Liu",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "wfF30KMAAAAJ"
+      ],
+      "orcids": [
+        "0000-0002-6053-5977"
+      ],
+      "affiliations": [
+        "Clemson University",
+        "University of Central Florida",
+        "Portland State University, Portland, Oregon, USA"
+      ],
+      "paperIds": [
+        "2506.08552",
+        "2501.10555"
+      ],
+      "sources": [
+        "https://www.kunpengliu.com/",
+        "https://faculty.engineering.asu.edu/yanjiefu/team/",
+        "https://arxiv.org/pdf/2506.08552v2",
+        "https://api.crossref.org/works/10.1145/3801742",
+        "https://doi.org/10.1145/3801742",
+        "https://orcid.org/0000-0002-6053-5977"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "The publisher-deposited metadata for DOI 10.1145/3801742 explicitly associates this byline and paper affiliation with this ORCID; the public ORCID record has the matching name. Crossref marks authenticated-orcid=false, so this is a publication-linked identifier attribution, not an authenticated account-ownership check. Affiliations include historical paper affiliations."
+    },
+    {
+      "id": "lin-ma",
+      "name": "Lin Ma",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "DAn1pA4AAAAJ"
+      ],
+      "orcids": [],
+      "affiliations": [
+        "Meituan"
+      ],
+      "paperIds": [
+        "2401.10727"
+      ],
+      "sources": [
+        "https://forestlinma.com/",
+        "https://arxiv.org/html/2401.10727",
+        "https://proceedings.iclr.cc/paper_files/paper/2025/file/8428da31da191712130ce8cce265691a-Paper-Conference.pdf"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Meituan personal homepage plus official CO-MOT paper link the same researcher and professional contact to Weixin Luo; MLLM-Tool identifies the Meituan author. Owner Scholar is explicit; Alibaba geometry namesake is not used."
+    },
+    {
+      "id": "mark-hasegawa-johnson",
+      "name": "Mark Hasegawa-Johnson",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "18O0OAwAAAAJ"
+      ],
+      "orcids": [
+        "0000-0002-5631-2893"
+      ],
+      "affiliations": [
+        "University of Illinois Urbana-Champaign"
+      ],
+      "paperIds": [
+        "2601.21347"
+      ],
+      "sources": [
+        "https://speechtechnology.web.illinois.edu/people/",
+        "https://github.com/jhasegaw",
+        "https://arxiv.org/html/2601.21347"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Illinois lab roster links the professor profile and Scholar; personal GitHub links ORCID. The speech paper matches the lab team."
+    },
+    {
+      "id": "meng-xiao",
+      "name": "Meng Xiao",
+      "scholarIds": [],
+      "orcids": [
+        "0000-0001-5294-5776"
+      ],
+      "affiliations": [
+        "Computer Network Information Center, Chinese Academy of Sciences, Beijing, China"
+      ],
+      "paperIds": [
+        "2501.10555"
+      ],
+      "sources": [
+        "https://api.crossref.org/works/10.1145/3801742",
+        "https://doi.org/10.1145/3801742",
+        "https://orcid.org/0000-0001-5294-5776",
+        "https://faculty.engineering.asu.edu/yanjiefu/team/"
+      ],
+      "verificationStatus": "verified",
+      "checked": "2026-09-26",
+      "verificationNote": "The publisher-deposited metadata for DOI 10.1145/3801742 explicitly associates this byline and paper affiliation with this ORCID; the public ORCID record has the matching name. Crossref marks authenticated-orcid=false, so this is a publication-linked identifier attribution, not an authenticated account-ownership check. Affiliations include historical paper affiliations. The ORCID public works include this exact DOI and its personal-site link agrees with the adviser roster. The linked site returned 404."
+    },
+    {
+      "id": "mian-zhang",
+      "name": "Mian Zhang",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "D4hDLgEAAAAJ"
+      ],
+      "orcids": [],
+      "affiliations": [
+        "University of Texas at Dallas",
+        "Zoom"
+      ],
+      "paperIds": [
+        "2508.18264",
+        "2508.09125"
+      ],
+      "sources": [
+        "https://mianzhang.github.io/",
+        "https://arxiv.org/html/2508.09125"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Personal homepage explicitly lists the corpus papers and links the owner Scholar account; paper affiliation matches UTD."
+    },
+    {
+      "id": "ming-yin",
+      "name": "Ming Yin",
+      "verificationStatus": "supported",
+      "scholarIds": [],
+      "orcids": [],
+      "affiliations": [
+        "Duke University"
+      ],
+      "paperIds": [
+        "2508.18264",
+        "2508.09125"
+      ],
+      "sources": [
+        "https://people.duke.edu/~zg70/students.html",
+        "https://www.linkedin.com/in/ming-yin-3316ba270",
+        "https://arxiv.org/html/2508.15760"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Duke adviser roster and self-profile support a Duke PhD student matching LiveMCP affiliation. Guessed mingyin1.github.io returned 404; no verified persistent-ID or direct personal-publication bridge was established. Do not merge with Purdue namesake."
+    },
+    {
+      "id": "nanxu-gong",
+      "name": "Nanxu Gong",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "6x05oc0AAAAJ"
+      ],
+      "orcids": [
+        "0009-0006-4534-8395"
+      ],
+      "affiliations": [
+        "Arizona State University",
+        "National University of Singapore",
+        "Arizona State University, Tempe, Arizona, USA"
+      ],
+      "paperIds": [
+        "2505.18204",
+        "2506.08552",
+        "2505.15152",
+        "2504.21304",
+        "2502.08828",
+        "2501.10555",
+        "2602.10625",
+        "2505.15572",
+        "2506.09085"
+      ],
+      "sources": [
+        "https://nanxugong.github.io/",
+        "https://arxiv.org/html/2505.15152",
+        "https://api.crossref.org/works/10.1145/3801742",
+        "https://doi.org/10.1145/3801742",
+        "https://orcid.org/0009-0006-4534-8395"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "The publisher-deposited metadata for DOI 10.1145/3801742 explicitly associates this byline and paper affiliation with this ORCID; the public ORCID record has the matching name. Crossref marks authenticated-orcid=false, so this is a publication-linked identifier attribution, not an authenticated account-ownership check. Affiliations include historical paper affiliations."
+    },
+    {
+      "id": "pengfei-wang",
+      "name": "Pengfei Wang",
+      "scholarIds": [
+        "5RkXoFMAAAAJ"
+      ],
+      "orcids": [
+        "0000-0003-1075-0684"
+      ],
+      "affiliations": [
+        "Computer Network Information Center, Chinese Academy of Sciences, Haidian, China"
+      ],
+      "paperIds": [
+        "2501.10555"
+      ],
+      "sources": [
+        "https://api.crossref.org/works/10.1145/3801742",
+        "https://doi.org/10.1145/3801742",
+        "https://orcid.org/0000-0003-1075-0684",
+        "https://www.pengfeiwang.net/",
+        "https://faculty.engineering.asu.edu/yanjiefu/team/"
+      ],
+      "verificationStatus": "verified",
+      "checked": "2026-09-26",
+      "verificationNote": "The publisher-deposited metadata for DOI 10.1145/3801742 explicitly associates this byline and paper affiliation with this ORCID; the public ORCID record has the matching name. Crossref marks authenticated-orcid=false, so this is a publication-linked identifier attribution, not an authenticated account-ownership check. Affiliations include historical paper affiliations. The ASU collaborator roster links this CNIC researcher to the personal homepage, which links the owner Scholar ID. Shandong, Dalian and economics namesakes are excluded."
+    },
+    {
+      "id": "pengyang-wang",
+      "name": "Pengyang Wang",
+      "scholarIds": [],
+      "orcids": [
+        "0000-0003-3961-5523"
+      ],
+      "affiliations": [
+        "University of Macau, Taipa, China"
+      ],
+      "paperIds": [
+        "2501.10555"
+      ],
+      "sources": [
+        "https://api.crossref.org/works/10.1145/3801742",
+        "https://doi.org/10.1145/3801742",
+        "https://orcid.org/0000-0003-3961-5523",
+        "https://www.fst.um.edu.mo/people/pywang/",
+        "https://faculty.engineering.asu.edu/yanjiefu/team/"
+      ],
+      "verificationStatus": "verified",
+      "checked": "2026-09-26",
+      "verificationNote": "The publisher-deposited metadata for DOI 10.1145/3801742 explicitly associates this byline and paper affiliation with this ORCID; the public ORCID record has the matching name. Crossref marks authenticated-orcid=false, so this is a publication-linked identifier attribution, not an authenticated account-ownership check. Affiliations include historical paper affiliations. The University of Macau record and adviser roster support the same institutional identity."
+    },
+    {
+      "id": "qi-qian",
+      "name": "Qi Qian",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "Rp_40_gAAAAJ"
+      ],
+      "orcids": [],
+      "affiliations": [
+        "Meta",
+        "Meta Reality Labs",
+        "Zoom"
+      ],
+      "paperIds": [
+        "2508.18264",
+        "2604.04929"
+      ],
+      "sources": [
+        "https://qi-qian.com/",
+        "https://arxiv.org/pdf/2604.04929v1",
+        "https://arxiv.org/pdf/2508.18264"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Homepage lists Zoom-to-Meta career history and owner Scholar; Rethinking paper matches the professional contact and Meta affiliation, while MMTok uses the earlier Zoom affiliation."
+    },
+    {
+      "id": "sathish-reddy-indurthi",
+      "name": "Sathish Reddy Indurthi",
+      "verificationStatus": "supported",
+      "scholarIds": [],
+      "orcids": [],
+      "affiliations": [
+        "Zoom"
+      ],
+      "paperIds": [
+        "2508.09125"
+      ],
+      "sources": [
+        "https://huggingface.co/isathish",
+        "https://www.linkedin.com/in/sathishindurthi",
+        "https://arxiv.org/html/2508.15760"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Personal Hugging Face account claims LiveMCP and self-profile identifies Zoom; unique persistent-ID ownership was not established. HTML uses Sathish Indurthi while abstract metadata retains Sathish Reddy Indurthi; no global alias expansion is enabled."
+    },
+    {
+      "id": "shenghua-gao",
+      "name": "Shenghua Gao",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "fe-1v0MAAAAJ"
+      ],
+      "orcids": [],
+      "affiliations": [
+        "University of Hong Kong",
+        "ShanghaiTech University"
+      ],
+      "paperIds": [
+        "2401.10727",
+        "2310.10027",
+        "2303.12370",
+        "2204.01018"
+      ],
+      "sources": [
+        "https://datascience.hku.hk/people/shenghua-gao/",
+        "https://svip-lab.github.io/team.html",
+        "https://arxiv.org/html/2401.10727"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "HKU official profile and ShanghaiTech lab roster link the same Scholar account; the paper identifies HKU. Institutional career continuity distinguishes the identity."
+    },
+    {
+      "id": "shujian-liu",
+      "name": "Shujian Liu",
+      "verificationStatus": "supported",
+      "scholarIds": [],
+      "orcids": [],
+      "affiliations": [
+        "Zoom"
+      ],
+      "paperIds": [
+        "2508.09125"
+      ],
+      "sources": [
+        "https://www.linkedin.com/posts/shujian-liu-phd_aiml-intern-agentic-retrieval-enterprise-activity-7425349570286542850-paI9",
+        "https://arxiv.org/html/2508.09125"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "A public self-post recruits for Zoom agentic retrieval and the paper identifies Zoom. No direct personal-paper or persistent-ID bridge established; similarly named researchers are not merged."
+    },
+    {
+      "id": "simin-ma",
+      "name": "Simin Ma",
+      "verificationStatus": "supported",
+      "scholarIds": [],
+      "orcids": [],
+      "affiliations": [
+        "Zoom",
+        "Georgia Institute of Technology"
+      ],
+      "paperIds": [
+        "2508.09125"
+      ],
+      "sources": [
+        "https://grad.gatech.edu/events/phd-defense-simin-steven-ma",
+        "https://www.linkedin.com/in/simin-steven-ma-8044bb168",
+        "https://arxiv.org/html/2508.09125"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Georgia Tech defense notice explicitly says Simin (Steven) Ma; self-profile connects that name to Zoom. Current LogicIF v4 uses Simin, while older coauthor listings use Steven. Alias is documented, but no global Steven Ma name-only match is enabled."
+    },
+    {
+      "id": "song-wang",
+      "name": "Song Wang",
+      "verificationStatus": "unresolved",
+      "scholarIds": [],
+      "orcids": [],
+      "affiliations": [],
+      "paperIds": [
+        "2508.09125"
+      ],
+      "sources": [
+        "https://arxiv.org/html/2508.15760",
+        "https://arxiv.org/html/2508.09125"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Paper affiliations identify Zoom, but no unambiguous primary personal profile or persistent-ID bridge was found among numerous namesakes. Aggregator biographies are not imported."
+    },
+    {
+      "id": "steven-li",
+      "name": "Steven Li",
+      "verificationStatus": "unresolved",
+      "scholarIds": [],
+      "orcids": [],
+      "affiliations": [],
+      "paperIds": [
+        "2604.04929"
+      ],
+      "sources": [
+        "https://arxiv.org/pdf/2604.04929v1"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Paper identifies Meta Reality Labs. No independently linked personal profile or persistent identifier was established; a generic Steven Li search is insufficient."
+    },
+    {
+      "id": "tao-zhe",
+      "name": "Tao Zhe",
+      "scholarIds": [],
+      "orcids": [
+        "0000-0003-4942-9775"
+      ],
+      "affiliations": [
+        "The University of Kansas, Lawrence, Kansas, USA"
+      ],
+      "paperIds": [
+        "2501.10555"
+      ],
+      "sources": [
+        "https://api.crossref.org/works/10.1145/3801742",
+        "https://doi.org/10.1145/3801742",
+        "https://orcid.org/0000-0003-4942-9775",
+        "https://wangdongjie100.github.io/team/"
+      ],
+      "verificationStatus": "verified",
+      "checked": "2026-09-26",
+      "verificationNote": "The publisher-deposited metadata for DOI 10.1145/3801742 explicitly associates this byline and paper affiliation with this ORCID; the public ORCID record has the matching name. Crossref marks authenticated-orcid=false, so this is a publication-linked identifier attribution, not an authenticated account-ownership check. Affiliations include historical paper affiliations. The adviser roster independently identifies the Kansas PhD student. Its linked personal page returned 404; no Scholar ID was inferred."
+    },
+    {
+      "id": "teresa-wu",
+      "name": "Teresa Wu",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "XJvLrVAAAAAJ"
+      ],
+      "orcids": [],
+      "affiliations": [
+        "Arizona State University"
+      ],
+      "paperIds": [
+        "2506.24124"
+      ],
+      "sources": [
+        "https://search.asu.edu/profile/342678",
+        "https://sixundong.com/projects/timesclip"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "ASU official profile links owner Scholar and matches the ASU professor identified on the TimesCLIP author/project record. No ORCID guessed."
+    },
+    {
+      "id": "wangyang-ying",
+      "name": "Wangyang Ying",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "INs4SuoAAAAJ"
+      ],
+      "orcids": [
+        "0009-0009-6196-0287"
+      ],
+      "affiliations": [
+        "Arizona State University",
+        "Arizona State University, Tempe, Arizona, USA"
+      ],
+      "paperIds": [
+        "2505.18204",
+        "2506.08552",
+        "2505.15152",
+        "2504.21304",
+        "2502.08828",
+        "2501.10555",
+        "2505.15572",
+        "2506.09085"
+      ],
+      "sources": [
+        "https://yingwangyang.github.io/",
+        "https://faculty.engineering.asu.edu/yanjiefu/team/",
+        "https://arxiv.org/pdf/2506.08552v2",
+        "https://api.crossref.org/works/10.1145/3801742",
+        "https://doi.org/10.1145/3801742",
+        "https://orcid.org/0009-0009-6196-0287"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "The publisher-deposited metadata for DOI 10.1145/3801742 explicitly associates this byline and paper affiliation with this ORCID; the public ORCID record has the matching name. Crossref marks authenticated-orcid=false, so this is a publication-linked identifier attribution, not an authenticated account-ownership check. Affiliations include historical paper affiliations."
+    },
+    {
+      "id": "wei-fan",
+      "name": "Wei Fan",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "cQ8zLJ4AAAAJ"
+      ],
+      "orcids": [],
+      "affiliations": [
+        "University of Oxford",
+        "University of Auckland",
+        "University of Central Florida"
+      ],
+      "paperIds": [
+        "2506.24124"
+      ],
+      "sources": [
+        "https://weifan.site/",
+        "https://faculty.engineering.asu.edu/yanjiefu/team/",
+        "https://sixundong.com/projects/timesclip"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "AI researcher homepage links Scholar and documents Oxford/UCF history; adviser roster independently confirms that lineage, matching TimesCLIP Oxford affiliation. The Oxford-associated economist namesake is excluded."
+    },
+    {
+      "id": "wei-wen",
+      "name": "Wei Wen",
+      "verificationStatus": "supported",
+      "scholarIds": [],
+      "orcids": [],
+      "affiliations": [
+        "Meta"
+      ],
+      "paperIds": [
+        "2604.04929"
+      ],
+      "sources": [
+        "https://wenwei202.github.io/",
+        "https://arxiv.org/pdf/2604.04929v1"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Personal homepage identifies a Meta AI scientist, compatible with the Meta paper author. No exact paper listing or unique contact bridge was established; homepage Scholar candidate is withheld from automatic matching."
+    },
+    {
+      "id": "weixin-luo",
+      "name": "Weixin Luo",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "1Gpoj9MAAAAJ"
+      ],
+      "orcids": [],
+      "affiliations": [
+        "Meituan",
+        "ShanghaiTech University",
+        "Amazon"
+      ],
+      "paperIds": [
+        "2401.10727",
+        "2303.12370"
+      ],
+      "sources": [
+        "https://zachluo.github.io/",
+        "https://svip-lab.github.io/team.html",
+        "https://arxiv.org/html/2401.10727"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Personal homepage explicitly lists WeakSVR and links owner Scholar; lab roster and MLLM-Tool corroborate the ShanghaiTech/Meituan history."
+    },
+    {
+      "id": "xiaohua-xuan",
+      "name": "Xiaohua Xuan",
+      "verificationStatus": "supported",
+      "scholarIds": [],
+      "orcids": [],
+      "affiliations": [
+        "UniDT Technology"
+      ],
+      "paperIds": [
+        "2401.10727"
+      ],
+      "sources": [
+        "https://arxiv.org/html/2401.10727",
+        "https://cn.linkedin.com/in/michael-xiaohua-xuan-29b48216"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "MLLM-Tool identifies UniDT Technology; matching professional self-profile supports the candidate. No independent persistent-ID or exact paper link established, so cross-site identity remains unverified."
+    },
+    {
+      "id": "xing-xie",
+      "name": "Xing Xie",
+      "verificationStatus": "supported",
+      "scholarIds": [],
+      "orcids": [],
+      "affiliations": [
+        "Microsoft Research Asia"
+      ],
+      "paperIds": [
+        "2602.10625"
+      ],
+      "sources": [
+        "https://arxiv.org/html/2602.10625v3",
+        "https://www.microsoft.com/en-us/research/people/jialia/publications/"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "The paper and Microsoft collaborator publication list support the MSRA researcher. A working personal-profile bridge or owner-verified persistent ID was not established. The Georgia Tech environmental-engineering namesake is excluded."
+    },
+    {
+      "id": "xinyuan-wang",
+      "name": "Xinyuan Wang",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "XCs4RpIAAAAJ"
+      ],
+      "orcids": [
+        "0009-0006-8330-342X"
+      ],
+      "affiliations": [
+        "Arizona State University",
+        "Arizona State University, Tempe, Arizona, USA"
+      ],
+      "paperIds": [
+        "2505.18204",
+        "2506.08552",
+        "2505.15152",
+        "2504.21304",
+        "2502.08828",
+        "2501.10555",
+        "2505.15572",
+        "2506.09085"
+      ],
+      "sources": [
+        "https://faculty.engineering.asu.edu/yanjiefu/team/",
+        "https://orcid.org/0009-0006-8330-342X",
+        "https://arxiv.org/pdf/2506.08552v2",
+        "https://api.crossref.org/works/10.1145/3801742",
+        "https://doi.org/10.1145/3801742"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "The publisher-deposited metadata for DOI 10.1145/3801742 explicitly associates this byline and paper affiliation with this ORCID; the public ORCID record has the matching name. Crossref marks authenticated-orcid=false, so this is a publication-linked identifier attribution, not an authenticated account-ownership check. Affiliations include historical paper affiliations."
+    },
+    {
+      "id": "xiuwen-zheng",
+      "name": "Xiuwen Zheng",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "rwYAJwwAAAAJ"
+      ],
+      "orcids": [],
+      "affiliations": [
+        "University of Illinois Urbana-Champaign"
+      ],
+      "paperIds": [
+        "2601.21347"
+      ],
+      "sources": [
+        "https://ece.illinois.edu/about/directory/grad-students/xiuwenz2",
+        "https://speechtechnology.web.illinois.edu/people/",
+        "https://arxiv.org/html/2601.21347"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Illinois institutional profile and lab roster identify the speech researcher and link owner Scholar; the paper links xiuwenz2 SAP-Hypo5. ORCID 0000-0002-1390-0708 belongs to a different biostatistics career and is excluded."
+    },
+    {
+      "id": "xun-wang",
+      "name": "Xun Wang",
+      "verificationStatus": "unresolved",
+      "scholarIds": [],
+      "orcids": [],
+      "affiliations": [],
+      "paperIds": [
+        "2508.09125"
+      ],
+      "sources": [
+        "https://arxiv.org/html/2508.15760",
+        "https://arxiv.org/html/2508.09125"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Zoom byline is confirmed only within these papers. No unambiguous personal profile or persistent-ID bridge established; Microsoft author-name listings are insufficient to merge identities."
+    },
+    {
+      "id": "yanjie-fu",
+      "name": "Yanjie Fu",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "OSArex4AAAAJ"
+      ],
+      "orcids": [
+        "0000-0002-1767-8024"
+      ],
+      "affiliations": [
+        "Arizona State University",
+        "University of Central Florida",
+        "School of Computing and Augmented Intelligence, Arizona State University, Tempe, Arizona, USA"
+      ],
+      "paperIds": [
+        "2506.24124",
+        "2508.18264",
+        "2505.18204",
+        "2506.08552",
+        "2505.15152",
+        "2504.21304",
+        "2502.08828",
+        "2501.10555",
+        "2602.10625",
+        "2505.15572",
+        "2506.09085"
+      ],
+      "sources": [
+        "https://faculty.engineering.asu.edu/yanjiefu/",
+        "https://faculty.engineering.asu.edu/yanjiefu/team/",
+        "https://arxiv.org/pdf/2506.08552v2",
+        "https://api.crossref.org/works/10.1145/3801742",
+        "https://doi.org/10.1145/3801742",
+        "https://orcid.org/0000-0002-1767-8024"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "The publisher-deposited metadata for DOI 10.1145/3801742 explicitly associates this byline and paper affiliation with this ORCID; the public ORCID record has the matching name. Crossref marks authenticated-orcid=false, so this is a publication-linked identifier attribution, not an authenticated account-ownership check. Affiliations include historical paper affiliations."
+    },
+    {
+      "id": "yanyong-huang",
+      "name": "Yanyong Huang",
+      "scholarIds": [],
+      "orcids": [
+        "0000-0001-9322-2777"
+      ],
+      "affiliations": [
+        "Joint Laboratory of Data Science and Business Intelligence, School of Statistics and Data Science, Southwestern University of Finance and Economics, Chengdu, China"
+      ],
+      "paperIds": [
+        "2501.10555"
+      ],
+      "sources": [
+        "https://api.crossref.org/works/10.1145/3801742",
+        "https://doi.org/10.1145/3801742",
+        "https://orcid.org/0000-0001-9322-2777"
+      ],
+      "verificationStatus": "verified",
+      "checked": "2026-09-26",
+      "verificationNote": "The publisher-deposited metadata for DOI 10.1145/3801742 explicitly associates this byline and paper affiliation with this ORCID; the public ORCID record has the matching name. Crossref marks authenticated-orcid=false, so this is a publication-linked identifier attribution, not an authenticated account-ownership check. Affiliations include historical paper affiliations."
+    },
+    {
+      "id": "yebowen-hu",
+      "name": "Yebowen Hu",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "AHHMtKAAAAAJ"
+      ],
+      "orcids": [],
+      "affiliations": [
+        "University of Central Florida",
+        "Zoom"
+      ],
+      "paperIds": [
+        "2508.09125"
+      ],
+      "sources": [
+        "https://yebowenhu.github.io/",
+        "https://yebowenhu.github.io/publications/",
+        "https://arxiv.org/html/2508.09125"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Personal publications page explicitly lists LogicIF and LiveMCP with full bylines; homepage links owner Scholar."
+    },
+    {
+      "id": "yiqun-zhao",
+      "name": "Yiqun Zhao",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "1UD_eBQAAAAJ"
+      ],
+      "orcids": [],
+      "affiliations": [
+        "ShanghaiTech University"
+      ],
+      "paperIds": [
+        "2310.10027",
+        "2204.01018"
+      ],
+      "sources": [
+        "https://svip-lab.github.io/team.html",
+        "https://lijing1996.github.io/",
+        "https://github.com/zhao-yiqun",
+        "https://github.com/zhao-yiqun/RoomDesigner"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Lab roster identifies the student; RoomDesigner coauthor homepage links Yiqun by name to this Scholar ID, and author GitHub owns the paper repository. ID is attributed by a named coauthor rather than inferred from a search result."
+    },
+    {
+      "id": "zhengxin-li",
+      "name": "Zhengxin Li",
+      "verificationStatus": "verified",
+      "scholarIds": [],
+      "orcids": [],
+      "affiliations": [
+        "ShanghaiTech University"
+      ],
+      "paperIds": [
+        "2401.10727",
+        "2204.01018"
+      ],
+      "sources": [
+        "https://svip-lab.github.io/team.html",
+        "https://arxiv.org/html/2401.10727"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Lab roster explicitly identifies Li Zhengxin, associate researcher, alongside this paper team; MLLM-Tool gives ShanghaiTech. No persistent ID established; scoped institutional identity only."
+    },
+    {
+      "id": "zhiyu-zoey-chen",
+      "name": "Zhiyu Zoey Chen",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "Wusd9LgAAAAJ"
+      ],
+      "orcids": [],
+      "affiliations": [
+        "University of Texas at Dallas"
+      ],
+      "paperIds": [
+        "2508.09125"
+      ],
+      "sources": [
+        "https://czyssrs.github.io/",
+        "https://mianzhang.github.io/",
+        "https://arxiv.org/html/2508.09125"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Mian Zhang homepage links the UTD adviser identity, and LogicIF names the same UTD author; personal homepage links owner Scholar."
+    },
+    {
+      "id": "zibo-zhao",
+      "name": "Zibo Zhao",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "x3EgqesAAAAJ"
+      ],
+      "orcids": [],
+      "affiliations": [
+        "ShanghaiTech University",
+        "Tencent"
+      ],
+      "paperIds": [
+        "2310.10027"
+      ],
+      "sources": [
+        "https://svip-lab.github.io/team.html",
+        "https://lijing1996.github.io/",
+        "https://maikouuu.github.io/"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Lab roster identifies the 2019 PhD student; RoomDesigner coauthor page links Zibo directly to maikouuu.github.io, which links owner Scholar. ASU economics namesake and Scholar z7ephOIAAAAJ are excluded."
+    },
+    {
+      "id": "zijun-li",
+      "name": "Zijun Li",
+      "verificationStatus": "unresolved",
+      "scholarIds": [],
+      "orcids": [],
+      "affiliations": [],
+      "paperIds": [
+        "2505.15152"
+      ],
+      "sources": [
+        "https://arxiv.org/html/2505.15152",
+        "https://nanxugong.github.io/"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "DIFFT v1 identifies National University of Singapore, not the Sichuan affiliation suggested by unrelated search results. No independent personal profile or unique-ID bridge was established."
+    },
+    {
+      "id": "chuang-gan",
+      "name": "Chuang Gan",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "PTeSCbIAAAAJ"
+      ],
+      "orcids": [],
+      "affiliations": [
+        "University of Massachusetts Amherst"
+      ],
+      "paperIds": [
+        "2609.07720"
+      ],
+      "sources": [
+        "https://jiabenchen.github.io/cinecrew/",
+        "https://people.csail.mit.edu/ganchuang/"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "CineCrew links this author directly to the MIT-hosted personal homepage, which links the owner Scholar account."
+    },
+    {
+      "id": "dongze-lian",
+      "name": "Dongze Lian",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "q-C8LqsAAAAJ"
+      ],
+      "orcids": [],
+      "affiliations": [
+        "Nanjing University",
+        "ShanghaiTech University",
+        "National University of Singapore"
+      ],
+      "paperIds": [
+        "2303.12370",
+        "2204.01018"
+      ],
+      "sources": [
+        "https://dongzelian.com/",
+        "https://dongzelian.com/research_publications.html",
+        "https://svip-lab.github.io/team.html"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Personal publication page explicitly lists WeakSVR with the recorded byline; homepage links the owner Scholar profile."
+    },
+    {
+      "id": "huazhang-hu",
+      "name": "Huazhang Hu",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "wlJOdBQAAAAJ"
+      ],
+      "orcids": [],
+      "affiliations": [
+        "ShanghaiTech University",
+        "Xiaohongshu"
+      ],
+      "paperIds": [
+        "2303.12370",
+        "2204.01018"
+      ],
+      "sources": [
+        "https://github.com/HuazhangHu",
+        "https://svip-lab.github.io/team.html"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Personal GitHub profile links Scholar and explicitly identifies TransRAC and WeakSVR; the lab roster corroborates the identity. Scholar display spelling Hua-zhang Hu is retained only as provenance."
+    },
+    {
+      "id": "jiaben-chen",
+      "name": "Jiaben Chen",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "egMKh7MAAAAJ"
+      ],
+      "orcids": [],
+      "affiliations": [
+        "University of Massachusetts Amherst"
+      ],
+      "paperIds": [
+        "2609.07720"
+      ],
+      "sources": [
+        "https://jiabenchen.github.io/",
+        "https://jiabenchen.github.io/cinecrew/"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Personal page lists CineCrew and links owner Scholar; the project links back to the same homepage."
+    },
+    {
+      "id": "qinhong-zhou",
+      "name": "Qinhong Zhou",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "sQW6Ni4AAAAJ"
+      ],
+      "orcids": [],
+      "affiliations": [
+        "University of Massachusetts Amherst"
+      ],
+      "paperIds": [
+        "2609.07720"
+      ],
+      "sources": [
+        "https://jiabenchen.github.io/cinecrew/",
+        "https://zhouqqhh.github.io/"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "CineCrew author link points directly to this homepage, which links the owner Scholar profile."
+    },
+    {
+      "id": "raine-ma",
+      "name": "Raine Ma",
+      "verificationStatus": "unresolved",
+      "scholarIds": [],
+      "orcids": [],
+      "affiliations": [],
+      "paperIds": [
+        "2609.07720"
+      ],
+      "sources": [
+        "https://jiabenchen.github.io/cinecrew/",
+        "https://jiabenchen.github.io/"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "CineCrew and coauthor publication page establish the byline and UMass affiliation, but the project supplies no personal author link and no independent identity bridge was found."
+    },
+    {
+      "id": "wojciech-matusik",
+      "name": "Wojciech Matusik",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "wbIMbL8AAAAJ"
+      ],
+      "orcids": [
+        "0000-0003-0212-5643"
+      ],
+      "affiliations": [
+        "Massachusetts Institute of Technology"
+      ],
+      "paperIds": [
+        "2609.07720"
+      ],
+      "sources": [
+        "https://jiabenchen.github.io/cinecrew/",
+        "https://people.csail.mit.edu/wojciech/"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "CineCrew directly links MIT personal homepage; that page links owner Scholar and ORCID."
+    },
+    {
+      "id": "yicheng-qian",
+      "name": "Yicheng Qian",
+      "verificationStatus": "verified",
+      "scholarIds": [],
+      "orcids": [],
+      "affiliations": [
+        "ShanghaiTech University",
+        "Xiaohongshu"
+      ],
+      "paperIds": [
+        "2303.12370"
+      ],
+      "sources": [
+        "https://svip-lab.github.io/team.html",
+        "https://dongzelian.com/research_publications.html",
+        "https://arxiv.org/abs/2303.12370"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "Primary lab roster identifies Qian Yicheng as the 2020 master student, and the lab coauthor publication list explicitly places this name in WeakSVR. No persistent ID established; identity is scoped to this lab/paper context."
+    },
+    {
+      "id": "zhiyang-dou",
+      "name": "Zhiyang Dou",
+      "verificationStatus": "verified",
+      "scholarIds": [
+        "SLRYlKsAAAAJ"
+      ],
+      "orcids": [
+        "0000-0003-0186-8269"
+      ],
+      "affiliations": [
+        "Massachusetts Institute of Technology"
+      ],
+      "paperIds": [
+        "2609.07720"
+      ],
+      "sources": [
+        "https://jiabenchen.github.io/cinecrew/",
+        "https://frank-zy-dou.github.io/"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "CineCrew directly links the author personal homepage. Owner social links provide Scholar and ORCID; adviser IDs elsewhere on the page are excluded."
+    },
+    {
+      "id": "xiquan-cui",
+      "name": "Xiquan Cui",
+      "verificationStatus": "supported",
+      "scholarIds": [],
+      "orcids": [],
+      "affiliations": [
+        "The Home Depot"
+      ],
+      "paperIds": [
+        "2506.09085"
+      ],
+      "sources": [
+        "https://arxiv.org/html/2506.09085v1",
+        "https://oars-workshop.github.io/2025/index.html"
+      ],
+      "checked": "2026-09-26",
+      "verificationNote": "The manuscript byline gives The Home Depot, consistent with the named organizer on the KDD OARS 2025 workshop site. This supports the professional identity, but no paper-linked ORCID or Scholar identifier was established. Matching remains paper-scoped; an isolated name is not a confirmed identity."
+    }
+  ],
+  "inclusionPolicy": "documented-open-issues"
+}

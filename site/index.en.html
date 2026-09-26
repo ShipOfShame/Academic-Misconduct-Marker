@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" data-locale="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A source-linked evidence ledger for research reporting, code availability, and reproducibility. Explore paper records and transparent review-priority scores.">
+  <link rel="alternate" hreflang="en" href="https://shipofshame.github.io/Academic-Misconduct-Marker/"><link rel="alternate" hreflang="zh-CN" href="https://shipofshame.github.io/Academic-Misconduct-Marker/zh/">
+  <link rel="canonical" href="https://shipofshame.github.io/Academic-Misconduct-Marker/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Academic Misconduct Marker">
+  <meta property="og:description" content="Paper records and source links in your browser.">
+  <meta property="og:image" content="https://shipofshame.github.io/Academic-Misconduct-Marker/assets/social-en.png">
+  <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="color-scheme" content="light">
+  <title>Academic Misconduct Marker — Evidence ledger</title>
+  <link rel="icon" type="image/svg+xml" href="icon.svg"><link rel="stylesheet" href="site.css">
+  <script src="core.js" defer></script><script src="scoring.js" defer></script><script src="i18n/en.js" defer></script><script src="site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#ledger">Skip to evidence</a>
+<header class="masthead wrap">
+  <a class="brand" href="./"><img src="icon.svg" alt="" width="40" height="40"><span>Academic Misconduct<br>Marker</span></a>
+  <nav aria-label="Main navigation"><a id="language-switch" class="language-switch" href="zh/" hreflang="zh-CN" lang="zh-CN">简体中文</a><a href="#ledger">Evidence</a><a href="#method">Method</a><a href="https://github.com/ShipOfShame/Academic-Misconduct-Marker">GitHub <span aria-hidden="true">↗</span></a></nav>
+</header>
+<main>
+<section class="hero wrap" aria-labelledby="hero-title">
+  <div class="eyebrow"><span class="signal" aria-hidden="true"></span> Open evidence. Accountable research.</div>
+  <h1 id="hero-title">Claims deserve<br><span>receipts.</span></h1>
+  <div class="hero-bottom"><p>A public ledger of paper-level reporting issues, implementation concerns, and missing research materials. Every record leads back to its source.</p>
+  <a class="button" href="https://github.com/ShipOfShame/Academic-Misconduct-Marker/releases/latest">Get the extension <span aria-hidden="true">↗</span></a></div>
+</section>
+<section class="stats wrap" aria-label="Dataset snapshot"><div><strong id="paper-count">—</strong><span>Papers with recorded issues</span></div><div><strong id="finding-count">—</strong><span>Open issues</span></div><div><strong id="identity-count">—</strong><span>Author identity records</span></div><div><strong class="date" id="snapshot">—</strong><span>Review snapshot</span></div></section>
+<section class="wrap ledger" id="ledger" aria-labelledby="ledger-title">
+  <div class="section-heading"><div class="eyebrow">01 / The record</div><h2 id="ledger-title">Follow the evidence.</h2></div>
+  <div class="controls"><label class="search">Search papers or authors<input id="search" type="search" placeholder="Title, author, or arXiv ID…"></label><label>Finding type<select id="status"><option value="">All findings</option></select></label><label>Sort by<select id="sort"><option value="score">Review priority</option><option value="title">Paper title</option><option value="checked">Last checked</option></select></label></div>
+  <details class="weight-panel"><summary>Adjust weights</summary><div id="weights" class="weights"></div><button id="reset" type="button">Reset weights</button></details>
+  <div class="results-line"><p id="result-status" role="status">Loading the evidence snapshot…</p><span id="score-mode">Default weights</span></div>
+  <div id="papers"></div><noscript><p>JavaScript is needed for search and scoring. <a href="https://github.com/ShipOfShame/Academic-Misconduct-Marker/tree/main/evidence-database/papers">Read all evidence records on GitHub.</a></p></noscript>
+</section>
+<section class="method-section" id="method"><div class="wrap">
+  <div class="section-heading"><h2>Method &amp; references</h2></div>
+  <div class="method-grid"><article><a href="https://jmlr.org/papers/v22/20-303.html">Pineau et al., 2021 ↗</a><p>Code policies and reproducibility checks</p></article><article><a href="https://aclanthology.org/D19-1224/">Dodge et al., 2019 ↗</a><p>Validation results and search budgets</p></article><article><a href="https://doi.org/10.1016/j.patter.2023.100804">Kapoor &amp; Narayanan, 2023 ↗</a><p>Data leakage and evaluation</p></article><article><a href="https://doi.org/10.1371/journal.pcbi.1003285">Sandve et al., 2013 ↗</a><p>Inputs, versions and analysis steps</p></article><article><a href="https://www.acm.org/publications/policies/artifact-review-and-badging-current">ACM Artifact Review and Badging ↗</a><p>Availability, functionality and result validation</p></article><article><a href="https://publicationethics.org/core-practices">COPE Core Practices ↗</a><p>Post-publication discussion and corrections</p></article></div>
+  <p class="method-note"><a href="https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/docs/methodology.md">Read the full methodology ↗</a></p>
+</div></section>
+<section class="wrap about"><div><div class="eyebrow">03 / In your browser</div><h2>A marker. A source.<br>Your assessment.</h2><p>Hover over a marker on arXiv or Google Scholar to see related papers and evidence.</p><a href="https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/docs/installation.md">Installation guide ↗</a> · <a href="https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/docs/identity-audit.md">Identity audit ↗</a></div><div class="legend"><div><img class="marker" src="assets/marker-target.svg" width="40" height="40" alt=""><strong>Review subject</strong><span>Recorded paper concerns</span></div><div><img class="marker" src="assets/marker-coauthor.svg" width="40" height="40" alt=""><strong>Associated coauthor</strong><span>Coauthor on a recorded paper</span></div><div><img class="marker" src="assets/marker-candidate.svg" width="40" height="40" alt=""><strong>Identity uncertainty</strong><span>Conflicting or insufficient identifiers</span></div></div></section>
+</main>
+<footer class="wrap"><div><strong>Academic Misconduct Marker</strong></div><div><a href="https://github.com/ShipOfShame/Academic-Misconduct-Marker/issues/new/choose">Submit a correction ↗</a><a href="https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/PRIVACY.md">Privacy</a><a href="data.json">Download the snapshot</a></div></footer>
+</body></html>

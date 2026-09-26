@@ -1,0 +1,60 @@
+{
+  "manifest_version": 3,
+  "name": "Academic Misconduct Marker",
+  "version": "0.1.0",
+  "description": "Research evidence markers for arXiv and Google Scholar with explicit identity matching and source provenance.",
+  "permissions": [
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Academic Misconduct Marker",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://arxiv.org/*",
+        "https://www.arxiv.org/*",
+        "https://scholar.google.com/*",
+        "https://scholar.google.com.hk/*",
+        "https://scholar.google.co.uk/*",
+        "https://scholar.google.com.au/*"
+      ],
+      "js": [
+        "core.js",
+        "brand.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "evidence.json",
+        "evidence.html"
+      ],
+      "matches": [
+        "https://arxiv.org/*",
+        "https://www.arxiv.org/*",
+        "https://scholar.google.com/*",
+        "https://scholar.google.com.hk/*",
+        "https://scholar.google.co.uk/*",
+        "https://scholar.google.com.au/*"
+      ]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
+}

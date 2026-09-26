@@ -1,0 +1,853 @@
+{
+  "locale": "zh-CN",
+  "notice": "按论文版本和代码提交记录问题，列出具体依据、来源及作者回复。",
+  "papers": {
+    "2506.24124": {
+      "sourceHash": "9160a9777854246a10c5aa06c72a63bcf4319233b478e904704aeda59018fdb7",
+      "findings": [
+        {
+          "title": "代码可用性声明与仓库内容不一致",
+          "detail": "论文 v2 摘要称代码已经可用，但核查的仓库快照仅有 README。作者在 issue #1 中说明，代码和模型将在正式录用后发布。",
+          "evidence": {
+            "scope": "arXiv 2506.24124v2 摘要；TimesCLIP 提交 269fc3057068aecd4d89055b7cb48025d3a012e2；issue #1 的作者回复。",
+            "observation": "摘要将代码描述为已经可用。但所核查的仓库文件树仅包含 readme.md。README 描述了计划中的目录结构和复现材料，所对应的实现文件并未出现在该快照中。",
+            "reason": "论文以现在时声明代码可用，却将读者引向未提供所述实现的仓库。这构成公开声明与实际交付之间的具体不一致，也阻碍读者检查论文结果的生成过程。",
+            "limitation": "作者于 2025 年 7 月 22 日回复称，正式录用后会发布代码和模型。本条记录对照的是 v2 摘要中的代码可用性声明与所引仓库快照的内容。",
+            "sources": [
+              {
+                "label": "论文 v2",
+                "location": "摘要中的代码可用性声明"
+              },
+              {
+                "label": "固定版本仓库",
+                "location": "所核查提交的默认分支文件树"
+              },
+              {
+                "label": "作者回复",
+                "location": "2025 年 7 月 22 日回复：正式录用后发布"
+              }
+            ]
+          }
+        },
+        {
+          "title": "PEMS07 的 Avg 行与四个分项数值不一致",
+          "detail": "v2 表 10 中，四个 TimesCLIP MSE 的平均值为 0.08975，表中却报告 0.358；四个 MAE 的平均值为 0.193，表中却报告 0.773。Avg 行存在聚合或标注错误。",
+          "evidence": {
+            "scope": "arXiv 2506.24124v2，表 10 的 PEMS07 结果（预测长度 12、24、48、96）及表 2。",
+            "observation": "四个 TimesCLIP MSE 为 0.063、0.074、0.106、0.116：(0.063 + 0.074 + 0.106 + 0.116) / 4 = 0.08975，而报告的 Avg 为 0.358。MAE 0.175、0.183、0.204、0.210 的平均值为 0.193，而报告的 Avg 为 0.773。两项所谓平均值均高于对应列的每个分项。表 2 也使用了这些聚合值。",
+            "reason": "非负权重的平均值不可能高于所有分项，四舍五入也无法解释这一差异。因此，表中存在聚合或标注错误，影响对所报告绝对误差的理解。",
+            "limitation": "这些聚合值接近分项之和；其他方法也存在类似现象。如果各方法采用相同的缩放，数据集内的排名可能保持不变。",
+            "sources": [
+              {
+                "label": "论文 v2",
+                "location": "表 10 与表 2：PEMS07 的 MSE、MAE 聚合结果"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "2508.18264": {
+      "sourceHash": "dbd6d9b3366833c8b7ef8e1cc764ad12e14d2469793ffe202f9357457ab3e139",
+      "findings": [
+        {
+          "title": "README 与论文报告的性能指标不一致",
+          "detail": "固定版本 README 声称使用四个视觉 token 时 F1 为 87.7%，但 arXiv v2 表 21 报告的 F1 为 74.84。摘要中的性能保留率也与表格数值计算出的比率不同。",
+          "evidence": {
+            "scope": "MMTok README 提交 8e2686836ed5bbe05d064f1d1c20e50c73c70b94；arXiv 2508.18264v2 的摘要与表 21。",
+            "observation": "README 将四个视觉 token 的表现描述为 87.7% F1。表 21 中，四 token 的 POPE F1 为 74.84，完整模型为 85.9，两者之比约为 87.12%。摘要则将 87.7% 描述为保留的相对性能，而非绝对 F1。",
+            "reason": "绝对 F1 与相对基线的性能保留率是不同的量。若没有指标或实验版本的说明，这些公开描述不能被视为同一实验设置下一致的性能报告。",
+            "limitation": "本条对照固定 README 与 arXiv v2。README 使用绝对 F1，摘要使用相对性能保留率，表 21 提供四 token 和完整模型的 F1 数值。",
+            "sources": [
+              {
+                "label": "固定版本 README",
+                "location": "四 token 性能声明"
+              },
+              {
+                "label": "论文 v2",
+                "location": "摘要及表 21：POPE 的四 token 与完整模型 F1"
+              }
+            ]
+          }
+        },
+        {
+          "title": "排除填充区域后，选择器仍可能反复选取被排除的 token",
+          "detail": "选择器只按全部 token 数量限制选择预算，没有减去被排除的填充 token。有效候选耗尽后，剩余循环会对全部为负无穷的得分取 argmax，反复选择索引 0。",
+          "evidence": {
+            "scope": "MMTok 提交 8e2686836ed5bbe05d064f1d1c20e50c73c70b94；LLaVA-1.5 的 tensor 输入路径，启用填充排除，覆盖得分有限且选择预算超过有效候选数。",
+            "observation": "选择器只按全部 token 数量限制选择预算，没有减去被排除的填充 token。有效候选耗尽后，剩余循环会对全部为负无穷的得分取 argmax，反复选择索引 0。",
+            "reason": "以 1008×336 图像为例，公开填充规则在 24×24 网格中排除顶部八行和底部八行，仅剩 192 个有效 token。使用 README 的 256 个 token 预算并启用填充排除时，前 192 轮用完有效候选，随后 64 轮重复选择已被排除的索引 0。结果既含填充 token，也不是由 256 个不同 token 构成的子集。",
+            "limitation": "结论来自填充尺寸计算和循环控制流分析，未测量论文各项基准中出现此输入条件的频率。",
+            "sources": [
+              {
+                "label": "来源 1",
+                "location": "带掩码的贪心循环固定执行 k_max 轮"
+              },
+              {
+                "label": "来源 2",
+                "location": "预算使用总量 n，没有减去排除项"
+              },
+              {
+                "label": "来源 3",
+                "location": "336 像素缩放及整行填充排除"
+              },
+              {
+                "label": "来源 4",
+                "location": "LLaVA-1.5 启用填充排除"
+              },
+              {
+                "label": "来源 5",
+                "location": "target_vision_tokens=256 使用示例"
+              },
+              {
+                "label": "来源 6",
+                "location": "最大值并列时返回第一个索引"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "2505.18204": {
+      "sourceHash": "b2672b35d3cd76d4a2ef4c5d04cf55e5ef765933f0223b5d97abdf3dbc118c4f",
+      "findings": [
+        {
+          "title": "公开入口导入的模块存在缩进错误",
+          "detail": "固定版本 loaders/simdec_loader.py 第 58 行存在多余缩进，静态解析返回 IndentationError。公开入口导入该模块时会被这一语法错误阻断。",
+          "evidence": {
+            "scope": "Brownian_Bridge_Augmented_CO2_Storage 提交 2616f119eadd2873755b58292b9d5768f30d0b6d。",
+            "observation": "simdec_main.py 第 9 行导入 loaders.simdec_loader。该模块第 58 行 np.savez 前出现了多余的缩进。已有审查中的 Python 静态解析返回 IndentationError: unexpected indent，并定位到第 58 行。",
+            "reason": "公开入口所导入的模块在该快照中无法通过解析。这是已发布实现中的具体缺陷，使该入口不能按原样运行。",
+            "limitation": "检查采用源代码静态解析，定位到公开提交中的模块及其入口导入位置。",
+            "sources": [
+              {
+                "label": "入口导入位置",
+                "location": "simdec_main.py 第 9 行"
+              },
+              {
+                "label": "语法错误位置",
+                "location": "loaders/simdec_loader.py 第 58 行"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "2506.08552": {
+      "sourceHash": "5e00cd1a079c0aae22a1a7b950afbb3f1c005a900ee1d3f53dadb2fdab6f3fad",
+      "findings": [
+        {
+          "title": "论文公式与公开代码使用了相反的更新符号",
+          "detail": "AAAI 2026 公式（2）采用加梯度更新，固定版本代码则采用减梯度更新。论文与代码的更新方向相反。",
+          "evidence": {
+            "scope": "AAAI 2026 正式论文公式（2），PDF 第 4 页／印刷页 33695；Lateng-Reasoning 提交 94e70c46acb39c45c713d010d53f9e06421527d8。",
+            "observation": "公式（2）写为 h_new = h + eta * gradient[L]，其中 L = MSE(h_good, h) - MSE(h_bad, h)。公开 coconut_search.py 计算这一损失，却以减去 learning_rate * gradient[L] 的方式更新 h。",
+            "reason": "在步长为正的情况下，所列公式与代码沿同一目标的相反方向更新。读者按论文公式实现的方法，与公开代码的更新规则不一致。",
+            "limitation": "代码更新的是嵌入 h，模型参数保持固定。本条对照正式论文公式与所引公开提交中的更新规则。",
+            "sources": [
+              {
+                "label": "AAAI 正式出版记录",
+                "location": "公式（2），印刷页 33695"
+              },
+              {
+                "label": "固定版本更新代码",
+                "location": "coconut_search.py 第 74–85 行：目标、梯度与减法更新"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "2508.09125": {
+      "sourceHash": "cdd8db90d44cf2060c2f75ce2c67427e19dac64fdb27a2aae934b91981389885",
+      "findings": [
+        {
+          "title": "图 6 对准确率指标的标注不一致",
+          "detail": "v4 图 6 中的 Qwen 数值对应作者回复中的逐题准确率，图注却描述为单个测试样例的通过百分比。图中的数值与指标标签不一致。",
+          "evidence": {
+            "scope": "arXiv 2508.09125v4 图 6，以及 issue #2 作者回复中的指标定义。",
+            "observation": "作者回复区分了 Qwen3-8B／Qwen3-32B 的逐样例准确率 66.76%／75.83%，以及逐题准确率 26.47%／38.24%。图 6 展示的 26.5%／38.2% 与四舍五入后的逐题准确率一致，图注却将其描述为单个测试样例的百分比。",
+            "reason": "一道题的所有测试样例均通过，与单个测试样例通过，是不同的事件。把逐题数值标成逐样例准确率，会错误描述图中性能所测量的含义。",
+            "limitation": "本条核查 arXiv v4 图 6。图中数值对应逐题准确率，图注描述的是逐样例准确率。",
+            "sources": [
+              {
+                "label": "论文 v4",
+                "location": "图 6：图注和四舍五入后的 Qwen 数值"
+              },
+              {
+                "label": "指标定义与数值",
+                "location": "作者回复中的逐样例和逐题准确率"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "2604.04929": {
+      "sourceHash": "275cf1629355b32f3307ea65e9b499206af40ba0e5be7e45b1b2aed5c9003da1",
+      "findings": [
+        {
+          "title": "路由计数与同一示例的耗时报告不一致",
+          "detail": "v1 表 10 的三类 MMBench 路由计数之和为 4,328，而总数为 4,329。附录 B.6 对同一示例给出两套不同耗时。",
+          "evidence": {
+            "scope": "arXiv 2604.04929v1，表 10 与附录 B.6 的示例 3。",
+            "observation": "表 10 的 MMBench 路由计数为 3,736、262、330，合计 4,328，而总数写为 4,329。示例 3 给出 2B-R = 3.83 秒、8B-R = 4.56 秒、组合约 3.96 秒；同一示例的总结却分别写为 2.02 秒、5.54 秒、2.03 秒。",
+            "reason": "整数路由计数与所列样本总数不守恒，同一示例的耗时描述也无法同时对应同一测量结果。没有更正，读者无法确定应采用的分母与耗时比较。",
+            "limitation": "计数差异为一个样本，约占 0.023%。两套耗时都显示加速，但幅度不同。论文另在附录 B.4 披露了实测耗时，并分别说明估算与实测。",
+            "sources": [
+              {
+                "label": "论文 v1",
+                "location": "表 10；附录 B.6 示例 3；附录 B.4 的实测耗时背景"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "2401.10727": {
+      "sourceHash": "d3e694795291d6a6b99e5672af5edec499e9026867722b852a262b3b0d3c530a",
+      "findings": [
+        {
+          "title": "完整的原始模型卡未被公开",
+          "detail": "作者表示无法完整披露原始模型卡。原始描述主要由人工标注，建议的替代方案是重新抓取网页并生成描述。公开材料包括代码、模型清单及功能分类。",
+          "evidence": {
+            "scope": "MLLM-Tool 论文第 3.1 节与 issue #6 的作者评论，核查日期为 2026 年 9 月 26 日。",
+            "observation": "论文描述了 932 个模型的模型卡。作者表示完整模型卡无法披露，提供了模型清单与功能分类，并建议重新抓取当前模型页面、生成替代描述。回复还说明原始描述主要依靠人工标注，且部分模型页面可能已经无法访问。",
+            "reason": "当前抓取的网页与新生成的描述，不能重建用于构造研究数据的原始标注。因此，追溯该构造过程所需的材料存在作者已确认的缺口。",
+            "limitation": "代码和部分数据已经公开。作者在 issue #6 说明完整模型卡的披露限制及替代方案，在 issue #7 指出了可获取的测试材料。",
+            "sources": [
+              {
+                "label": "模型卡披露回复",
+                "location": "作者评论：缺失原始模型卡、人工描述与替代方案"
+              },
+              {
+                "label": "测试数据回复",
+                "location": "作者指出可获取测试材料的回复"
+              }
+            ]
+          }
+        },
+        {
+          "title": "公开测试集中有 184 条输入已出现在训练集",
+          "detail": "将 2,397 条测试记录与 44,533 条训练记录逐条比对，发现 184 条不同的输入重复：文本 131 条、音频 50 条、视频 3 条。其中 173 条至少有一个测试集认可的答案已与同一输入共同出现在训练集中，159 条的全部认可答案都已出现。",
+          "evidence": {
+            "scope": "WACV 2025 正文第 3.4 节及 Table 2；提交 8b74aad63ac511f6cbd7a74fb12aceee33975cf8 的公开数据与加载代码；2026 年 9 月 26 日进行 JSON 精确比对。",
+            "observation": "将 2,397 条测试记录与 44,533 条训练记录逐条比对，发现 184 条不同的输入重复：文本 131 条、音频 50 条、视频 3 条。其中 173 条至少有一个测试集认可的答案已与同一输入共同出现在训练集中，159 条的全部认可答案都已出现。",
+            "reason": "比对使用未经修改的问题文本、输入模态和全部媒体路径字段。训练与推理代码读取的正是这些文件，作者也在 issue #7 中指明 inference.py 为测试集入口。闭集任务要求训练和测试使用同一批 API 标签，并不要求复用相同的问题和媒体引用。公开测试划分因此包含训练中已经出现的样本。",
+            "limitation": "媒体一致性核对到路径引用层面。统计针对公开数据划分，未测量其对论文准确率的影响。",
+            "sources": [
+              {
+                "label": "来源 1",
+                "location": "184 条测试记录、对应训练数组下标及源文件 SHA-256"
+              },
+              {
+                "label": "来源 2",
+                "location": "仅使用标准库的 JSON 比对脚本"
+              },
+              {
+                "label": "来源 3",
+                "location": "四个训练 JSON 文件路径"
+              },
+              {
+                "label": "来源 4",
+                "location": "训练配置启用四个数据集"
+              },
+              {
+                "label": "来源 5",
+                "location": "推理选择 combined_data.json"
+              },
+              {
+                "label": "来源 6",
+                "location": "公开的 2,397 条测试记录"
+              },
+              {
+                "label": "来源 7",
+                "location": "作者通过 inference.py 指明测试集文件"
+              },
+              {
+                "label": "来源 8",
+                "location": "第 6681 页：Table 2 与第 3.4 节"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "2310.10027": {
+      "sourceHash": "ded204177ed74cdaa58f78a851724956740215f9a610cc7ca167e7301ab7f038",
+      "findings": [
+        {
+          "title": "部分配置与数据处理代码仍待发布",
+          "detail": "固定版本 README 写明模型实现代码已经发布，部分配置和数据处理代码仍待发布。",
+          "evidence": {
+            "scope": "RoomDesigner README 提交 3980e06bfc48f76f3f1efb2d2182c0c871d2231b，以及 issue #2 的作者回应。",
+            "observation": "固定 README 写明模型实现代码已发布，但部分配置和数据处理代码仍待发布。",
+            "reason": "这些配置与处理步骤属于从源数据到可执行研究设置的过程。作者承认的材料缺失，使公开复现材料存在具体缺口。",
+            "limitation": "模型代码已经可用。作者在 issue #2 说明 vqvae_model_texture 未用于该框架。本条材料缺口对应 README 中列出的配置和数据处理代码。",
+            "sources": [
+              {
+                "label": "固定版本发布说明",
+                "location": "README 中的发布状态说明"
+              },
+              {
+                "label": "模块澄清",
+                "location": "作者回复：vqvae_model_texture 未用于框架"
+              }
+            ]
+          }
+        },
+        {
+          "title": "形状编码器把训练列表前五个对象作为验证集",
+          "detail": "公开 VQ-VAE 训练入口从同一个目录建立 train 和 val。加载器为二者建立相同的有效对象列表，再将非训练划分截取为前五项。训练脚本随后依据这些对象的验证 IoU 选择最佳检查点。",
+          "evidence": {
+            "scope": "RoomDesigner 提交 3980e06bfc48f76f3f1efb2d2182c0c871d2231b：3DILG/run_vqvae.py、datasets.py 和 FRONT.py。",
+            "observation": "公开 VQ-VAE 训练入口从同一个目录建立 train 和 val。加载器为二者建立相同的有效对象列表，再将非训练划分截取为前五项。训练脚本随后依据这些对象的验证 IoU 选择最佳检查点。",
+            "reason": "验证对象是训练对象列表的前缀，没有形成独立的对象划分。在这些对象上重新采样表面点和占据点，也不会变成对未见对象的验证。这个检查点选择过程测量的是模型对训练中已有对象的重建。",
+            "limitation": "本条针对公开的形状编码器训练路径；场景生成的房间级测试划分及 FID/SCA 是另外的评估环节。",
+            "sources": [
+              {
+                "label": "来源 1",
+                "location": "共用对象列表及非训练划分截取"
+              },
+              {
+                "label": "来源 2",
+                "location": "train 和 val 使用同一根目录及 _3DFRONT"
+              },
+              {
+                "label": "来源 3",
+                "location": "训练与验证数据集构造"
+              },
+              {
+                "label": "来源 4",
+                "location": "依据验证 IoU 保存最佳检查点"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "2505.15152": {
+      "sourceHash": "eb25133ad0f82cd0ed22dd339846cd5c570071e722b6c38075a999832c75f61f",
+      "findings": [
+        {
+          "title": "导入模块缺失，且存在划分前监督式特征筛选路径",
+          "detail": "固定提交缺少 utils_.chunkwise_seq。无缓存的 ap_omentum_ovary 分支先使用全部 X 与 y 进行监督式特征筛选，随后执行 train_test_split，测试集标签由此参与特征选择。",
+          "evidence": {
+            "scope": "DIFFT 提交 a8461c664d91704c56a91c130c95910be1aef327，dataset.py 第 25、55、142–155 行。",
+            "observation": "dataset.py 第 25 行导入 utils_.chunkwise_seq，并于第 55 行调用，但所查仓库既无对应模块，也未说明获取方法。此外，无缓存的 ap_omentum_ovary 分支使用全部特征行及标签拟合 SelectKBest，然后才执行 train_test_split。",
+            "reason": "缺少已导入的模块，使发布入口的依赖链不完整。在所识别的无缓存分支中，随后被划入测试集的样本标签会影响特征选择，破坏该路径中独立留出测试的前提。",
+            "limitation": "该筛选路径在 ap_omentum_ovary 无缓存时触发，已有缓存会跳过这一分支。检查对象是所引公开提交中的依赖与预处理顺序；核对论文结果还需要对应的实验代码版本及缓存来源。",
+            "sources": [
+              {
+                "label": "缺失依赖的导入",
+                "location": "dataset.py 第 25 与 55 行"
+              },
+              {
+                "label": "有条件的预处理路径",
+                "location": "dataset.py 第 142–155 行：划分前进行监督式选择"
+              },
+              {
+                "label": "固定版本仓库文件树",
+                "location": "所查文件树中没有对应的 utils_ 模块"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "2504.21304": {
+      "sourceHash": "1e7c6ccdcfb5eb06a0a9c20d1ec920e0f60a80682edf4bbf23282bdc65ad8b11",
+      "findings": [
+        {
+          "title": "评论者未收到累积的迭代反馈",
+          "detail": "公开代码把反馈追加到对话历史中，但评论者 API 调用只发送初始提示。累积反馈没有传入评论者请求。",
+          "evidence": {
+            "scope": "IJCAI 2025 论文第 3.4 节；LPFG 提交 6bc2be0dcd639600123f826f687288d164f3f975，LPFG.py 第 253–269 行。",
+            "observation": "代码将生成的特征和下一轮反馈请求追加到 mssa_optimizer。但实际评论者 API 调用的 messages 只包含初始 sys_optimizer 与 prt_optimizer，没有发送累积对话。",
+            "reason": "向本地历史列表追加反馈，并不意味着评论者已收到反馈。该公开请求路径不能按所述迭代反馈机制，让评论者基于累积的生成特征进行回应。",
+            "limitation": "生成器保留了自身上下文。本条问题位于所引公开提交的评论者请求路径：本地追加的历史没有进入 messages 参数。",
+            "sources": [
+              {
+                "label": "固定版本评论者请求",
+                "location": "LPFG.py 第 253–269 行：历史追加与 messages 参数的差异"
+              },
+              {
+                "label": "已发表方法",
+                "location": "第 3.4 节：生成器与评论者的迭代反馈"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "2601.21347": {
+      "findings": [
+        {
+          "title": "WER 与语义指标使用不同版本的转录文本",
+          "detail": "评估入口仅为 WER 启用后处理。其他五项指标重新读取原始 JSON；WER 进程没有把修改后的文本写回文件。",
+          "evidence": {
+            "scope": "arXiv 2601.21347v1；SAP-Hypo5 提交 5d37b96fd25a3e612ba9a4c04d44de4446f5d3fe",
+            "observation": "评估入口仅为 WER 启用后处理。其他五项指标重新读取原始 JSON；WER 进程没有把修改后的文本写回文件。",
+            "reason": "后处理改变内容时，各指标评价的不是同一份转录。指标间的差异会混入文本处理差异。",
+            "limitation": "本条针对公开评估入口及其调用的脚本。",
+            "sources": [
+              {
+                "label": "来源 1",
+                "location": "WER 参数与后续指标调用"
+              },
+              {
+                "label": "来源 2",
+                "location": "加载、内存修改及输出流程"
+              },
+              {
+                "label": "来源 3",
+                "location": "命令行后处理参数默认关闭"
+              }
+            ]
+          }
+        },
+        {
+          "title": "评估前删除数字，使数字错误从评价对象中消失",
+          "detail": "inference.py 删除参考转录和 ASR 候选中的全部数字，默认情况下也删除模型输出中的数字，再保存给后续指标。例如 take 5 pills daily 与 take 9 pills daily 都变成 take pills daily。",
+          "evidence": {
+            "scope": "arXiv 2601.21347v1；SAP-Hypo5 提交 5d37b96fd25a3e612ba9a4c04d44de4446f5d3fe",
+            "observation": "inference.py 删除参考转录和 ASR 候选中的全部数字，默认情况下也删除模型输出中的数字，再保存给后续指标。例如 take 5 pills daily 与 take 9 pills daily 都变成 take pills daily。",
+            "reason": "数字替换错误会从 WER 和语义评估对象中消失，原本存在数字错误的候选也可能进入 NoErr 组。论文强调保留数字，但所述标准化步骤没有列出这一操作。",
+            "limitation": "这是按源码推导的反例；实际受影响样本数和分数变化尚未测量。",
+            "sources": [
+              {
+                "label": "来源 1",
+                "location": "clean_text 删除数字及参数默认值"
+              },
+              {
+                "label": "来源 2",
+                "location": "清洗参考转录并保存评估字段"
+              },
+              {
+                "label": "来源 3",
+                "location": "第 2 节及第 3.1 节：标准化与数字保留"
+              }
+            ]
+          }
+        },
+        {
+          "title": "公开重复短语处理与 Algorithm 1 不同",
+          "detail": "Algorithm 1 在选中短语首次出现的末尾截断转录。代码则选择性压缩重复并保留后文，还会保留不超过三次的非末尾重复。",
+          "evidence": {
+            "scope": "arXiv 2601.21347v1；SAP-Hypo5 提交 5d37b96fd25a3e612ba9a4c04d44de4446f5d3fe",
+            "observation": "Algorithm 1 在选中短语首次出现的末尾截断转录。代码则选择性压缩重复并保留后文，还会保留不超过三次的非末尾重复。",
+            "reason": "在允许单词短语的设置下，go go home 按论文规则变为 go，代码则保留 go go home。两种规则会产生不同内容和评估分数。",
+            "limitation": "本条比较论文伪代码与固定提交的实现。",
+            "sources": [
+              {
+                "label": "来源 1",
+                "location": "Algorithm 1 的返回操作"
+              },
+              {
+                "label": "来源 2",
+                "location": "选择性压缩重复的分支"
+              }
+            ]
+          }
+        }
+      ],
+      "sourceHash": "9dba4d6ba30ce42c163a6a9f69d21f0551828fdb1e2a6a3b79f93217b708946a"
+    },
+    "2502.08828": {
+      "findings": [
+        {
+          "title": "把连续空间优化概括为生成式方法的共同机制",
+          "detail": "第 5、7 节把 RL 与生成式方法分别概括为离散搜索和连续空间优化。但第 4.2 节收录的 Zhang et al. (2024b) 使用离散特征操作和 Monte Carlo Tree Search。",
+          "evidence": {
+            "scope": "arXiv 2502.08828v2 第 4.2、5、7 节；被引论文 2406.03505v1 第 3.3 节。",
+            "observation": "第 5、7 节把 RL 与生成式方法分别概括为离散搜索和连续空间优化。但第 4.2 节收录的 Zhang et al. (2024b) 使用离散特征操作和 Monte Carlo Tree Search。",
+            "reason": "综述把一类方法的连续优化属性推广到包含离散 LLM 树搜索的整个类别。神经网络内部使用向量，不等于外层特征搜索是连续优化。",
+            "limitation": "被引论文 2024 年 v1 已包含这一机制，早于综述 v2。",
+            "sources": [
+              {
+                "label": "来源 1",
+                "location": "离散与连续搜索的总体比较"
+              },
+              {
+                "label": "来源 2",
+                "location": "收录的 Zhang et al. (2024b) 方法"
+              },
+              {
+                "label": "来源 3",
+                "location": "节点选择、扩展与 MCTS"
+              }
+            ]
+          }
+        }
+      ],
+      "sourceHash": "5e4dd7122c6ef5727e6c5474866e55f01cccf0ca68d30edd338b9238e98c5755"
+    },
+    "2501.10555": {
+      "findings": [
+        {
+          "title": "特征选择的状态更新式始终返回原集合",
+          "detail": "第 5.1 节将下一状态写为当前特征集合与其自身子集的并集。",
+          "evidence": {
+            "scope": "正式发表版：ACM TKDD 20(5)，Article 71，DOI 10.1145/3801742；核对用户提供的正式 PDF。",
+            "observation": "第 5.1 节将下一状态写为当前特征集合与其自身子集的并集。",
+            "reason": "该并集在任何动作下都等于原集合，既不能删除特征，也不能加入集合之外的特征，无法表达所描述的特征选择转移。",
+            "limitation": "问题位于正式版的统一数学描述，arXiv v1 也有相同公式。",
+            "sources": [
+              {
+                "label": "来源 1",
+                "location": "第 5.1 节，71:20–21"
+              },
+              {
+                "label": "来源 2",
+                "location": "初稿 v1 中的相同表达式"
+              }
+            ]
+          }
+        },
+        {
+          "title": "生成式优化目标的函数输入类型不一致",
+          "detail": "第 5.2 节定义 g_dec 将向量 E 映射为序列 S，h_eval 接收 E，却将目标写成 h_eval(g_dec(e))。",
+          "evidence": {
+            "scope": "正式发表版：ACM TKDD 20(5)，Article 71，DOI 10.1145/3801742；核对用户提供的正式 PDF。",
+            "observation": "第 5.2 节定义 g_dec 将向量 E 映射为序列 S，h_eval 接收 E，却将目标写成 h_eval(g_dec(e))。",
+            "reason": "解码器返回序列，评价器却被定义为接收向量；按文中定义，两者不能直接复合。",
+            "limitation": "核对正式版数学定义，arXiv v1 中也有相同问题。",
+            "sources": [
+              {
+                "label": "来源 1",
+                "location": "第 5.2 节，71:22–23"
+              },
+              {
+                "label": "来源 2",
+                "location": "初稿 v1 的定义与优化目标"
+              }
+            ]
+          }
+        },
+        {
+          "title": "将 iTGA 自然生长搜索算法归入嵌入式树模型",
+          "detail": "第 3.1.3 节与 Figure 2 将引用 208 列为嵌入式树模型方法。iTGA 原文则将其定义为种群元启发式算法，树代表候选解，特征选择用二进制向量表示。",
+          "evidence": {
+            "scope": "正式发表版：ACM TKDD 20(5)，Article 71，DOI 10.1145/3801742；核对用户提供的正式 PDF。",
+            "observation": "第 3.1.3 节与 Figure 2 将引用 208 列为嵌入式树模型方法。iTGA 原文则将其定义为种群元启发式算法，树代表候选解，特征选择用二进制向量表示。",
+            "reason": "综述混淆了自然树木生长的搜索比喻与预测树模型，并据此错误描述特征子集的表示。",
+            "limitation": "本条针对引用 208 的分类，已对照原论文。",
+            "sources": [
+              {
+                "label": "来源 1",
+                "location": "第 3.1.3 节及 Figure 2，71:10、71:4"
+              },
+              {
+                "label": "来源 2",
+                "location": "iTGA 原论文第 2、3.1 节"
+              },
+              {
+                "label": "来源 3",
+                "location": "出版社摘要：种群元启发式算法"
+              }
+            ]
+          }
+        }
+      ],
+      "sourceHash": "10f859c45fe8448022ee1c6920b0831a7e4b159948caa9c09c7257deb9ae4b94"
+    },
+    "2602.10625": {
+      "findings": [
+        {
+          "title": "将 0 阶任务分数写成 1 阶任务分数",
+          "detail": "附录 C.1.1 将 DeepSeek-R1 的 0.988 描述为 1 阶任务结果。表 3 将 0.988 列在 Order 0，Order 1 为 0.762。",
+          "evidence": {
+            "scope": "arXiv 2602.10625v3，附录 C.1.1 与表 3。",
+            "observation": "附录 C.1.1 将 DeepSeek-R1 的 0.988 描述为 1 阶任务结果。表 3 将 0.988 列在 Order 0，Order 1 为 0.762。",
+            "reason": "文字将分数对应到错误任务阶数，使所述 1 阶准确率比表中高出 22.6 个百分点。",
+            "limitation": "本条对照 arXiv v3 内的正文与表格。",
+            "sources": [
+              {
+                "label": "来源 1",
+                "location": "1 阶任务的文字陈述"
+              },
+              {
+                "label": "来源 2",
+                "location": "0 阶与 1 阶分数"
+              }
+            ]
+          }
+        }
+      ],
+      "sourceHash": "74299a924ba5d44d4e2e4159f0ecd8d3e0a16ead0ae1ae8978f11b7973b9544f"
+    },
+    "2505.15572": {
+      "findings": [
+        {
+          "title": "测试标签参与最佳方程选择和提前停止",
+          "detail": "每轮训练都用测试标签计算候选方程分数，据此更新最佳方程，并在最佳测试分数达到 0.99 时停止。",
+          "evidence": {
+            "scope": "arXiv 2505.15572v1；相关公开仓库 Data2Eqn-RL，提交 4e27dd98f011963511cda60af4caadbfdc24e755",
+            "observation": "每轮训练都用测试标签计算候选方程分数，据此更新最佳方程，并在最佳测试分数达到 0.99 时停止。",
+            "reason": "测试集承担了模型选择与停止判断的功能，输出的是按测试集选择后的结果。",
+            "limitation": "仓库关联依据是第一作者账户及方法细节对应。论文未直接链接该仓库，本条针对所列提交。",
+            "sources": [
+              {
+                "label": "来源 1",
+                "location": "测试评分、最佳方程更新与停止条件，233–279 行"
+              },
+              {
+                "label": "来源 2",
+                "location": "训练测试划分及测试数据保存"
+              }
+            ]
+          }
+        },
+        {
+          "title": "target_noise 参数没有改变训练标签",
+          "detail": "finetune_data.py 根据 target_noise 生成噪声，却仍将原始 real_y 保存为训练标签，没有加入该噪声。",
+          "evidence": {
+            "scope": "arXiv 2505.15572v1；相关公开仓库 Data2Eqn-RL，提交 4e27dd98f011963511cda60af4caadbfdc24e755",
+            "observation": "finetune_data.py 根据 target_noise 生成噪声，却仍将原始 real_y 保存为训练标签，没有加入该噪声。",
+            "reason": "对配套采样器生成的数据，修改这一参数不能实现第 4.4 节描述的训练标签加噪实验。",
+            "limitation": "仓库关联依据是第一作者账户及方法细节对应。论文未直接链接该仓库，本条针对所列提交。",
+            "sources": [
+              {
+                "label": "来源 1",
+                "location": "噪声生成与保存标签，29–38 行"
+              },
+              {
+                "label": "来源 2",
+                "location": "抗噪实验"
+              }
+            ]
+          }
+        },
+        {
+          "title": "概率比和 KL 项比较的是分别生成的轨迹",
+          "detail": "训练模型与参考模型独立生成序列，代码提取各自动作的概率后相除，KL 则按位置对齐并截到较短长度。",
+          "evidence": {
+            "scope": "arXiv 2505.15572v1；相关公开仓库 Data2Eqn-RL，提交 4e27dd98f011963511cda60af4caadbfdc24e755",
+            "observation": "训练模型与参考模型独立生成序列，代码提取各自动作的概率后相除，KL 则按位置对齐并截到较短长度。",
+            "reason": "动作或前缀不同时，比较的是不同事件或条件状态，与论文公式中的共同动作、共同状态不一致。",
+            "limitation": "仓库关联依据是第一作者账户及方法细节对应。论文未直接链接该仓库，本条针对所列提交。",
+            "sources": [
+              {
+                "label": "来源 1",
+                "location": "独立生成及各自动作概率比，153–195 行"
+              },
+              {
+                "label": "来源 2",
+                "location": "KL 计算"
+              },
+              {
+                "label": "来源 3",
+                "location": "公式 3、5"
+              }
+            ]
+          }
+        },
+        {
+          "title": "实验部分的 R² 分母使用了预测值",
+          "detail": "第 4.1 节和附录 B 在总离差平方和的分母中使用预测值；前文公式 2 与标准定义使用真实值。",
+          "evidence": {
+            "scope": "arXiv 2505.15572v1；相关公开仓库 Data2Eqn-RL，提交 4e27dd98f011963511cda60af4caadbfdc24e755",
+            "observation": "第 4.1 节和附录 B 在总离差平方和的分母中使用预测值；前文公式 2 与标准定义使用真实值。",
+            "reason": "两种公式不等价：真实值 [0,2]、预测值 [0,1] 时，标准 R² 为 0.5，实验部分印出的公式为 0。",
+            "limitation": "相关仓库调用标准 r2_score；本条记录论文公式报告错误。",
+            "sources": [
+              {
+                "label": "来源 1",
+                "location": "实验指标公式"
+              },
+              {
+                "label": "来源 2",
+                "location": "附录 B 指标公式"
+              },
+              {
+                "label": "来源 3",
+                "location": "r2_score 调用"
+              }
+            ]
+          }
+        }
+      ],
+      "sourceHash": "e69ff12e5f5508d330f24760f1a02789b210632d00b78baf4fec653f8e1ff8cc"
+    },
+    "2303.12370": {
+      "findings": [
+        {
+          "title": "Viterbi 分支会把被禁止的倒序路径选为伪标签",
+          "detail": "Viterbi 分支把余弦相似度直接作为发射概率。合法路径出现负分时，被禁止的转移所对应的零分反而更大，可以返回倒序标签。",
+          "evidence": {
+            "scope": "CVPR 2023 正文；arXiv 2303.12370v2；WeakSVR 提交 0caa9eb05ff77f8798167a8ad754e90f3a059af2",
+            "observation": "Viterbi 分支把余弦相似度直接作为发射概率。合法路径出现负分时，被禁止的转移所对应的零分反而更大，可以返回倒序标签。",
+            "reason": "两帧的相似度分别为 [-a,-a] 和 [a,a]、a>0 时，按源码使用上三角转移矩阵和均匀先验，第一帧得分为 [-a/2,-a/2]，第二帧得分为 [0,-a²/4]，回溯返回 [1,0]。这违反第 3.4 节要求的动作顺序约束。",
+            "limitation": "反例针对 Viterbi 选项，命令行默认选项为 sorting。",
+            "sources": [
+              {
+                "label": "来源 1",
+                "location": "Viterbi 递推、回溯及发射矩阵"
+              },
+              {
+                "label": "来源 2",
+                "location": "归一化相似度及伪标签调用"
+              },
+              {
+                "label": "来源 3",
+                "location": "第 3.4 节、第 3.4.2 节及附录 B"
+              }
+            ]
+          }
+        }
+      ],
+      "sourceHash": "1c8d2d976954d320763d0a0d9deeea23cf1694415d533aaa24b99ca845acfd32"
+    },
+    "2609.07720": {
+      "findings": [
+        {
+          "title": "视觉审查要求对照人物参考图，但没有接收参考图",
+          "detail": "人物参考图传给了图像生成器，关键帧审查器却只收到生成图和一个布尔标记。该标记会加入要求对照参考图的文字，实际没有附带参考图。视频审查也只接收当前片段的抽帧。",
+          "evidence": {
+            "scope": "arXiv 2609.07720v1；CineCrew 提交 9a00efa7db65ba028c1523907f6cee844776123a",
+            "observation": "人物参考图传给了图像生成器，关键帧审查器却只收到生成图和一个布尔标记。该标记会加入要求对照参考图的文字，实际没有附带参考图。视频审查也只接收当前片段的抽帧。",
+            "reason": "文字外貌描述不能提供缺失的参考图像。公开视觉审查路径缺少与指定人物参考图或相邻生成片段直接比对的输入，影响第 3.4 节描述的身份和连续性审查。",
+            "limitation": "本条针对生成流程中的视觉审查器及其消息内容。",
+            "sources": [
+              {
+                "label": "来源 1",
+                "location": "生成参考图与审查调用"
+              },
+              {
+                "label": "来源 2",
+                "location": "实际图像列表与参考图提示"
+              },
+              {
+                "label": "来源 3",
+                "location": "最终消息组装"
+              },
+              {
+                "label": "来源 4",
+                "location": "生成审查与反馈流程"
+              }
+            ]
+          }
+        },
+        {
+          "title": "最后一次拒绝后，最终记录保存了尚未执行的修订提示词",
+          "detail": "关键帧和视频的重试循环在最后一次尝试被拒绝后仍会更新提示词。流水线随后将新提示词与修改前已经生成的媒体一起保存。",
+          "evidence": {
+            "scope": "arXiv 2609.07720v1；CineCrew 提交 9a00efa7db65ba028c1523907f6cee844776123a",
+            "observation": "关键帧和视频的重试循环在最后一次尝试被拒绝后仍会更新提示词。流水线随后将新提示词与修改前已经生成的媒体一起保存。",
+            "reason": "例如 max_retries=0 时，P0 生成图片 I0，审查拒绝并返回 P1；最终保存的图片仍为 I0，提示词却变成 P1。较长重试循环的最后一次拒绝也会产生同样问题，使最终 FilmDSL 和 VideoJob 中的生成条件与媒体不对应。",
+            "limitation": "触发条件是最后一次尝试被拒绝并返回非空 revised_prompt；结论来自静态控制流核对。",
+            "sources": [
+              {
+                "label": "来源 1",
+                "location": "关键帧重试与最终提示词保存"
+              },
+              {
+                "label": "来源 2",
+                "location": "视频重试及提示词更新"
+              },
+              {
+                "label": "来源 3",
+                "location": "最终任务与媒体工件保存"
+              }
+            ]
+          }
+        }
+      ],
+      "sourceHash": "c7fb7694e7f8d2679cf500c629049c74d98f301196634e9690c8c5050f17e215"
+    },
+    "2204.01018": {
+      "findings": [
+        {
+          "title": "RepCount 合并统计与两个子集的统计不相容",
+          "detail": "Table 1 列出 Part-A 的 1,041 个视频平均含 14.99 次动作，Part-B 的 410 个视频平均含 9.27 次动作，合并均值却是 15.932。合并时长均值也不符合按样本量加权的结果。",
+          "evidence": {
+            "scope": "arXiv 2204.01018v1，Table 1 与第 3 节；核对来源为 arXiv HTML",
+            "observation": "Table 1 列出 Part-A 的 1,041 个视频平均含 14.99 次动作，Part-B 的 410 个视频平均含 9.27 次动作，合并均值却是 15.932。合并时长均值也不符合按样本量加权的结果。",
+            "reason": "合并动作次数均值应处于两个子集均值之间；按表中数量加权约为 13.374，而非 15.932。时长均值 30.67 和 28.53 秒加权约为 30.065 秒，而非表中的 29.359 秒；第 3 节又写为 39.359 秒。两位小数的舍入不能解释这些差距。",
+            "limitation": "算术核对使用论文所列汇总数字，未重新计算原始视频标注。",
+            "sources": [
+              {
+                "label": "来源 1",
+                "location": "Table 1 及 Dataset statistics 段落"
+              },
+              {
+                "label": "来源 2",
+                "location": "版本记录：v1"
+              }
+            ]
+          }
+        }
+      ],
+      "sourceHash": "11c880d4c4ee6af09ca0f09c6328cf7a63f438a2c0997f84e4165cde7fc72a98"
+    },
+    "2506.09085": {
+      "sourceHash": "a65ebfe8bff067806b5f5e2a9c92e3cdb71235148dceb3c27d9dda86131a32c7",
+      "findings": [
+        {
+          "title": "摘要提供的代码仓库已过期",
+          "detail": "摘要声称代码可通过匿名仓库获取。2026-09-26访问该仓库时，页面显示“The repository is expired.”，没有提供项目文件。",
+          "evidence": {
+            "scope": "arXiv 2506.09085v1 摘要及其中的匿名仓库链接；2026-09-26通过浏览器核查。",
+            "observation": "摘要声称代码可通过匿名仓库获取。2026-09-26访问该仓库时，页面显示“The repository is expired.”，没有提供项目文件。",
+            "reason": "论文给出的代码入口已无法提供实现，无法沿该入口核对解码流程、数据划分和实验配置。",
+            "limitation": "核查正文为 arXiv 2506.09085v1。",
+            "sources": [
+              {
+                "label": "来源 1",
+                "location": "仓库状态：已过期"
+              },
+              {
+                "label": "来源 2",
+                "location": "摘要中的代码可用性链接"
+              }
+            ]
+          }
+        },
+        {
+          "title": "后缀表示的搜索空间论证混淆了词表与完整序列",
+          "detail": "附录 A 声称后缀表示把指数级搜索空间缩小为 |C| = |O| + |X|D + 3。该式相加的是运算符、特征和特殊 token 的数量，没有计算完整变换序列的数量。",
+          "evidence": {
+            "scope": "arXiv 2506.09085v1，附录 A 与 Figure 7；反例遵守提示词对特征组合数量的限制。",
+            "observation": "附录 A 声称后缀表示把指数级搜索空间缩小为 |C| = |O| + |X|D + 3。该式相加的是运算符、特征和特殊 token 的数量，没有计算完整变换序列的数量。",
+            "reason": "即使采用 Figure 7 的提示词约束，对 k 个不同特征分别选择 sin 或 tanh，且 k 小于 50，也能构成 2^k 个合法特征集合，而这些特征使用的词表固定不变。中缀转后缀也保留原表达式所表示的变换。删除括号不能推出文中所称的序列搜索空间上界。",
+            "limitation": "核查正文为 arXiv 2506.09085v1。",
+            "sources": [
+              {
+                "label": "来源 1",
+                "location": "Postfix Expressions 中的搜索空间数量论断"
+              },
+              {
+                "label": "来源 2",
+                "location": "允许的 sin/tanh 运算符及少于 50 个特征组合的约束"
+              }
+            ]
+          }
+        },
+        {
+          "title": "Table 6 将教师模型记为 LLaMA 3.2-405B",
+          "detail": "附录 H 与 Table 6 报告使用了名为 LLaMA 3.2-405B 的教师模型。Meta 发布的 Llama 3.2 规模为 1B、3B、11B 和 90B，405B 属于 Llama 3.1。",
+          "evidence": {
+            "scope": "arXiv 2506.09085v1，附录 H 与 Table 6；对照 Meta 官方发布说明。",
+            "observation": "附录 H 与 Table 6 报告使用了名为 LLaMA 3.2-405B 的教师模型。Meta 发布的 Llama 3.2 规模为 1B、3B、11B 和 90B，405B 属于 Llama 3.1。",
+            "reason": "文中记录的型号与版本组合不能对应到官方发布的模型，读者无法据此确定该列结果使用的教师模型。",
+            "limitation": "核查正文为 arXiv 2506.09085v1。",
+            "sources": [
+              {
+                "label": "来源 1",
+                "location": "附录 H 教师模型列表与 Table 6 列名"
+              },
+              {
+                "label": "来源 2",
+                "location": "Llama 3.2 发布规模及 Llama 3.1 405B 说明"
+              },
+              {
+                "label": "来源 3",
+                "location": "官方 Llama 3.1 405B 模型卡"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

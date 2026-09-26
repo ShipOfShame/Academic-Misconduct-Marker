@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN" data-locale="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="记录论文报告、代码开放与可复现性问题的公开证据库。查看具体依据、原始来源与可解释的审查优先级评分。">
+  <link rel="alternate" hreflang="en" href="https://shipofshame.github.io/Academic-Misconduct-Marker/"><link rel="alternate" hreflang="zh-CN" href="https://shipofshame.github.io/Academic-Misconduct-Marker/zh/">
+  <link rel="canonical" href="https://shipofshame.github.io/Academic-Misconduct-Marker/zh/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="学术不端标记器">
+  <meta property="og:description" content="浏览论文时，查看已记录的问题和来源。">
+  <meta property="og:image" content="https://shipofshame.github.io/Academic-Misconduct-Marker/assets/social-zh-CN.png">
+  <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="color-scheme" content="light">
+  <title>学术不端标记器 — 论文证据库</title>
+  <link rel="icon" type="image/svg+xml" href="../icon.svg"><link rel="stylesheet" href="../site.css?v=85d8dce2a06ff277">
+  <script src="../core.js?v=7ce8f9ed39e52399" defer></script><script src="../scoring.js?v=26b8e51b3d0f0a5a" defer></script><script src="../i18n/zh-CN.js?v=7c43b456139eb3f8" defer></script><script src="../site.js?v=93e805600a85138e" defer></script>
+  <meta name="evidence-version" content="d7e079c3ce9ab7cd">
+</head>
+<body>
+<a class="skip" href="#ledger">跳转到证据列表</a>
+<header class="masthead wrap">
+  <a class="brand" href="./"><img src="../icon.svg" alt="" width="40" height="40"><span>学术不端标记器</span></a>
+  <nav aria-label="主导航"><a id="language-switch" class="language-switch" href="../" hreflang="en" lang="en">English</a><a href="#ledger">证据库</a><a href="#method">审查方法</a><a href="https://github.com/ShipOfShame/Academic-Misconduct-Marker">GitHub <span aria-hidden="true">↗</span></a></nav>
+</header>
+<main>
+<section class="hero wrap" aria-labelledby="hero-title">
+  <div class="eyebrow"><span class="signal" aria-hidden="true"></span> 论文审查记录</div>
+  <h1 id="hero-title">论文问题<br><span>与证据记录</span></h1>
+  <div class="hero-bottom"><p>记录论文中的报告不一致、代码实现问题和研究材料缺口，并列出具体依据和原始来源。</p>
+  <a class="button" href="https://github.com/ShipOfShame/Academic-Misconduct-Marker/releases/latest">下载扩展 <span aria-hidden="true">↗</span></a></div>
+</section>
+<section class="stats wrap" aria-label="数据库快照"><div><strong id="paper-count">—</strong><span>存在已记录问题的论文</span></div><div><strong id="finding-count">—</strong><span>未解决问题</span></div><div><strong id="identity-count">—</strong><span>作者身份记录</span></div><div><strong class="date" id="snapshot">—</strong><span>核查日期</span></div></section>
+<section class="wrap ledger" id="ledger" aria-labelledby="ledger-title">
+  <div class="section-heading"><div class="eyebrow">01 / 证据记录</div><h2 id="ledger-title">已收录论文</h2></div>
+  <div class="controls"><label class="search">搜索论文或作者<input id="search" type="search" placeholder="论文标题、作者或 arXiv 编号…"></label><label>问题类型<select id="status"><option value="">全部类型</option></select></label><label>排序方式<select id="sort"><option value="score">审查优先级</option><option value="title">论文标题</option><option value="checked">最近核查</option></select></label></div>
+  <details class="weight-panel"><summary>调整权重</summary><div id="weights" class="weights"></div><button id="reset" type="button">恢复默认权重</button></details>
+  <div class="results-line"><p id="result-status" role="status">正在加载证据快照…</p><span id="score-mode">默认权重</span></div>
+  <div id="papers"></div><noscript><p>搜索与评分功能需要启用 JavaScript。 <a href="https://github.com/ShipOfShame/Academic-Misconduct-Marker/tree/main/docs/zh/papers">在 GitHub 上阅读全部证据记录。</a></p></noscript>
+</section>
+<section class="method-section" id="method"><div class="wrap">
+  <div class="section-heading"><h2>方法与参考文献</h2></div>
+  <div class="method-grid"><article><a href="https://jmlr.org/papers/v22/20-303.html">Pineau 等，2021 ↗</a><p>代码政策与可复现性检查</p></article><article><a href="https://aclanthology.org/D19-1224/">Dodge 等，2019 ↗</a><p>验证结果与搜索预算</p></article><article><a href="https://doi.org/10.1016/j.patter.2023.100804">Kapoor 与 Narayanan，2023 ↗</a><p>数据泄漏与评估</p></article><article><a href="https://doi.org/10.1371/journal.pcbi.1003285">Sandve 等，2013 ↗</a><p>输入、版本与分析步骤</p></article><article><a href="https://www.acm.org/publications/policies/artifact-review-and-badging-current">ACM 研究产物审查与徽章政策 ↗</a><p>材料可用性、功能与结果验证</p></article><article><a href="https://publicationethics.org/core-practices">COPE 核心实践 ↗</a><p>发表后讨论与更正</p></article></div>
+  <p class="method-note"><a href="https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/docs/zh/methodology.md">阅读完整方法说明 ↗</a></p>
+</div></section>
+<section class="wrap about"><div><div class="eyebrow">03 / 浏览器中的标记</div><h2>浏览器扩展</h2><p>在 arXiv 或 Google Scholar 上悬停标记，查看相关论文与证据。</p><a href="https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/README.zh-CN.md#安装扩展">安装说明 ↗</a> · <a href="https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/docs/identity-audit.md">身份核验记录（英文） ↗</a></div><div class="legend"><div><img class="marker" src="../assets/marker-target.svg" width="40" height="40" alt=""><strong>审查对象</strong><span>相关论文存在问题记录</span></div><div><img class="marker" src="../assets/marker-coauthor.svg" width="40" height="40" alt=""><strong>相关合作者</strong><span>在已收录论文中共同署名</span></div><div><img class="marker" src="../assets/marker-candidate.svg" width="40" height="40" alt=""><strong>身份尚不确定</strong><span>标识符冲突或身份依据不足</span></div></div></section>
+</main>
+<footer class="wrap"><div><strong>学术不端标记器</strong></div><div><a href="https://github.com/ShipOfShame/Academic-Misconduct-Marker/issues/new/choose">提交更正 ↗</a><a href="https://github.com/ShipOfShame/Academic-Misconduct-Marker/blob/main/PRIVACY.md">隐私说明（英文）</a><a href="data.json">下载证据快照</a></div></footer>
+</body></html>

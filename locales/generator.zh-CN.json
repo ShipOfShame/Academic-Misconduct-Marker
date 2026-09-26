@@ -1,0 +1,19 @@
+{
+  "installAnchor": "安装扩展",
+  "paper": "原论文",
+  "authors": "作者：",
+  "status": "状态：",
+  "checked": " · 核查日期：",
+  "sources": "来源与具体位置",
+  "brand": "学术不端标记器",
+  "tagline": "论文审查与证据记录",
+  "readmeCaseSummary": "> **公开清单中的 {totalPapers} 篇论文，有 {casePapers} 篇收录了未解决问题，占 {percentage}%。**\n>\n> 统计日期：**{date}**。分母采用作者主页与 Google Scholar 合并后的[逐篇清单（英文）](docs/publication-coverage.md)，其中包含 {pending} 篇待取得全文的论文。",
+  "readmeSummary": "截至 **{date}**，数据库包含 **{papers} 篇论文、{findings} 项未解决问题**，分为三类：",
+  "readmeIdentitySummary": "截至 **{date}**，[身份核验记录（英文）](docs/identity-audit.md)包含 **{identities} 位作者**。其中有 {coauthors} 位合作者：{verified} 位有已核实的身份联系，{supported} 位有支持性证据，{unresolved} 位仍待核实。这 {unmarked} 位共同作者暂不标记。",
+  "cover": {
+    "title": "学术不端标记器",
+    "subtitle": "浏览论文时，查看已记录的问题和来源。",
+    "subject": "审查对象",
+    "coauthor": "身份已核实的共同作者"
+  }
+}

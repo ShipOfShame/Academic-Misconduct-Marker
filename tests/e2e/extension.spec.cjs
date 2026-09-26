@@ -1,0 +1,84 @@
+const {test,expect,chromium}=require('@playwright/test');
+const path=require('node:path');
+const fixture='<!doctype html><html><head><title>Extension fixture</title></head><body style="font:20px system-ui;margin:40px"><h1 class="title">MMTok: Multimodal Coverage Maximization for Efficient Inference of VLMs</h1><div class="authors"><a>Sixun Dong</a>, <a>Juhua Hu</a></div></body></html>';
+let context;
+test.beforeEach(async()=>{const extension=path.resolve('extension');context=await chromium.launchPersistentContext('',{channel:'chromium',headless:true,args:[`--disable-extensions-except=${extension}`,`--load-extension=${extension}`]});});
+test.afterEach(async()=>{await context?.close();});
+test('real extension injection, hover, keyboard dismissal and source navigation',async()=>{
+ await context.route('https://arxiv.org/**',r=>r.fulfill({contentType:'text/html',body:fixture}));
+ await context.route('https://github.com/**',r=>r.fulfill({body:'Repository evidence destination'}));
+ const page=await context.newPage();await page.goto('https://arxiv.org/abs/2508.18264');
+ const red=page.getByRole('button',{name:'Under review: Sixun Dong, open evidence'});
+ const orange=page.getByRole('button',{name:'Associated coauthor: Juhua Hu, open evidence'});
+ await expect(red).toBeVisible();await expect(orange).toBeVisible();
+ await red.hover();const card=page.locator('.hovercard').filter({hasText:'Sixun Dong'});await expect(card).toBeVisible();
+ await expect(card.getByText('Suspected research-integrity concerns')).toBeVisible();
+ await page.screenshot({path:test.info().outputPath('hover.png')});
+ const [evidence]=await Promise.all([context.waitForEvent('page'),card.getByRole('link',{name:'Repository evidence'}).first().click()]);
+ await evidence.waitForLoadState();expect(evidence.url()).toContain('/evidence-database/papers/');await evidence.close();
+ await orange.focus();await expect(page.locator('.hovercard').filter({hasText:'Juhua Hu'})).toBeVisible();await orange.press('Escape');await expect(page.locator('.hovercard').filter({hasText:'Juhua Hu'})).toBeHidden();
+ await red.click();await expect(page.getByRole('dialog')).toContainText('Individual identity audit');
+ await page.getByRole('button',{name:'Close evidence'}).click();await expect(page.getByRole('dialog')).toHaveCount(0);
+});
+test('Scholar exact identifier confirms and wrong identifier conflicts',async()=>{
+ await context.route('https://scholar.google.com/**',r=>r.fulfill({contentType:'text/html',body:'<html><body><div id="gsc_prf_in">Sixun Dong</div></body></html>'}));
+ const page=await context.newPage();await page.goto('https://scholar.google.com/citations?user=j71Y2-4AAAAJ');await expect(page.getByRole('button',{name:'Under review: Sixun Dong, open evidence'})).toBeVisible();
+ await page.goto('https://scholar.google.com/citations?user=anotherID');await expect(page.getByRole('button',{name:'Identity conflict: Sixun Dong, open evidence'})).toBeVisible();await expect(page.locator('button.target')).toHaveCount(0);
+});
+test('settings, invalid import rejection, and bundled evidence navigation',async()=>{
+ await context.route('https://arxiv.org/**',r=>r.fulfill({contentType:'text/html',body:fixture}));
+ const page=await context.newPage(),cdp=await context.newCDPSession(page),origins=[];
+ cdp.on('Runtime.executionContextCreated',({context:c})=>origins.push(c.origin));await cdp.send('Runtime.enable');
+ await page.goto('https://arxiv.org/abs/2508.18264');await expect(page.locator('button.target')).toBeVisible();
+ const origin=origins.find(s=>s.startsWith('chrome-extension://'));expect(origin).toBeTruthy();
+ const options=await context.newPage();await options.goto(origin+'/options.html');await expect(options.locator('#coverage')).toContainText('19 papers');
+ await options.getByLabel('Enable page markers').uncheck();await expect(page.locator('[data-se-badge]')).toHaveCount(0);
+ await options.getByLabel('Enable page markers').check();await expect(page.locator('button.target')).toBeVisible();
+ await options.locator('#import').setInputFiles({name:'invalid.json',mimeType:'application/json',buffer:Buffer.from('{"schemaVersion":99}')});await expect(options.getByRole('status')).toContainText('Invalid');await expect(page.locator('button.target')).toBeVisible();
+ const data=JSON.parse(JSON.stringify(require('../../evidence-database/database.json')));for(const p of data.papers)delete p.evidenceUrl;
+ await options.locator('#import').setInputFiles({name:'local.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(data))});
+ await expect(page.locator('button.target')).toBeVisible();await page.locator('button.target').hover();
+ const [evidence]=await Promise.all([context.waitForEvent('page'),page.locator('.hovercard').getByRole('link',{name:'Evidence record'}).first().click()]);
+ await expect(evidence.locator('#record h2')).toBeVisible();await expect(evidence.getByRole('heading',{name:'Reason for flagging'}).first()).toBeVisible();expect(evidence.url()).toContain('/evidence.html#');
+});
+
+test('Scholar owner markers persist across unlisted publications with existing evidence links',async()=>{
+ const row='<div class="gsc_a_tr"><a class="gsc_a_at">LiveMCP-101: Stress Testing and Diagnosing MCP-enabled Agents on Challenging Queries</a><div class="gs_gray">M Yin, S Dong, M Zhang</div></div>';
+ await context.route('https://scholar.google.com/**',r=>r.fulfill({contentType:'text/html',body:'<html><body><div id="gsc_prf_in">Sixun Dong</div>'+row+'</body></html>'}));
+ const page=await context.newPage();await page.goto('https://scholar.google.com/citations?user=j71Y2-4AAAAJ&hl=zh-CN');
+ const marker=page.locator('.gsc_a_tr button.target');await expect(marker).toHaveCount(1);
+ await expect(page.locator('button.candidate')).toHaveCount(0);await expect(page.getByRole('button',{name:/Paper evidence/})).toHaveCount(0);
+ await marker.hover();const card=page.locator('.gsc_a_tr .hovercard');await expect(card).toBeVisible();
+ await expect(card.getByRole('link',{name:'Repository evidence'}).first()).toHaveAttribute('href',/evidence-database\/papers\//);
+ await expect(card).not.toContainText('LiveMCP-101');
+ await page.evaluate(html=>document.body.insertAdjacentHTML('beforeend',html),row);
+ await expect(page.locator('.gsc_a_tr button.target')).toHaveCount(2);
+ await page.screenshot({path:test.info().outputPath('scholar-profile.png')});
+});
+
+test('redesigned previews keep their header visible, switch roles, and fit narrow viewports',async()=>{
+ await context.route('https://arxiv.org/**',r=>r.fulfill({contentType:'text/html',body:fixture}));
+ const page=await context.newPage();await page.goto('https://arxiv.org/abs/2508.18264');
+ const red=page.getByRole('button',{name:'Under review: Sixun Dong, open evidence'}),orange=page.getByRole('button',{name:'Associated coauthor: Juhua Hu, open evidence'});
+ const card=page.locator('.hovercard[data-role="target"]');
+ await red.hover();await expect(red).toHaveAttribute('aria-expanded','true');
+ await expect(card.locator('.hover-count')).toHaveText('19');
+ const headerY=(await card.locator('.hover-header').boundingBox()).y;
+ await card.locator('.hover-papers').hover();await page.mouse.wheel(0,700);
+ await expect.poll(()=>card.locator('.hover-papers').evaluate(n=>n.scrollTop)).toBeGreaterThan(0);
+ await expect(card).toBeVisible();expect((await card.locator('.hover-header').boundingBox()).y).toBe(headerY);
+ await red.focus();await red.press('Tab');await expect(card.locator('a').first()).toBeFocused();
+ await card.locator('a').first().press('Escape');await expect(card).toBeHidden();await expect(red).toHaveAttribute('aria-expanded','false');
+ await orange.focus();await expect(page.locator('.hovercard:visible')).toHaveCount(1);
+ await page.locator('.hovercard[data-role="coauthor"]').screenshot({path:test.info().outputPath('coauthor-preview.png')});
+ await red.focus();await expect(page.locator('.hovercard:visible')).toHaveCount(1);
+ await card.screenshot({path:test.info().outputPath('author-preview.png')});
+ await card.getByRole('button',{name:'Open full evidence'}).click();await expect(page.getByRole('dialog')).toBeVisible();await expect(card).toBeHidden();
+ await page.getByRole('button',{name:'Close evidence'}).click();
+ await page.setViewportSize({width:375,height:560});await expect(card).toBeHidden();
+ await page.evaluate(()=>{document.querySelector('h1').style.display='none';document.querySelector('.authors').style.cssText='position:fixed;bottom:14px;right:8px';});
+ await orange.focus();await red.focus();await expect(card).toBeVisible();
+ const bounds=await card.boundingBox();expect(bounds.x).toBeGreaterThanOrEqual(0);expect(bounds.y).toBeGreaterThanOrEqual(0);expect(bounds.x+bounds.width).toBeLessThanOrEqual(375);expect(bounds.y+bounds.height).toBeLessThanOrEqual(560);
+ await page.screenshot({path:test.info().outputPath('narrow-preview.png')});
+ await page.setViewportSize({width:400,height:600});await expect(card).toBeHidden();
+});
