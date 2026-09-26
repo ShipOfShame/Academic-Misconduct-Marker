@@ -27,27 +27,6 @@ The README case percentage uses `evidence-database/publication-inventory.json` a
 
 Use an issue or pull request specifying the paper ID or identity record and supporting source. A correction should update the original entry, including its review date and status; do not leave a contradicted allegation as a current finding. Document the corrected finding and its supporting source in the update. Questions without evidence remain questions, not verified claims.
 
-## Weekly source monitor
-
-The [weekly workflow](https://github.com/ShipOfShame/Academic-Misconduct-Marker/actions/workflows/weekly-source-review.yml) runs on the default branch every Monday at 04:17 UTC. It also supports **Run workflow**. No AI API key or additional repository secret is required; its GitHub token has read-only contents and Actions permissions. It writes a run summary and a `source-review` artifact, not commits, database findings or author labels.
-
-Sources come from the canonical findings, identity records and full publication inventory. arXiv links follow the current abstract and submission history, including when the recorded evidence cites an older version. GitHub checks follow default-branch commits, the latest 100 releases and updated issues or pull requests, plus all comments in specifically cited issues (up to 2,000 comments per issue). Public ORCID records and identity pages are included. Changes on publication-list pages can prompt a search for newly listed papers; the monitor does not attribute new papers or people automatically.
-
-The monitor compares normalized page text and links, selected public API metadata, or PDF bytes. It does not download or execute research code, run experiments, interpret manuscript claims, or infer an identity from a name. Changes in page layout, metadata or unrelated repository activity can produce review candidates. JavaScript-only pages, access challenges, rate limits, timeouts, and responses above 4 MiB appear in the manual-check list. Their last successful fingerprints are preserved, so recovery can still reveal changes. A complete source outage fails the run after saving its report.
-
-Each successful run restores the latest retained successful snapshot and its pending reviews. The initial run establishes a baseline; subsequently added or newly accessible sources enter the review list. Removing a source from the monitored inputs retires its pending items. Artifacts retain fingerprints and short revision hints, not fetched page bodies, PDF contents, personal environment metadata or credentials.
-
-To process the queue:
-
-1. Open the latest run summary, or download `source-review` for `review.md` and `snapshot.json`.
-2. Check each changed source and any inaccessible source. Update findings, corrections and identity evidence where warranted, following the checklist above.
-3. Add the completed item's 64-character **Review ID** to [monitoring/reviewed.json](../monitoring/reviewed.json). Submit it with the reviewed changes, or alone if no database change is needed. A later source revision receives a different review ID.
-4. Regenerate and validate the published data before publishing reviewed changes. A monitoring run does not change any evidence review date.
-
-Artifacts are retained for 90 days, subject to the repository retention limit. Keep a downloaded snapshot if monitoring is paused longer than that; an expired baseline requires a fresh initial comparison and cannot retain its pending queue. GitHub can delay scheduled runs and disables schedules in public repositories after 60 days without repository activity; re-enable the workflow from Actions when needed. See [GitHub scheduling behavior](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule) and [artifact retention](https://docs.github.com/en/actions/tutorials/store-and-share-data).
-
-Local checks use `npm run test:monitor`. To inspect source coverage without network requests, run `npm run monitor -- --list`. Run `npm run monitor` for an initial check, or `npm run monitor -- --previous dist/previous-review/snapshot.json` to compare against a downloaded snapshot. Outputs go to `dist/source-monitor/` and stay outside the extension package and Pages data.
-
 ## Release
 
 Use the root package manifest and lockfile for all development commands. The extension does not require a separate dependency installation.

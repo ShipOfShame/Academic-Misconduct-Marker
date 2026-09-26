@@ -9,9 +9,7 @@
   "scripts": {
     "generate": "node scripts/generate.cjs",
     "validate": "node scripts/validate.cjs",
-    "test": "node --test tests/extension.test.cjs tests/scoring.test.cjs tests/locales.test.cjs tests/publication.test.cjs tests/monitor.test.cjs",
-    "test:monitor": "node --test tests/monitor.test.cjs",
-    "monitor": "node scripts/monitor-sources.cjs",
+    "test": "node --test tests/extension.test.cjs tests/scoring.test.cjs tests/locales.test.cjs tests/publication.test.cjs",
     "test:e2e": "playwright test",
     "check": "npm run validate && npm test",
     "package": "npm run check && python3 scripts/package.py",
