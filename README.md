@@ -111,9 +111,9 @@ The extension settings let you turn markers on or off, hide coauthor markers, an
 
 The extension uses bundled or manually imported data. Database updates arrive with extension releases. The interface is English; the website and README have separate English and Chinese versions. [Privacy](PRIVACY.md).
 
-## Update plan
+## Ongoing review
 
-The proposed review schedule is Monday at 00:00 UTC, covering new papers, revised manuscripts, code releases and author responses. Scheduled checks are not enabled. Database updates follow completed source reviews.
+This project will continue reviewing public papers, code releases and author responses from Sixun Dong (Ironieser), focusing on reproducibility, reported results and open-source commitments. We may extend these reviews to other researchers when checks of original sources identify discrepancies between their public statements and research materials, or unsupported allegations about other researchers.
 
 ## Submit evidence or report a problem
 
