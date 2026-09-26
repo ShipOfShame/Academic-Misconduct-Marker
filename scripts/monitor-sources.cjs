@@ -201,14 +201,14 @@ async function scan(sources, previous, reviewed, request, now = new Date().toISO
         if (!old) {
           baseline++;
           if (previous) {
-            const id = hash(source.key + '\nfirst-observation\n' + current.hash);
+            const id = hash(source.key + '\nfirst-observation\n' + current.hash + '\n' + now);
             if (!acknowledgments.has(id)) pending.set(id, {id, key: source.key, url: source.url, kind: source.kind, paperIds: source.paperIds, identityIds: source.identityIds, firstSeen: now, before: {hash: 'none', hint: 'No successful prior observation'}, after: records[source.key]});
           }
         }
         else if (current.hash === old.hash) unchanged++;
         else {
           changed++;
-          const id = hash(source.key + '\n' + old.hash + '\n' + current.hash);
+          const id = hash(source.key + '\n' + old.hash + '\n' + current.hash + '\n' + now);
           if (!acknowledgments.has(id)) pending.set(id, {id, key: source.key, url: source.url, kind: source.kind, paperIds: source.paperIds, identityIds: source.identityIds, firstSeen: now, before: old, after: records[source.key]});
         }
       } catch (error) {

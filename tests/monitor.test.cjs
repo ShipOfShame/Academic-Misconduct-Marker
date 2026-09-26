@@ -62,6 +62,17 @@ test('previously unavailable and newly added sources enter the review queue when
   assert.equal(retired.pending.length, 0); assert.deepEqual(retired.records, {});
 });
 
+test('a repeated revision after a revert is a new review event', async () => {
+  const baseline = await scan([page], null, [], request('Version A'), '2026-01-01T00:00:00Z');
+  const changed = await scan([page], baseline, [], request('Version B'), '2026-01-08T00:00:00Z');
+  const acknowledged = [changed.pending[0].id];
+  const reverted = await scan([page], changed, acknowledged, request('Version A'), '2026-01-15T00:00:00Z');
+  acknowledged.push(reverted.pending[0].id);
+  const repeated = await scan([page], reverted, acknowledged, request('Version B'), '2026-01-22T00:00:00Z');
+  assert.equal(repeated.pending.length, 1);
+  assert.ok(!acknowledged.includes(repeated.pending[0].id));
+});
+
 test('HTML noise is ignored while changed source links are detected', () => {
   const base = html('<a href="https://example.org/paper-one">Paper</a>');
   const noisy = base.replace('</head>', '<script>randomTimestamp=42</script><style>.random{color:red}</style></head>');
